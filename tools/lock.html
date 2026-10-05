@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Risenblade — Lock a file</title>
+<meta name="robots" content="noindex">
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#190000;color:#f3ead8;font:17px/1.5 "Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;padding:32px 20px}
+.box{max-width:640px;margin:0 auto;background:linear-gradient(180deg,#2c0b0b,#1d0303);border-radius:14px;padding:26px 28px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 12px 30px rgba(0,0,0,.35)}
+h1{font:600 34px/1.1 "Cormorant Garamond",Georgia,serif;margin:0 0 6px}
+p{color:#9fb0cc;margin:0 0 16px;font-size:15px}
+label{display:block;font-weight:600;margin:16px 0 6px}
+input[type=password],input[type=text]{width:100%;box-sizing:border-box;font:inherit;color:#f2ecdc;background:rgba(7,12,24,.6);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:10px 16px}
+input[type=file]{font:inherit;color:#d8d1bf}
+.btn{font:600 15px/1 inherit;color:#1a1408;border:0;cursor:pointer;padding:11px 18px;border-radius:999px;background:linear-gradient(180deg,#e8c76a,#c9a24a 55%,#b48d3c);box-shadow:0 4px 0 #6e5218,inset 0 1px 0 rgba(255,255,255,.55);margin-top:18px;margin-right:8px}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 #6e5218}
+.btn.quiet{color:#f2ecdc;background:linear-gradient(180deg,#24365c,#1c2b4a 55%,#152340);box-shadow:0 4px 0 #070c18,inset 0 1px 0 rgba(255,255,255,.14)}
+.btn.quiet:active{box-shadow:0 0 0 #070c18}
+.out{margin-top:18px;font-size:14px;color:#d8d1bf;white-space:pre-wrap;background:rgba(7,12,24,.5);border-radius:9px;padding:12px 14px;min-height:1.5em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+code{color:#e8c76a}
+hr{border:0;border-top:1px solid rgba(255,255,255,.08);margin:26px 0}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Lock a file</h1>
+  <p>Runs entirely in this browser tab; nothing is uploaded anywhere. Pick the files, type the site password, and a <code>.enc</code> copy of each downloads. Put those in <code>/docs</code> on the site and point the item's <code>data-src</code> at them. The site decrypts them in the reader after the password is entered.</p>
+
+  <label for="pw">Password</label>
+  <input id="pw" type="password" autocomplete="off" placeholder="the site password">
+
+  <label for="files">Files to lock (PDF, image, or text)</label>
+  <input id="files" type="file" multiple>
+
+  <button class="btn" id="lock" type="button">Lock files</button>
+  <button class="btn quiet" id="test" type="button">Test a .enc file</button>
+  <div class="out" id="out"></div>
+
+  <hr>
+  <p>The salt below must match <code>GATE.salt</code> in <code>index.html</code>. To change the site password later: type the new password above, press <em>Show verifier</em>, paste the two lines into <code>index.html</code>, and re-lock every protected file with the new password.</p>
+  <label for="salt">Salt (hex)</label>
+  <input id="salt" type="text" value="5c74ac35616daa03aa0b7e8c72862248" spellcheck="false">
+  <button class="btn quiet" id="verify" type="button">Show verifier</button>
+  <button class="btn quiet" id="newsalt" type="button">New salt</button>
+  <div class="out" id="vout"></div>
+</div>
+
+<script>
+const ITER = 200000;
+const enc = new TextEncoder();
+const $ = s => document.querySelector(s);
+const hex2buf = h => new Uint8Array(h.trim().match(/../g).map(x => parseInt(x, 16)));
+const buf2hex = b => Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+const say = (el, t) => { el.textContent = t; };
+
+async function bits(pw, saltHex) {
+  const base = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']);
+  return crypto.subtle.deriveBits({ name: 'PBKDF2', salt: hex2buf(saltHex), iterations: ITER, hash: 'SHA-256' }, base, 256);
+}
+async function key(pw, saltHex, use) {
+  return crypto.subtle.importKey('raw', await bits(pw, saltHex), { name: 'AES-GCM' }, false, [use]);
+}
+function download(name, bytes) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([bytes]));
+  a.download = name; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+}
+
+$('#lock').onclick = async () => {
+  const pw = $('#pw').value, files = $('#files').files, out = $('#out');
+  if (!pw) return say(out, 'Type the password first.');
+  if (!files.length) return say(out, 'Choose at least one file.');
+  if (!crypto.subtle) return say(out, 'This browser will not run the crypto here. Open the file in Chrome, Safari, Firefox, or Edge.');
+  say(out, 'Deriving key…');
+  const k = await key(pw, $('#salt').value, 'encrypt');
+  const lines = [];
+  for (const f of files) {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, k, await f.arrayBuffer()));
+    const outBytes = new Uint8Array(16 + ct.length);
+    outBytes.set(enc.encode('RBL1'), 0); outBytes.set(iv, 4); outBytes.set(ct, 16);
+    download(f.name + '.enc', outBytes);
+    lines.push(f.name + '  ->  ' + f.name + '.enc  (' + outBytes.length.toLocaleString() + ' bytes)');
+  }
+  say(out, lines.join('\n') + '\n\nDone. Move the .enc files into /docs on the site.');
+};
+
+$('#test').onclick = async () => {
+  const pw = $('#pw').value, out = $('#out');
+  if (!pw) return say(out, 'Type the password first.');
+  const pick = document.createElement('input'); pick.type = 'file'; pick.accept = '.enc';
+  pick.onchange = async () => {
+    const f = pick.files[0]; if (!f) return;
+    try {
+      const u = new Uint8Array(await f.arrayBuffer());
+      if (String.fromCharCode(...u.slice(0, 4)) !== 'RBL1') throw new Error('not a file made by this tool');
+      const k = await key(pw, $('#salt').value, 'decrypt');
+      const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: u.slice(4, 16) }, k, u.slice(16));
+      say(out, f.name + ' unlocks with this password (' + pt.byteLength.toLocaleString() + ' bytes inside).');
+    } catch (e) { say(out, f.name + ' did NOT unlock: ' + (e.message || 'wrong password or wrong salt')); }
+  };
+  pick.click();
+};
+
+$('#verify').onclick = async () => {
+  const pw = $('#pw').value, out = $('#vout');
+  if (!pw) return say(out, 'Type the password first.');
+  const b = await bits(pw, $('#salt').value);
+  const v = buf2hex(await crypto.subtle.digest('SHA-256', b));
+  say(out, "salt: '" + $('#salt').value.trim() + "',\nverifier: '" + v + "',");
+};
+$('#newsalt').onclick = () => { $('#salt').value = buf2hex(crypto.getRandomValues(new Uint8Array(16))); say($('#vout'), 'New salt set. Press Show verifier, paste both lines into index.html, and re-lock every protected file.'); };
+</script>
+</body>
+</html>

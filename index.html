@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Risenblade — The collected works of Ben Bloom</title>
+<meta name="description" content="Risenblade is the work of Ben Bloom: websites and games, visual art, music released as BeRo Bloom, and writing.">
+<link rel="canonical" href="https://risenblade.com/">
+<meta name="theme-color" content="#190000">
+<meta name="color-scheme" content="dark">
+<script>history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search);scrollTo(0,0);</script>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Risenblade">
+<meta property="og:title" content="Risenblade — The collected works of Ben Bloom">
+<meta property="og:description" content="Websites and games, visual art, music, and writing.">
+<meta property="og:url" content="https://risenblade.com/">
+<meta property="og:image" content="https://risenblade.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Risenblade — The collected works of Ben Bloom">
+<meta name="twitter:description" content="Websites and games, visual art, music, and writing.">
+<meta name="twitter:image" content="https://risenblade.com/og-image.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": "https://risenblade.com/#site", "url": "https://risenblade.com/", "name": "Risenblade",
+      "alternateName": "Risenblade — The collected works of Ben Bloom",
+      "description": "The collected works of Ben Bloom: websites and games, visual art, music, and writing.",
+      "author": { "@id": "https://risenblade.com/#person" } },
+    { "@type": "Person", "@id": "https://risenblade.com/#person", "name": "Ben Bloom", "alternateName": "BeRo Bloom", "url": "https://risenblade.com/",
+      "sameAs": ["https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf","https://music.apple.com/us/artist/bero-bloom/1493743634","https://atlasbyben.com/"] },
+    { "@type": "ItemList", "name": "Websites and games by Ben Bloom", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "url": "https://marcothegame.com/", "name": "Marco" },
+        { "@type": "ListItem", "position": 2, "url": "https://genghisgame.com/", "name": "Genghis" },
+        { "@type": "ListItem", "position": 3, "url": "https://countriesranked.com/", "name": "Countries Ranked" },
+        { "@type": "ListItem", "position": 4, "url": "https://flagfamilies.com/", "name": "Flag Families" },
+        { "@type": "ListItem", "position": 5, "url": "https://seven-stans.com/", "name": "Seven Stans" },
+        { "@type": "ListItem", "position": 6, "url": "https://hawaiianemperor.com/", "name": "Hawaiian–Emperor" },
+        { "@type": "ListItem", "position": 7, "url": "https://atlasbyben.com/", "name": "Atlas by Ben" },
+        { "@type": "ListItem", "position": 8, "url": "https://paffolio.com/", "name": "Paffolio" } ] },
+    { "@type": "MusicGroup", "name": "BeRo Bloom", "url": "https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf", "album": [
+        { "@type": "MusicAlbum", "name": "FLASHBURN", "datePublished": "2026", "url": "https://open.spotify.com/album/2oKeX4VckhXXFscbKtxEeT" },
+        { "@type": "MusicAlbum", "name": "Dahomey-Seche", "datePublished": "2024", "url": "https://open.spotify.com/album/37beGKISyVL12w2wCHYxp9" },
+        { "@type": "MusicAlbum", "name": "In Dwaybadou", "datePublished": "2024", "url": "https://open.spotify.com/album/1Pw5THqmGFagntkhU2daYf" },
+        { "@type": "MusicAlbum", "name": "BeRo Bloom", "datePublished": "2021", "url": "https://open.spotify.com/album/2LMAWLl0pYOz0CdqsFyDtT" } ] }
+  ]
+}
+</script>
+
+<style>
+/* ---------- palette taken from the logo: #190000 ground, gold #d6aa6a ---------- */
+:root{
+  --bg:#190000; --bg-2:#210404; --bg-3:#2a0808;
+  --card:linear-gradient(180deg,#2c0b0b 0%,#1d0303 100%);
+  --card-shadow:inset 0 1px 0 rgba(255,236,200,.08),inset 0 -1px 0 rgba(0,0,0,.5),0 14px 34px rgba(0,0,0,.45);
+  --line:rgba(214,170,106,.22); --line-2:rgba(214,170,106,.42);
+  --gold:#d6aa6a; --gold-hi:#f0d9a8; --gold-white:#fffdde; --gold-lo:#8a6a3a; --gold-edge:#4d3517;
+  --ivory:#f3ead8; --ivory-2:#d9ccb5; --muted:#a8967f;
+  --display:"Cinzel","Trajan Pro","Cormorant Garamond",Georgia,serif;
+  --serif:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --radius:12px; --wrap:1180px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+html{scroll-padding-top:calc(74px + env(safe-area-inset-top,0px))}
+body{
+  margin:0;background:var(--bg);color:var(--ivory);position:relative;
+  font-family:var(--serif);font-size:19px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(700px 700px at 30% 30%,rgba(214,170,106,.09),transparent 62%),radial-gradient(900px 600px at 75% 70%,rgba(120,30,20,.28),transparent 60%);
+  background-size:140% 140%;background-position:20% 20%;animation:drift 46s ease-in-out infinite alternate}
+@keyframes drift{0%{background-position:20% 20%}50%{background-position:70% 40%}100%{background-position:35% 80%}}
+a{color:var(--gold-hi)} a:hover{color:var(--gold-white)}
+img{max-width:100%;display:block;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+h1,h2,h3,h4{margin:0;font-weight:500;line-height:1.1}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(16px,4vw,36px)}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- top bar ---------- */
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+  background:linear-gradient(180deg,rgba(25,0,0,.97),rgba(25,0,0,.88));
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.top .wrap{display:flex;align-items:center;gap:18px;height:66px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none}
+.brand .mark{height:48px;width:auto;filter:drop-shadow(0 0 6px rgba(214,170,106,.25))}
+.brand .word{height:17px;width:auto;opacity:.95}
+@media (max-width:700px){.brand .mark{height:40px}}
+nav.sections{margin-left:auto;min-width:0}
+.tabs{position:relative;display:flex;gap:2px;padding:4px}
+.tabs .ind{position:absolute;left:0;top:4px;height:calc(100% - 8px);width:0;border-radius:999px;background:rgba(214,170,106,.14);box-shadow:inset 0 0 0 1px rgba(214,170,106,.28);opacity:0;pointer-events:none;will-change:transform,width}
+.tabs a{
+  --w:0;position:relative;z-index:1;text-decoration:none;white-space:nowrap;
+  font-family:var(--display);font-weight:500;font-size:var(--tfs,12.5px);letter-spacing:var(--tls,.09em);
+  color:color-mix(in srgb,var(--gold-white) calc(var(--w)*100%),var(--ivory-2));
+  padding:9px var(--tpad,13px);border-radius:999px;
+}
+.tabs a:hover{color:var(--gold-white)}
+.spk{
+  flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);
+  background:linear-gradient(180deg,#31100f,#1d0404);color:var(--ivory);cursor:pointer;display:grid;place-items:center;padding:0;
+  box-shadow:0 3px 0 #0d0000,inset 0 1px 0 rgba(255,236,200,.1);
+}
+.spk:active{transform:translateY(3px);box-shadow:0 0 0 #0d0000}
+.spk svg{width:20px;height:20px}
+.spk .waves{opacity:0;transition:opacity .2s}.spk .mute{opacity:1}
+.spk[aria-pressed="true"]{color:var(--gold-hi)}.spk[aria-pressed="true"] .waves{opacity:1}.spk[aria-pressed="true"] .mute{opacity:0}
+@media (max-width:700px){
+  .top .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:6px;gap:6px 12px}
+  .brand{order:1}.spk{order:2;margin-left:auto}
+  nav.sections{order:3;flex-basis:calc(100% + 24px);margin:0 -12px;overflow:hidden}
+  nav.sections::-webkit-scrollbar{display:none}
+  .tabs{padding:4px 4px;width:max-content}
+  .tabs{--tfs:11.5px;--tpad:11px}
+  .tabs a{padding:8px var(--tpad)}
+  html{scroll-padding-top:calc(106px + env(safe-area-inset-top,0px))}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;text-align:center;padding:clamp(28px,6vh,60px) 0 clamp(40px,7vw,80px)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.045;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");background-size:160px 160px}
+.hero .glow{
+  position:absolute;left:50%;top:0;width:900px;height:900px;transform:translate(-50%,-52%);pointer-events:none;
+  background:radial-gradient(circle,rgba(214,170,106,.30) 0%,rgba(214,170,106,.10) 24%,rgba(25,0,0,0) 58%);
+  animation:breathe 9s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.75;transform:translate(-50%,-52%) scale(1)}50%{opacity:1;transform:translate(-50%,-52%) scale(1.06)}}
+.hero .swordwrap{position:relative;display:inline-block;height:clamp(300px,58vh,560px)}
+.hero .swordwrap .sheen{inset:3.5% 9.3%;-webkit-mask:url(img/brand/sword.png) center/contain no-repeat;mask:url(img/brand/sword.png) center/contain no-repeat}
+.hero .sword{height:100%;width:auto;display:block}
+.hero .swordwrap{position:relative}
+.hero .sword{position:relative;z-index:1}
+.hero.drawn .sword{opacity:0}
+/* the sword and its sun are drawn as solids on this canvas, which covers the sword exactly */
+.hero .sun3d{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+}33%,35%{opacity:.78;filter:brightness(.85)}38%,62%{opacity:1;filter:brightness(1)}66%,84%{opacity:.78;filter:brightness(.85)}88%,100%{opacity:1;filter:brightness(1)}}
+}
+@keyframes sheen{0%{background-position:0 130%}55%{background-position:0 -130%}100%{background-position:0 -130%}}
+.hero .motes{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero .motes i{position:absolute;bottom:-4%;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle,rgba(255,253,222,.9),rgba(214,170,106,.35) 60%,transparent 72%);filter:blur(.4px);opacity:0;animation:mote var(--t,12s) linear var(--dl,0s) infinite}
+@keyframes mote{0%{transform:translate(0,0) scale(.6);opacity:0}12%{opacity:.7}60%{opacity:.45}100%{transform:translate(var(--dx,0px),-110vh) scale(1.1);opacity:0}}
+.hero .plate{position:relative;display:inline-block;transform-origin:50% 50%;will-change:transform}
+.hero .wordwrap{position:relative;display:inline-block;margin:26px auto 0;line-height:0}
+.hero .wordmark{position:relative;width:min(640px,78vw);height:auto;display:block}
+.hero.drawn .wordmark{opacity:0}
+.hero .word3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .tag{position:relative;font-family:var(--display);font-weight:500;font-size:clamp(12px,1.5vw,15px);letter-spacing:.22em;text-transform:uppercase;color:var(--ivory-2);margin:22px 0 0}
+
+/* ---------- rules ---------- */
+.rule{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto;max-width:var(--wrap);padding:0 clamp(16px,4vw,36px)}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-lo) 30%,var(--gold) 100%)}
+.rule::after{background:linear-gradient(90deg,var(--gold) 0%,var(--gold-lo) 70%,transparent)}
+.rule .rulemark{position:relative;display:inline-block;height:30px;flex:none;opacity:.9;filter:drop-shadow(0 0 8px rgba(214,170,106,.35))}
+.rule .rulemark img{height:30px;width:auto;max-width:none;display:block}
+.rule .rulemark.drawn img{opacity:0}
+.rule canvas.rulesun{position:absolute;inset:0;width:100%;height:100%}
+.rule.soft{margin-top:clamp(44px,6.5vw,76px);perspective:160px}
+.rule.soft::before,.rule.soft::after{background:linear-gradient(90deg,transparent,rgba(214,170,106,.45))}
+.rule.soft::after{background:linear-gradient(90deg,rgba(214,170,106,.45),transparent)}
+.rule.soft i{width:7px;height:7px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 10px rgba(214,170,106,.6);transform-style:preserve-3d;position:relative}
+/* the gem is a small solid: six faces, each its own shade, so every axis of its turn shows */
+.rule.soft i.solid{background:none;box-shadow:none}
+.rule.soft i.solid span{position:absolute;inset:0;backface-visibility:hidden}
+.rule.soft i.solid span:nth-child(1){transform:translateZ(3.5px);background:#e6c67c;box-shadow:0 0 10px rgba(214,170,106,.6)}
+.rule.soft i.solid span:nth-child(2){transform:rotateY(180deg) translateZ(3.5px);background:#a9843f}
+.rule.soft i.solid span:nth-child(3){transform:rotateY(-90deg) translateZ(3.5px);background:#cfa75c}
+.rule.soft i.solid span:nth-child(4){transform:rotateY(90deg) translateZ(3.5px);background:#8c6a34}
+.rule.soft i.solid span:nth-child(5){transform:rotateX(90deg) translateZ(3.5px);background:#f3dfae}
+.rule.soft i.solid span:nth-child(6){transform:rotateX(-90deg) translateZ(3.5px);background:#6f5228}
+/* ---------- sections ---------- */
+section.medium{padding:clamp(40px,6vw,80px) 0 clamp(36px,5vw,60px)}
+.medium-head{text-align:center;margin-bottom:clamp(38px,4.8vw,60px)}
+.medium-head h2{
+  font-family:var(--display);font-weight:500;font-size:clamp(26px,3.6vw,40px);letter-spacing:.16em;color:var(--gold-hi);text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:22px;
+}
+.medium-head h2::before,.medium-head h2::after{content:"";width:clamp(28px,7vw,90px);height:1px;background:linear-gradient(90deg,transparent,var(--gold));transform:scaleX(0);transform-origin:right;transition:transform 1.3s cubic-bezier(.2,.7,.2,1) .15s}
+.medium-head h2::after{background:linear-gradient(90deg,var(--gold),transparent);transform-origin:left}
+.medium-head.in h2::before,.medium-head.in h2::after{transform:scaleX(1)}
+.medium-head p{margin:10px auto 0;color:var(--ivory-2);font-style:italic;font-size:20px;max-width:60ch}
+.group{margin-top:clamp(26px,3.6vw,40px)}
+.rule.soft + .group{margin-top:clamp(34px,4.6vw,54px)}
+.group-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.group-head h3{font-family:var(--display);font-weight:500;font-size:clamp(17px,2vw,21px);letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.group-head p{margin:0;color:var(--ivory-2);font-style:italic;font-size:19px}
+.note{color:var(--ivory-2);font-size:19px;max-width:64ch;margin:0 0 18px}
+
+/* ---------- buttons: gold, bevelled, they press ---------- */
+.btn{
+  --edge:var(--gold-edge);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;line-height:1;
+  color:#241606;text-decoration:none;cursor:pointer;padding:12px 18px 11px;border-radius:999px;border:0;
+  background:linear-gradient(180deg,var(--gold-hi) 0%,var(--gold) 55%,#b98d4f 100%);
+  box-shadow:0 4px 0 var(--edge),inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.15),0 8px 18px rgba(0,0,0,.4);
+  transition:transform .08s ease,box-shadow .08s ease,filter .15s ease;user-select:none;-webkit-user-select:none;white-space:nowrap;
+}
+.btn:hover{filter:brightness(1.06);color:#241606}
+.btn:active,.btn.pressed{transform:translateY(4px);box-shadow:0 0 0 var(--edge),inset 0 2px 6px rgba(0,0,0,.25)}
+.btn.quiet{--edge:#0d0000;color:var(--ivory);background:linear-gradient(180deg,#3a1311 0%,#2a0908 55%,#1c0404 100%);box-shadow:0 4px 0 var(--edge),inset 0 1px 0 rgba(255,236,200,.12),0 8px 18px rgba(0,0,0,.4)}
+.btn.quiet:hover{color:#fff}
+.btn.sm{padding:9px 13px 8px;font-size:11px}
+
+/* glass pills for the streaming links; the icon takes the text colour */
+.glass{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:.06em;color:var(--ivory);text-decoration:none;
+  padding:9px 13px;border-radius:999px;border:1px solid rgba(255,236,200,.16);
+  background:linear-gradient(180deg,rgba(255,236,200,.13),rgba(255,236,200,.04) 45%,rgba(255,236,200,.02));
+  box-shadow:inset 0 1px 0 rgba(255,236,200,.28),0 6px 14px rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .08s,box-shadow .12s,color .15s;
+}
+.glass:hover{color:var(--gold-white);box-shadow:inset 0 1px 0 rgba(255,236,200,.4),0 8px 18px rgba(0,0,0,.45)}
+.glass:active{transform:translateY(2px)}
+.ico{display:inline-block;width:15px;height:15px;flex:none;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.ico.spotify{--m:url(img/icons/spotify.png)}.ico.apple{--m:url(img/icons/apple-music.png)}
+
+/* ---------- cards ---------- */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--card-shadow);border:1px solid var(--line);overflow:hidden;position:relative;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.card::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,253,222,.09) 50%,transparent 65%);transform:translateX(-110%);transition:transform 1s ease}
+.lock{position:absolute;top:12px;right:12px;z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(25,0,0,.72);color:var(--gold);box-shadow:0 0 0 1px rgba(214,170,106,.5),0 4px 10px rgba(0,0,0,.4);opacity:.85}
+.lock svg{width:12px;height:12px}
+.is-locked .veil{filter:blur(8px) saturate(.7);transform:scale(1.03)}
+.is-locked .veil-text{filter:blur(6px);user-select:none;pointer-events:none}
+.unlocked .lock{color:var(--gold-hi);opacity:.6}
+
+/* ---------- websites & games ---------- */
+.sites{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
+.site{display:flex;flex-direction:column;text-decoration:none;color:var(--ivory)}
+.site .shot{display:block;aspect-ratio:1200/630;background:#0e0000;overflow:hidden}
+.site .shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.site .body{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.site .t{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:.06em;color:var(--gold-hi)}
+.site .d{margin:6px 0 0;color:var(--ivory-2);font-size:18px;line-height:1.45}
+.site .foot{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:16px}
+.site .url{margin-left:auto;color:var(--muted);font-size:15px;letter-spacing:.02em}
+.site:hover .url{color:var(--gold-hi)}
+
+/* ---------- galleries: masonry columns, names underneath ---------- */
+.art{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.art figure{margin:0;cursor:zoom-in;break-inside:avoid}
+.art .ph{border-radius:10px;overflow:hidden;background:#0e0000;box-shadow:0 10px 26px rgba(0,0,0,.45);border:1px solid rgba(214,170,106,.10);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.art .ph img{width:100%;height:auto;aspect-ratio:var(--ar,1);object-fit:cover}
+.art .ph img[style*="--py"]{transform:translateY(var(--py,0px)) scale(1.07)}
+.art figcaption{padding:8px 4px 0;font-size:17px;color:var(--ivory-2);line-height:1.3}
+.art figcaption b{font-weight:600;color:var(--ivory)}
+.art figcaption span{color:var(--muted);font-style:italic}
+.art figcaption b + span::before{content:"\00a0·\00a0"}
+.art.flow{display:block;columns:4 200px;column-gap:18px}
+.art.flow figure{margin:0 0 18px}
+.art.flow.js{display:grid;grid-template-columns:repeat(var(--n,4),1fr);gap:18px;columns:auto}
+.art.flow.js .col{display:flex;flex-direction:column;gap:18px}
+.art.flow.js figure{margin:0}
+.art.flow.js .solo{grid-column:1/-1;display:flex;justify-content:center}
+.art.flow.js .solo figure{width:calc(50% - 9px)}
+
+.lead{margin:0 0 18px;cursor:zoom-in}
+.lead .ph{border-radius:10px;overflow:hidden;background:#0e0000;box-shadow:0 14px 34px rgba(0,0,0,.5);border:1px solid rgba(214,170,106,.14);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.lead .ph img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;max-height:520px}
+.lead .ph img[style*="--py"]{transform:translateY(var(--py,0px)) scale(1.07)}
+.album .cover img[style*="--py"]{transform:translateY(var(--py,0px)) scale(1.07)}
+.jacket .ornament[style*="--py"]{transform:translate(-50%,calc(-50% + var(--py,0px)))}
+.lead figcaption{padding:8px 4px 0;font-size:17px;color:var(--ivory-2)}
+.lead figcaption b{font-weight:600;color:var(--ivory)}.lead figcaption span{color:var(--muted);font-style:italic}.lead figcaption b + span::before{content:"\00a0·\00a0"}
+/* ---------- music ---------- */
+.albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+.album .cover{aspect-ratio:1/1;background:#0e0000;overflow:hidden}
+.album .cover img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.album .body{padding:14px 16px 16px}
+.album h4{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:.06em;color:var(--gold-hi)}
+.album .meta{color:var(--muted);font-size:16px;margin-top:3px}
+.album .links{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+@media (max-width:600px){.albums{grid-template-columns:1fr 1fr;gap:12px}.album .body{padding:12px 12px 14px}.album h4{font-size:15px}.album .links{gap:6px}.album .glass{padding:8px 10px;font-size:11px}}
+.artist{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:0;align-items:center}
+.artist .portrait{width:112px;height:112px;border-radius:50%;overflow:hidden;margin:26px 12px 26px 28px;flex:none;box-shadow:0 0 0 2px var(--bg),0 0 0 3px rgba(214,170,106,.8),0 0 0 8px var(--bg),0 0 0 9px rgba(214,170,106,.4),0 10px 24px rgba(0,0,0,.5);position:relative}
+.artist .portrait img{max-width:none;width:125%;height:125%;position:absolute;left:-2.5%;top:-13%}
+.artist .body{padding:22px 26px 22px 14px}
+.artist h4{font-family:var(--display);font-weight:500;font-size:21px;letter-spacing:.08em;color:var(--gold-hi)}
+.artist p{color:var(--ivory-2);font-size:18px;margin:8px 0 0}
+.artist .links{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+@media (max-width:640px){.artist{grid-template-columns:1fr;justify-items:center;text-align:center}.artist .portrait{margin:22px 0 0}.artist .body{padding:12px 20px 22px}.artist .links{justify-content:center}}
+
+/* ---------- writings: shelves of covers ---------- */
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}
+#poetry .shelf{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:30px}
+@media (max-width:560px){#poetry .shelf{grid-template-columns:1fr;gap:26px}}
+@media (max-width:560px){.shelf{grid-template-columns:repeat(2,1fr);gap:12px}}
+.cover{margin:0;cursor:pointer;text-decoration:none;color:var(--ivory);display:block;position:relative;outline-offset:6px}
+.jacket{
+  aspect-ratio:auto;padding:9px;border-radius:6px 10px 10px 6px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#3a1210 0%,#240606 55%,#170101 100%);
+  box-shadow:inset 0 0 0 1px rgba(214,170,106,.35),inset 8px 0 14px -10px rgba(0,0,0,.8),0 14px 30px rgba(0,0,0,.5);
+  transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease;
+}
+.jacket .sz{display:block;width:100%;aspect-ratio:2/3}
+.jacket::before{content:"";position:absolute;inset:10px;border:1px solid rgba(214,170,106,.42);border-radius:3px;pointer-events:none}
+.jacket::after{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,236,200,.08) 60%,rgba(0,0,0,.25));pointer-events:none}
+.jacket .jt{position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);text-align:center;font-family:var(--display);font-weight:500;font-size:clamp(12px,1.25vw,15px);letter-spacing:.07em;color:var(--gold-hi);line-height:1.35;text-transform:uppercase}
+.jacket .jt i{font-style:italic;text-transform:none;letter-spacing:.04em}
+.jacket .js{position:absolute;left:18px;right:18px;bottom:6%;text-align:center;font-style:italic;color:var(--ivory-2);font-size:14px}
+@media (max-width:560px){.shelf .cover[data-solo]{grid-column:1/-1;justify-self:center;width:calc(50% - 6px)}.shelf .cover[data-src="docs/climaxin.pdf"]{margin-top:10px}}
+#essays .shelf{row-gap:28px}
+@media (max-width:560px){#essays .shelf{row-gap:18px}}
+.jacket .ornament{position:absolute;left:50%;top:25%;transform:translate(-50%,-50%);height:14%;width:auto;opacity:.95;filter:drop-shadow(0 0 8px rgba(214,170,106,.28))}
+.jacket.img{aspect-ratio:auto;border-radius:2px;background:var(--bg-2);padding:9px;box-shadow:0 18px 40px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease}
+.jacket.img::before{display:none}
+.jacket.img::after{content:"";position:absolute;inset:0;width:auto;background:none;pointer-events:none;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(214,170,106,.7),inset 0 0 0 7px var(--bg),inset 0 0 0 8px rgba(214,170,106,.35)}
+.jacket.img img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;object-position:top}
+.jacket .lock{top:17px;right:17px}
+.cover .cap{padding:9px 2px 0}
+.cover .cap b{display:inline;font-weight:600;font-size:17px;color:var(--ivory);line-height:1.3}
+.cover .cap span{display:block;color:var(--muted);font-size:15.5px;font-style:italic;line-height:1.3;margin-top:2px}
+.cover .cap .kind{display:inline;color:var(--muted);font-style:italic;font-size:17px;margin:0}
+.cover .cap b + .kind::before{content:"\00a0·\00a0"}
+
+
+/* ---------- lifts and sweeps on hover: only where hover exists, so a tap never leaves a tile raised ---------- */
+@media (hover:hover) and (pointer:fine){
+.card:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--card-shadow),0 0 0 1px rgba(214,170,106,.08),0 22px 50px rgba(0,0,0,.5)}
+.card:hover::after{transform:translateX(110%)}
+.site:hover .shot img{transform:scale(1.03)}
+.art figure:hover .ph{transform:translateY(-3px);border-color:var(--line-2);box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(214,170,106,.08)}
+.album:hover .cover img{transform:scale(1.03)}
+.lead:hover .ph{transform:translateY(-3px);border-color:var(--line-2);box-shadow:0 22px 50px rgba(0,0,0,.6)}
+.cover:hover .jacket:not(.img){transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(214,170,106,.55),inset 8px 0 14px -10px rgba(0,0,0,.8),0 24px 44px rgba(0,0,0,.6),0 0 30px rgba(214,170,106,.10)}
+.cover:hover .jacket.img{transform:translateY(-5px);box-shadow:0 26px 50px rgba(0,0,0,.6),0 0 34px rgba(214,170,106,.14)}
+.cover:hover .jacket.img::after{box-shadow:inset 0 0 0 1px var(--gold-hi),inset 0 0 0 7px var(--bg),inset 0 0 0 8px rgba(214,170,106,.6)}
+}
+
+/* the same lifts under a finger: on while pressed, off the moment it lifts or the page starts to move, so nothing can stay raised */
+.card.pressed{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--card-shadow),0 0 0 1px rgba(214,170,106,.08),0 22px 50px rgba(0,0,0,.5)}
+.card.pressed::after{transform:translateX(110%)}
+.site.pressed .shot img{transform:scale(1.03)}
+.art figure.pressed .ph{transform:translateY(-3px);border-color:var(--line-2);box-shadow:0 18px 40px rgba(0,0,0,.55),0 0 0 1px rgba(214,170,106,.08)}
+.album.pressed .cover img{transform:scale(1.03)}
+.lead.pressed .ph{transform:translateY(-3px);border-color:var(--line-2);box-shadow:0 22px 50px rgba(0,0,0,.6)}
+.cover.pressed .jacket:not(.img){transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(214,170,106,.55),inset 8px 0 14px -10px rgba(0,0,0,.8),0 24px 44px rgba(0,0,0,.6),0 0 30px rgba(214,170,106,.10)}
+.cover.pressed .jacket.img{transform:translateY(-5px);box-shadow:0 26px 50px rgba(0,0,0,.6),0 0 34px rgba(214,170,106,.14)}
+.cover.pressed .jacket.img::after{box-shadow:inset 0 0 0 1px var(--gold-hi),inset 0 0 0 7px var(--bg),inset 0 0 0 8px rgba(214,170,106,.6)}
+
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0ms)}
+.rv.above{transform:translateY(-16px)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+/* ---------- viewers ---------- */
+.viewer{--dim:1;position:fixed;inset:0;z-index:100;display:none;flex-direction:column;background:rgba(14,0,0,calc(.96 * var(--dim)));backdrop-filter:blur(calc(6px * var(--dim)));-webkit-backdrop-filter:blur(calc(6px * var(--dim)));padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.viewer.open{display:flex}
+.viewer.dragging{backdrop-filter:none;-webkit-backdrop-filter:none}
+.viewer.dragging .stage img{transition:none}
+.viewer .bar{display:flex;align-items:center;gap:14px;padding:12px clamp(14px,3vw,28px);border-bottom:1px solid var(--line);flex:none}
+.viewer .bar h3{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.08em;color:var(--gold-hi);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.viewer .bar .n{color:var(--muted);font-size:15px}
+.viewer .stage{flex:1;min-height:0;overflow:auto;position:relative;display:flex;align-items:flex-start;justify-content:center;padding:18px}
+.viewer.img .stage{align-items:center}
+.viewer .stage img{max-width:100%;max-height:calc(100dvh - 120px);object-fit:contain;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.7);border-radius:4px}
+.viewer .pages{display:flex;flex-direction:column;gap:14px;align-items:center;width:100%;max-width:980px;margin:0 auto}
+.viewer .pages .pg{max-width:100%;background:rgba(255,255,255,.06);border-radius:3px;box-shadow:0 14px 40px rgba(0,0,0,.7)}
+.viewer .pages canvas{max-width:100%;height:auto;display:block;border-radius:3px;background:#fff;pointer-events:none}
+.viewer .text{max-width:640px;margin:0 auto;padding:10px 6px 60px;font-size:22px;line-height:1.55;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;white-space:pre-wrap}
+.viewer .text h2{font-family:var(--display);font-size:24px;letter-spacing:.08em;color:var(--gold-hi);margin-bottom:22px}
+.viewer .msg{margin:auto;color:var(--muted);text-align:center;max-width:44ch;font-size:18px;line-height:1.5}
+.viewer .msg b{color:var(--ivory);display:block;font-family:var(--display);font-size:18px;letter-spacing:.06em;margin-bottom:8px;font-weight:500}
+.viewer .navbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+.viewer .navbtn:active{transform:translateY(calc(-50% + 3px))}
+.viewer .navbtn.prev{left:14px}.viewer .navbtn.next{right:14px}
+.iconbtn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);cursor:pointer;color:var(--ivory);background:linear-gradient(180deg,#3a1311,#1d0404);display:grid;place-items:center;padding:0;flex:none;box-shadow:0 3px 0 #0d0000,inset 0 1px 0 rgba(255,236,200,.12)}
+.iconbtn:active{transform:translateY(3px);box-shadow:0 0 0 #0d0000}
+.iconbtn svg{width:18px;height:18px}
+
+/* ---------- password gate ---------- */
+.gate{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:rgba(14,0,0,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:20px}
+.gate.open{display:grid}
+.gate .box{width:min(420px,100%);background:var(--card);border-radius:var(--radius);box-shadow:var(--card-shadow);border:1px solid var(--line);padding:26px 26px 24px}
+.gate h3{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:.1em;color:var(--gold-hi)}
+.gate p{color:var(--ivory-2);font-size:18px;margin:8px 0 16px}
+.gate form{display:flex;gap:10px}
+.gate input{flex:1;min-width:0;font:400 18px var(--serif);color:var(--ivory);background:rgba(14,0,0,.6);border:1px solid var(--line-2);border-radius:999px;padding:11px 16px;box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+.gate input:focus{outline:none;border-color:var(--gold)}
+.gate .err{color:#eaa5a0;font-size:16px;margin:10px 0 0;min-height:1.2em}
+.gate .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.status{background:var(--card);box-shadow:var(--card-shadow);border-radius:10px;padding:10px 14px;color:var(--ivory-2);font-size:16px;border:1px solid var(--line)}
+
+/* ---------- footer ---------- */
+footer{padding:54px 0 54px;color:var(--muted);font-size:17px;border-top:1px solid var(--line);text-align:center}
+footer .mark{height:120px;width:auto;margin:0 auto 18px;opacity:.95;filter:drop-shadow(0 0 14px rgba(214,170,106,.25))}
+footer .wrap{display:flex;flex-direction:column;gap:12px;align-items:center}
+footer .rv.slow{transition-duration:1.6s;transform:none}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
+footer a{color:var(--ivory-2);text-decoration:none;border-bottom:1px solid var(--line)}
+footer a:hover{color:var(--gold-white);border-color:var(--gold-hi)}
+footer .atlas{display:inline-flex;align-items:center;gap:8px;border:0;font-family:var(--display);font-size:13px;letter-spacing:.08em;color:var(--ivory-2)}
+footer .compass{width:18px;height:18px}
+footer .stream{gap:22px}
+footer .stream a{border:0;color:var(--ivory-2);display:inline-flex;padding:4px}
+footer .stream .ico{width:24px;height:24px}
+footer .stream a:hover{color:var(--gold-white)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10V8a5 5 0 0 1 10 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1Zm2 0h6V8a3 3 0 0 0-6 0v2Zm3 4a1.5 1.5 0 0 0-.75 2.8V18a.75.75 0 0 0 1.5 0v-1.2A1.5 1.5 0 0 0 12 14Z"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><path fill="currentColor" d="M17 8a5 5 0 0 0-9.58-2h2.2A3 3 0 0 1 15 8v2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V8Zm-5 6a1.5 1.5 0 0 0-.75 2.8V18a.75.75 0 0 0 1.5 0v-1.2A1.5 1.5 0 0 0 12 14Z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Risenblade, top of page"><img class="mark" src="img/brand/sword.png" alt="" width="350" height="1075"><img class="word" src="img/brand/wordmark.png" alt="Risenblade" width="910" height="135"></a>
+    <nav class="sections" aria-label="Sections">
+      <div class="tabs"><span class="ind" aria-hidden="true"></span>
+        <a href="#websites">Websites &amp; games</a><a href="#art">Visual art</a><a href="#music">Music</a><a href="#writings">Writings</a>
+      </div>
+    </nav>
+    <button class="spk" id="spk" type="button" aria-pressed="false" aria-label="Music on or off" title="Music">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4Z"/><g class="waves" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M16 9.5a3.5 3.5 0 0 1 0 5"/><path d="M18.5 7a7 7 0 0 1 0 10"/></g><path class="mute" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16.5 9.5l4 5M20.5 9.5l-4 5"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="motes" aria-hidden="true"><i style="left:12%;--t:14s;--dl:0s;--dx:30px"></i><i style="left:22%;--t:17s;--dl:-5s;--dx:-24px"></i><i style="left:31%;--t:12s;--dl:-9s;--dx:18px"></i><i style="left:40%;--t:15s;--dl:-2s;--dx:-36px"></i><i style="left:48%;--t:11s;--dl:-7s;--dx:26px"></i><i style="left:55%;--t:16s;--dl:-11s;--dx:-16px"></i><i style="left:62%;--t:13s;--dl:-4s;--dx:32px"></i><i style="left:70%;--t:18s;--dl:-13s;--dx:-28px"></i><i style="left:79%;--t:12s;--dl:-6s;--dx:14px"></i><i style="left:88%;--t:15s;--dl:-10s;--dx:-20px"></i><i style="left:35%;--t:19s;--dl:-15s;--dx:10px"></i><i style="left:66%;--t:14s;--dl:-16s;--dx:-12px"></i></div>
+  <div class="swordwrap" id="sword"><img class="sword" src="img/brand/blade-glow.png" alt="" width="350" height="1075" fetchpriority="high"><canvas class="sun3d" id="sun3d" aria-hidden="true"></canvas></div>
+  <div class="plate" id="plate"><h1 class="wordwrap"><img class="wordmark" src="img/brand/wordmark.png" alt="Risenblade" width="910" height="135"><canvas class="word3d" id="word3d" aria-hidden="true"></canvas></h1>
+  <p class="tag">The collected works of Ben Bloom</p></div>
+</section>
+
+<section class="medium" id="websites">
+  <div class="wrap">
+    <div class="medium-head rv"><h2>Websites &amp; games</h2></div>
+    <div class="group">
+      <div class="group-head rv"><h3>Atlas by Ben</h3><p>Reference sites about geography and the world. Play Marco and Genghis online.</p></div>
+      <div class="sites">
+<a class="card site rv" href="https://marcothegame.com/" target="_blank" rel="noopener"><span class="shot"><img src="img/sites/marco.jpg" alt="" loading="lazy"></span><span class="body"><span class="t">Marco</span><span class="d">Guess the notable person from their cartographic birth and death information.</span><span class="foot"><span class="btn">Open</span><span class="url">marcothegame.com</span></span></span></a>
+<a class="card site rv" href="https://genghisgame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://genghisgame.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Genghis</span><span class="d">Cross from one country to another by land, through as few borders as you can.</span><span class="foot"><span class="btn">Open</span><span class="url">genghisgame.com</span></span></span></a>
+<a class="card site rv" href="https://countriesranked.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://countriesranked.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Countries Ranked</span><span class="d">A hundred top-ten lists.</span><span class="foot"><span class="btn">Open</span><span class="url">countriesranked.com</span></span></span></a>
+<a class="card site rv" href="https://flagfamilies.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://flagfamilies.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Flag Families</span><span class="d">Over 200 flags across 13 families.</span><span class="foot"><span class="btn">Open</span><span class="url">flagfamilies.com</span></span></span></a>
+<a class="card site rv" href="https://seven-stans.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://seven-stans.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Seven Stans</span><span class="d">The seven countries whose names end in -stan.</span><span class="foot"><span class="btn">Open</span><span class="url">seven-stans.com</span></span></span></a>
+<a class="card site rv" href="https://hawaiianemperor.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://hawaiianemperor.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Hawaiian–Emperor</span><span class="d">Every volcano the Hawaiian hotspot has built, most of them now under the sea.</span><span class="foot"><span class="btn">Open</span><span class="url">hawaiianemperor.com</span></span></span></a>
+<a class="card site rv" href="https://atlasbyben.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://atlasbyben.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Atlas by Ben</span><span class="d">All the above sites on one page.</span><span class="foot"><span class="btn">Open</span><span class="url">atlasbyben.com</span></span></span></a>
+      </div>
+    </div>
+    <div class="rule soft rv" aria-hidden="true"><i></i></div>
+    <div class="group">
+      <div class="group-head rv"><h3>Client work</h3></div>
+      <div class="sites">
+<a class="card site rv is-locked" href="https://paffolio.com/" target="_blank" rel="noopener" data-locked="1"><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span><span class="shot veil"><img src="https://paffolio.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Paffolio</span><span class="d veil-text">A financial services trading and account holdings platform.</span><span class="foot"><span class="btn">Unlock</span><span class="url">paffolio.com</span></span></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="rule rv" aria-hidden="true"><span class="rulemark"><img src="img/brand/mark.png" alt=""><canvas class="rulesun"></canvas></span></div>
+<section class="medium" id="art">
+  <div class="wrap">
+    <div class="medium-head rv"><h2>Visual art</h2></div>
+<div class="group" id="bauhaus">
+  <div class="group-head rv"><h3>Bauhaus</h3><p>Bridges and cities, in primary colour and black line.</p></div>
+  <div class="art flow" data-gallery="bauhaus">
+<figure data-src="img/art/bauhaus/bridge-grid.jpg" data-title="Gate in a Grid" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/bridge-grid.t.jpg" alt="Gate in a Grid" loading="lazy"></div><figcaption><b>Gate in a Grid</b></figcaption></figure>
+<figure data-src="img/art/bauhaus/bridge-skyline.jpg" data-title="Red Sun over the Bay" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/bridge-skyline.t.jpg" alt="Red Sun over the Bay" loading="lazy"></div><figcaption><b>Red Sun over the Bay</b></figcaption></figure>
+<figure data-src="img/art/bauhaus/bridge-deck.jpg" data-title="Head-On" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/bridge-deck.t.jpg" alt="Head-On" loading="lazy"></div><figcaption><b>Head-On</b></figcaption></figure>
+<figure data-src="img/art/bauhaus/guillotine.jpg" data-title="Committee" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/guillotine.t.jpg" alt="Committee" loading="lazy"></div><figcaption><b>Committee</b></figcaption></figure>
+<figure data-src="img/art/bauhaus/city-blocks.jpg" data-title="Primary Town" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/city-blocks.t.jpg" alt="Primary Town" loading="lazy"></div><figcaption><b>Primary Town</b></figcaption></figure>
+<figure data-src="img/art/bauhaus/bridge-waterfront.jpg" data-title="Waterfront Lines" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/bauhaus/bridge-waterfront.t.jpg" alt="Waterfront Lines" loading="lazy"></div><figcaption><b>Waterfront Lines</b></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="hats">
+  <div class="group-head rv"><h3>Headwear</h3></div>
+  <div class="art flow" data-gallery="hats">
+<figure data-src="img/art/hats/gold.jpg" data-title="The Aurum" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/gold.t.jpg" alt="The Aurum" loading="lazy"></div><figcaption><b>The Aurum</b></figcaption></figure>
+<figure data-src="img/art/hats/red-cap.jpg" data-title="The Honeycomb" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/red-cap.t.jpg" alt="The Honeycomb" loading="lazy"></div><figcaption><b>The Honeycomb</b></figcaption></figure>
+<figure data-src="img/art/hats/cobalt.jpg" data-title="The Kingfisher" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/cobalt.t.jpg" alt="The Kingfisher" loading="lazy"></div><figcaption><b>The Kingfisher</b></figcaption></figure>
+<figure data-src="img/art/hats/green-felt.jpg" data-title="The Cartographer" data-ar="1.0000" data-face="l" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/green-felt.t.jpg" alt="The Cartographer" loading="lazy"></div><figcaption><b>The Cartographer</b></figcaption></figure>
+<figure data-src="img/art/hats/iridescent.jpg" data-title="The Nacre" data-ar="0.6667" data-face="r" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/iridescent.t.jpg" alt="The Nacre" loading="lazy"></div><figcaption><b>The Nacre</b></figcaption></figure>
+<figure data-src="img/art/hats/rings-cap.jpg" data-title="The Bullseye" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/rings-cap.t.jpg" alt="The Bullseye" loading="lazy"></div><figcaption><b>The Bullseye</b></figcaption></figure>
+<figure data-src="img/art/hats/amethyst.jpg" data-title="The Orchid" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/amethyst.t.jpg" alt="The Orchid" loading="lazy"></div><figcaption><b>The Orchid</b></figcaption></figure>
+<figure data-src="img/art/hats/gold-brocade.jpg" data-title="The Brocade" data-ar="0.6667" data-face="r" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/gold-brocade.t.jpg" alt="The Brocade" loading="lazy"></div><figcaption><b>The Brocade</b></figcaption></figure>
+<figure data-src="img/art/hats/green-chrome.jpg" data-title="The Scarab" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/green-chrome.t.jpg" alt="The Scarab" loading="lazy"></div><figcaption><b>The Scarab</b></figcaption></figure>
+<figure data-src="img/art/hats/nightgarden.jpg" data-title="The Nightgarden" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/nightgarden.t.jpg" alt="The Nightgarden" loading="lazy"></div><figcaption><b>The Nightgarden</b></figcaption></figure>
+<figure data-src="img/art/hats/chrome-cap.jpg" data-title="The Chrome" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/chrome-cap.t.jpg" alt="The Chrome" loading="lazy"></div><figcaption><b>The Chrome</b></figcaption></figure>
+<figure data-src="img/art/hats/shells-and-pearls.jpg" data-title="The Reef" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/shells-and-pearls.t.jpg" alt="The Reef" loading="lazy"></div><figcaption><b>The Reef</b></figcaption></figure>
+<figure data-src="img/art/hats/copper.jpg" data-title="The Ember" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/copper.t.jpg" alt="The Ember" loading="lazy"></div><figcaption><b>The Ember</b></figcaption></figure>
+<figure data-src="img/art/hats/swirl-cloche.jpg" data-title="The Whirl" data-ar="0.6671" data-face="l" tabindex="0" style="--ar:0.6671"><div class="ph"><img src="img/art/hats/swirl-cloche.t.jpg" alt="The Whirl" loading="lazy"></div><figcaption><b>The Whirl</b></figcaption></figure>
+<figure data-src="img/art/hats/silver-plumes.jpg" data-title="The Quill" data-ar="1.0000" data-face="r" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/silver-plumes.t.jpg" alt="The Quill" loading="lazy"></div><figcaption><b>The Quill</b></figcaption></figure>
+<figure data-src="img/art/hats/joshua-tree-fedora.jpg" data-title="The Joshua" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/joshua-tree-fedora.t.jpg" alt="The Joshua" loading="lazy"></div><figcaption><b>The Joshua</b></figcaption></figure>
+<figure data-src="img/art/hats/oil-slick-cap.jpg" data-title="The Slick" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/oil-slick-cap.t.jpg" alt="The Slick" loading="lazy"></div><figcaption><b>The Slick</b></figcaption></figure>
+<figure data-src="img/art/hats/succulent.jpg" data-title="The Succulent" data-ar="1.0000" data-face="r" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/succulent.t.jpg" alt="The Succulent" loading="lazy"></div><figcaption><b>The Succulent</b></figcaption></figure>
+<figure data-src="img/art/hats/silver-plumes-seated.jpg" data-title="The Argent" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/silver-plumes-seated.t.jpg" alt="The Argent" loading="lazy"></div><figcaption><b>The Argent</b></figcaption></figure>
+<figure data-src="img/art/hats/palm-fedora.jpg" data-title="The Frond" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/palm-fedora.t.jpg" alt="The Frond" loading="lazy"></div><figcaption><b>The Frond</b></figcaption></figure>
+<figure data-src="img/art/hats/bronze-cap.jpg" data-title="The Filigree" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/bronze-cap.t.jpg" alt="The Filigree" loading="lazy"></div><figcaption><b>The Filigree</b></figcaption></figure>
+<figure data-src="img/art/hats/plankton.jpg" data-title="The Plankton" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/plankton.t.jpg" alt="The Plankton" loading="lazy"></div><figcaption><b>The Plankton</b></figcaption></figure>
+<figure data-src="img/art/hats/black.jpg" data-title="The Grille" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/black.t.jpg" alt="The Grille" loading="lazy"></div><figcaption><b>The Grille</b></figcaption></figure>
+<figure data-src="img/art/hats/iridescent-hood.jpg" data-title="The Falcon" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/iridescent-hood.t.jpg" alt="The Falcon" loading="lazy"></div><figcaption><b>The Falcon</b></figcaption></figure>
+<figure data-src="img/art/hats/horned-mask.jpg" data-title="The Antelope" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/horned-mask.t.jpg" alt="The Antelope" loading="lazy"></div><figcaption><b>The Antelope</b></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="furniture">
+  <div class="group-head rv"><h3>Furniture</h3></div>
+  <p class="note rv">The Cartouche is a black-lacquer chair with a brass rim that closes around whomever sits in it.</p><div data-gallery="cartouche"><figure class="lead" data-src="img/art/furniture/cartouche-eight.jpg" data-title="The Cartouche — all eight" data-ar="1.5000" tabindex="0" style="--ar:1.5000"><div class="ph"><img src="img/art/furniture/cartouche-eight.t.jpg" alt="The Cartouche" loading="lazy"></div><figcaption><b>The Cartouche</b><span>all eight</span></figcaption></figure></div>
+<div class="art flow" data-gallery="cartouche">
+<figure data-src="img/art/furniture/cartouche-leopard.jpg" data-title="The Panthera — natural leopard" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-leopard.t.jpg" alt="The Panthera" loading="lazy"></div><figcaption><b>The Panthera</b><span>natural leopard</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-amethyst-velvet.jpg" data-title="The Amethyst — amethyst velvet" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-amethyst-velvet.t.jpg" alt="The Amethyst" loading="lazy"></div><figcaption><b>The Amethyst</b><span>amethyst velvet</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-red-crocodile.jpg" data-title="The Cardinal — red crocodile" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-red-crocodile.t.jpg" alt="The Cardinal" loading="lazy"></div><figcaption><b>The Cardinal</b><span>red crocodile</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-python.jpg" data-title="The Python — natural python" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-python.t.jpg" alt="The Python" loading="lazy"></div><figcaption><b>The Python</b><span>natural python</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-black-velvet.jpg" data-title="The Midnight — black velvet" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-black-velvet.t.jpg" alt="The Midnight" loading="lazy"></div><figcaption><b>The Midnight</b><span>black velvet</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-emerald-velvet.jpg" data-title="The Emerald — emerald velvet" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-emerald-velvet.t.jpg" alt="The Emerald" loading="lazy"></div><figcaption><b>The Emerald</b><span>emerald velvet</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-cognac-leather.jpg" data-title="The Cognac — cognac leather" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-cognac-leather.t.jpg" alt="The Cognac" loading="lazy"></div><figcaption><b>The Cognac</b><span>cognac leather</span></figcaption></figure>
+<figure data-src="img/art/furniture/cartouche-ivory-shearling.jpg" data-title="The Ermine — ivory shearling" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-ivory-shearling.t.jpg" alt="The Ermine" loading="lazy"></div><figcaption><b>The Ermine</b><span>ivory shearling</span></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="palm-springs">
+  <div class="group-head rv"><h3>Palm Springs</h3></div>
+  <div class="art flow" data-gallery="palm-springs">
+<figure data-src="img/art/palm-springs/martini.jpg" data-title="Five O’Clock" data-ar="1.0000" data-face="l" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/palm-springs/martini.t.jpg" alt="Five O’Clock" loading="lazy"></div><figcaption><b>Five O’Clock</b></figcaption></figure>
+<figure data-src="img/art/palm-springs/poolside-with-dog.jpg" data-title="The Lifeguard" data-ar="1.0000" data-face="r" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/palm-springs/poolside-with-dog.t.jpg" alt="The Lifeguard" loading="lazy"></div><figcaption><b>The Lifeguard</b></figcaption></figure>
+<figure data-solo="1" data-src="img/art/palm-springs/glass-house.jpg" data-title="Glass House" data-ar="1.0000" data-face="l" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/palm-springs/glass-house.t.jpg" alt="Glass House" loading="lazy"></div><figcaption><b>Glass House</b></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="expressionism">
+  <div class="group-head rv"><h3>Expressionism</h3></div>
+  <div class="art flow" data-gallery="expressionism">
+<figure data-src="img/art/expressionist/scream.jpg" data-title="Second Scream" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/expressionist/scream.t.jpg" alt="Second Scream" loading="lazy"></div><figcaption><b>Second Scream</b></figcaption></figure>
+<figure data-src="img/art/expressionist/two-profiles.jpg" data-title="Face to Face" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/expressionist/two-profiles.t.jpg" alt="Face to Face" loading="lazy"></div><figcaption><b>Face to Face</b></figcaption></figure>
+<figure data-solo="1" data-src="img/art/still-life/sushi.jpg" data-title="Omakase" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/still-life/sushi.t.jpg" alt="Omakase" loading="lazy"></div><figcaption><b>Omakase</b></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="photography">
+  <div class="group-head rv"><h3>Photography</h3></div>
+  <div class="art flow" data-gallery="photography">
+<figure data-src="img/art/photography/temple-steps.jpg" data-title="Water Monk" data-ar="1.8071" tabindex="0" style="--ar:1.8071"><div class="ph"><img src="img/art/photography/temple-steps.t.jpg" alt="Water Monk" loading="lazy"></div><figcaption><b>Water Monk</b></figcaption></figure>
+<figure data-src="img/art/photography/river-and-morning-glories.jpg" data-title="Morning Glories" data-ar="1.6067" tabindex="0" style="--ar:1.6067"><div class="ph"><img src="img/art/photography/river-and-morning-glories.t.jpg" alt="Morning Glories" loading="lazy"></div><figcaption><b>Morning Glories</b></figcaption></figure>
+<figure data-src="img/art/photography/corn-below-the-cliffs.jpg" data-title="Corn Terrace" data-ar="1.7798" tabindex="0" style="--ar:1.7798"><div class="ph"><img src="img/art/photography/corn-below-the-cliffs.t.jpg" alt="Corn Terrace" loading="lazy"></div><figcaption><b>Corn Terrace</b></figcaption></figure>
+<figure data-src="img/art/photography/valley-lights.jpg" data-title="Valley of Lights" data-ar="1.3333" data-face="r" tabindex="0" style="--ar:1.3333"><div class="ph"><img src="img/art/photography/valley-lights.t.jpg" alt="Valley of Lights" loading="lazy"></div><figcaption><b>Valley of Lights</b></figcaption></figure>
+<figure data-src="img/art/photography/smoke-over-the-furrows.jpg" data-title="Furrow Fire" data-ar="0.7500" tabindex="0" style="--ar:0.7500"><div class="ph"><img src="img/art/photography/smoke-over-the-furrows.t.jpg" alt="Furrow Fire" loading="lazy"></div><figcaption><b>Furrow Fire</b></figcaption></figure>
+<figure data-src="img/art/photography/night-road.jpg" data-title="Comet Road" data-ar="1.7768" tabindex="0" style="--ar:1.7768"><div class="ph"><img src="img/art/photography/night-road.t.jpg" alt="Comet Road" loading="lazy"></div><figcaption><b>Comet Road</b></figcaption></figure>
+<figure data-src="img/art/photography/desert-ridge.jpg" data-title="Ridge Sitter" data-ar="1.7794" data-face="l" tabindex="0" style="--ar:1.7794"><div class="ph"><img src="img/art/photography/desert-ridge.t.jpg" alt="Ridge Sitter" loading="lazy"></div><figcaption><b>Ridge Sitter</b></figcaption></figure>
+<figure data-src="img/art/photography/reflection-i.jpg" data-title="Reflected Canal" data-ar="1.1849" tabindex="0" style="--ar:1.1849"><div class="ph"><img src="img/art/photography/reflection-i.t.jpg" alt="Reflected Canal" loading="lazy"></div><figcaption><b>Reflected Canal</b></figcaption></figure>
+<figure data-src="img/art/photography/pink-canopy.jpg" data-title="Magenta Canopy" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/photography/pink-canopy.t.jpg" alt="Magenta Canopy" loading="lazy"></div><figcaption><b>Magenta Canopy</b></figcaption></figure>
+<figure data-src="img/art/photography/coupe.jpg" data-title="Sour, Golden Hour" data-ar="1.3333" tabindex="0" style="--ar:1.3333"><div class="ph"><img src="img/art/photography/coupe.t.jpg" alt="Sour, Golden Hour" loading="lazy"></div><figcaption><b>Sour, Golden Hour</b></figcaption></figure>
+<figure data-src="img/art/photography/through-the-rain.jpg" data-title="Through the Rain" data-ar="1.3333" tabindex="0" style="--ar:1.3333"><div class="ph"><img src="img/art/photography/through-the-rain.t.jpg" alt="Through the Rain" loading="lazy"></div><figcaption><b>Through the Rain</b></figcaption></figure>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="hillside-house">
+  <div class="group-head rv"><h3>Hillside Homes</h3></div>
+  <div class="art flow" data-gallery="hillside-house">
+<figure data-src="img/art/hillside/dusk-terrace.jpg" data-title="Dusk Terrace" data-ar="1.7768" tabindex="0" style="--ar:1.7768"><div class="ph"><img src="img/art/hillside/dusk-terrace.t.jpg" alt="Dusk Terrace" loading="lazy"></div><figcaption><b>Dusk Terrace</b></figcaption></figure>
+<figure data-src="img/art/hillside/two-fires.jpg" data-title="Two Fires" data-ar="1.7768" tabindex="0" style="--ar:1.7768"><div class="ph"><img src="img/art/hillside/two-fires.t.jpg" alt="Two Fires" loading="lazy"></div><figcaption><b>Two Fires</b></figcaption></figure>
+<figure data-src="img/art/hillside/lit-steps.jpg" data-title="Lit Steps" data-ar="1.7768" tabindex="0" style="--ar:1.7768"><div class="ph"><img src="img/art/hillside/lit-steps.t.jpg" alt="Lit Steps" loading="lazy"></div><figcaption><b>Lit Steps</b></figcaption></figure>
+<figure data-src="img/art/hillside/colonnade.jpg" data-title="Colonnade" data-ar="1.7768" tabindex="0" style="--ar:1.7768"><div class="ph"><img src="img/art/hillside/colonnade.t.jpg" alt="Colonnade" loading="lazy"></div><figcaption><b>Colonnade</b></figcaption></figure>
+<figure data-solo="1" data-src="img/art/hillside/piano-room.jpg" data-title="The Piano Room" data-ar="1.5000" tabindex="0" style="--ar:1.5000"><div class="ph"><img src="img/art/hillside/piano-room.t.jpg" alt="The Piano Room" loading="lazy"></div><figcaption><b>The Piano Room</b></figcaption></figure>
+</div>
+</div><div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="desert-house">
+  <div class="group-head rv"><h3>Desert House Study</h3></div>
+  <div class="art flow" data-gallery="desert-house">
+<figure data-src="img/art/houses/cabana.jpg" data-title="Cabana" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/cabana.t.jpg" alt="Cabana" loading="lazy"></div><figcaption><b>Cabana</b></figcaption></figure>
+<figure data-src="img/art/houses/square-spa.jpg" data-title="Square Spa" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/square-spa.t.jpg" alt="Square Spa" loading="lazy"></div><figcaption><b>Square Spa</b></figcaption></figure>
+<figure data-src="img/art/houses/round-spa.jpg" data-title="Round Spa" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/round-spa.t.jpg" alt="Round Spa" loading="lazy"></div><figcaption><b>Round Spa</b></figcaption></figure>
+<figure data-src="img/art/houses/fountain-spa.jpg" data-title="Fountain Spa" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/fountain-spa.t.jpg" alt="Fountain Spa" loading="lazy"></div><figcaption><b>Fountain Spa</b></figcaption></figure>
+<figure data-src="img/art/houses/bunker.jpg" data-title="Bunker" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/bunker.t.jpg" alt="Bunker" loading="lazy"></div><figcaption><b>Bunker</b></figcaption></figure>
+<figure data-src="img/art/houses/pergola-at-dusk.jpg" data-title="Pergola at Dusk" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/pergola-at-dusk.t.jpg" alt="Pergola at Dusk" loading="lazy"></div><figcaption><b>Pergola at Dusk</b></figcaption></figure>
+<figure data-src="img/art/houses/shaded-dining.jpg" data-title="Shaded Dining" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/shaded-dining.t.jpg" alt="Shaded Dining" loading="lazy"></div><figcaption><b>Shaded Dining</b></figcaption></figure>
+<figure data-src="img/art/houses/infinity-edge.jpg" data-title="Infinity Edge" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/infinity-edge.t.jpg" alt="Infinity Edge" loading="lazy"></div><figcaption><b>Infinity Edge</b></figcaption></figure>
+<figure data-src="img/art/houses/water-wall.jpg" data-title="Water Wall" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/water-wall.t.jpg" alt="Water Wall" loading="lazy"></div><figcaption><b>Water Wall</b></figcaption></figure>
+<figure data-src="img/art/houses/blue-tile-spa.jpg" data-title="Blue Tile Spa" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/blue-tile-spa.t.jpg" alt="Blue Tile Spa" loading="lazy"></div><figcaption><b>Blue Tile Spa</b></figcaption></figure>
+<figure data-src="img/art/houses/raised-pool.jpg" data-title="Raised Pool" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/raised-pool.t.jpg" alt="Raised Pool" loading="lazy"></div><figcaption><b>Raised Pool</b></figcaption></figure>
+<figure data-src="img/art/houses/evening-water-wall.jpg" data-title="Evening Water Wall" data-ar="1.6029" tabindex="0" style="--ar:1.6029"><div class="ph"><img src="img/art/houses/evening-water-wall.t.jpg" alt="Evening Water Wall" loading="lazy"></div><figcaption><b>Evening Water Wall</b></figcaption></figure>
+</div>
+</div>
+  </div>
+</section>
+<div class="rule rv" aria-hidden="true"><span class="rulemark"><img src="img/brand/mark.png" alt=""><canvas class="rulesun"></canvas></span></div>
+<section class="medium" id="music">
+  <div class="wrap">
+    <div class="medium-head rv"><h2>Music</h2><p>Released as BeRo Bloom.</p></div>
+    <div class="group">
+      <div class="group-head rv"><h3>Albums</h3></div>
+      <div class="albums">
+<article class="card album rv" data-kind="album"><div class="cover"><img src="img/music/flashburn.jpg" alt="FLASHBURN cover" loading="lazy"></div><div class="body"><h4>FLASHBURN</h4><div class="meta">EP · 2026 · 6 songs</div><div class="links"><a class="glass" href="https://open.spotify.com/album/2oKeX4VckhXXFscbKtxEeT" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a><a class="glass" href="https://music.apple.com/us/album/flashburn-ep/6791550518" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a></div></div></article>
+<article class="card album rv" data-kind="album"><div class="cover"><img src="img/music/dahomey-seche.jpg" alt="Dahomey-Seche cover" loading="lazy"></div><div class="body"><h4>Dahomey-Seche</h4><div class="meta">Album · 2024 · 16 songs</div><div class="links"><a class="glass" href="https://open.spotify.com/album/37beGKISyVL12w2wCHYxp9" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a><a class="glass" href="https://music.apple.com/us/album/dahomey-seche/1738006081" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a></div></div></article>
+<article class="card album rv" data-kind="album"><div class="cover"><img src="img/music/in-dwaybadou.jpg" alt="In Dwaybadou cover" loading="lazy"></div><div class="body"><h4>In Dwaybadou</h4><div class="meta">Album · 2024 · 9 songs</div><div class="links"><a class="glass" href="https://open.spotify.com/album/1Pw5THqmGFagntkhU2daYf" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a><a class="glass" href="https://music.apple.com/us/album/in-dwaybadou/1737980328" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a></div></div></article>
+<article class="card album rv" data-kind="album"><div class="cover"><img src="img/music/bero-bloom.jpg" alt="BeRo Bloom cover" loading="lazy"></div><div class="body"><h4>BeRo Bloom</h4><div class="meta">Album · 2021 · 10 songs</div><div class="links"><a class="glass" href="https://open.spotify.com/album/2LMAWLl0pYOz0CdqsFyDtT" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a><a class="glass" href="https://music.apple.com/us/album/bero-bloom/1560534735" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a></div></div></article>
+      </div>
+    </div>
+    <div class="rule soft rv" aria-hidden="true"><i></i></div>
+    <div class="group">
+      <div class="group-head rv"><h3>Singles</h3></div>
+      <article class="card artist rv">
+        <div class="portrait"><img src="img/music/artist.jpg" alt="BeRo Bloom" loading="lazy"></div>
+        <div class="body">
+          <h4>BeRo Bloom</h4>
+          <p>All albums and singles.</p>
+          <div class="links">
+            <a class="glass" href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a>
+            <a class="glass" href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<div class="rule rv" aria-hidden="true"><span class="rulemark"><img src="img/brand/mark.png" alt=""><canvas class="rulesun"></canvas></span></div>
+<section class="medium" id="writings">
+  <div class="wrap">
+    <div class="medium-head rv"><h2>Writings</h2></div>
+<div class="group" id="books">
+  <div class="group-head rv"><h3>Books</h3></div>
+  <div class="shelf" data-gallery="books">
+<figure class="cover rv" data-src="img/writing/fern-and-rye.jpg" data-title="Fern and Rye — A Tale of Day and Night" tabindex="0"><div class="jacket img"><img src="img/writing/fern-and-rye.cover.jpg" alt="Fern and Rye" loading="lazy"></div><div class="cap"><b>Fern and Rye</b><span>A picture book about a fox who keeps the night, a rabbit who keeps the day, and the hour they share.</span></div></figure>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/dm2.pdf.enc" data-title="DM²" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt" style="font-size:clamp(14px,1.45vw,17.5px)">DM²</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div><div class="cap"><b>DM²</b><span>A 360-page guide to the tactics people use on each other, and how to see them coming.</span></div></div>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="screenplays">
+  <div class="group-head rv"><h3>Screenplays</h3></div>
+  <div class="shelf">
+<div class="cover rv" role="button" tabindex="0" data-src="docs/te-aa-o-te-toea.pdf" data-title="Te Aʻa O Te Tōʻea"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">Te Aʻa O Te Tōʻea</span></div><div class="cap"><b>Te Aʻa O Te Tōʻea</b><span class="kind">historical drama</span><span>Around the year 1100, a canoe leaves the Marquesas Islands and follows the birds north to a new land, Hawai’i.</span></div></div>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/the-slide.pdf.enc" data-title="The Slide / Points of Light" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">The Slide /<br>Points of Light</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div><div class="cap"><b>The Slide / Points of Light</b><span class="kind">biopic</span><span>A flawed, brilliant man looks back on his rise and fall.</span></div></div>
+<div class="cover rv" role="button" tabindex="0" data-solo="1" data-src="docs/climaxin.pdf" data-title="Climaxin"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">Climaxin</span></div><div class="cap"><b>Climaxin</b><span class="kind">sci-fi thriller</span><span>A future drug keeps users in a state of pre-climactic bliss, but society crumbles as no one wants to finish anything.</span></div></div>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="essays">
+  <div class="group-head rv"><h3>Essays</h3></div>
+  <div class="shelf">
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/self-circumscription.pdf.enc" data-title="On Self-Circumscription of the Habitat of H. Sapiens" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">On Self-Circumscription of the Habitat of<br><i>H.&nbsp;Sapiens</i></span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div></div>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/social-disillusionment-of-the-lottery.pdf.enc" data-title="The Social Disillusionment of the Lottery" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">The Social Disillusionment<br>of the Lottery</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div></div>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/gamification-of-pursuit.pdf.enc" data-title="The Gamification of Pursuit" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">The Gamification of Pursuit</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div></div>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/event-triggers-and-attachment.pdf.enc" data-title="On Event Triggers and the Nature of Attachment" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">On Event Triggers and the Nature of Attachment</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div></div>
+<div class="cover rv is-locked" role="button" tabindex="0" data-solo="1" data-src="docs/isa.pdf.enc" data-title="Inscription, Subscription, and Ascription" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">Inscription, Subscription,<br>and Ascription</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div></div>
+</div>
+</div>
+<div class="rule soft rv" aria-hidden="true"><i></i></div>
+<div class="group" id="poetry">
+  <div class="group-head rv"><h3>Poetry</h3></div>
+  <div class="shelf" data-gallery="poems">
+<figure class="cover rv" data-src="img/writing/the-day-the-ice-cream-melted.jpg" data-title="The Day the Ice Cream Melted" tabindex="0"><div class="jacket img"><img src="img/writing/the-day-the-ice-cream-melted.jpg" alt="The Day the Ice Cream Melted" loading="lazy"></div><div class="cap"><b>The Day the Ice Cream Melted</b></div></figure>
+<figure class="cover rv" data-src="img/writing/takushoku.jpg" data-title="Takushoku" tabindex="0"><div class="jacket img"><img src="img/writing/takushoku.jpg" alt="Takushoku" loading="lazy"></div><div class="cap"><b>Takushoku</b></div></figure>
+<figure class="cover rv" data-src="img/writing/mirage.jpg" data-title="Mirage" tabindex="0"><div class="jacket img"><img src="img/writing/mirage.jpg" alt="Mirage" loading="lazy"></div><div class="cap"><b>Mirage</b></div></figure>
+<figure class="cover rv" data-src="img/writing/a-west-more-vast.jpg" data-title="A West More Vast" tabindex="0"><div class="jacket img"><img src="img/writing/a-west-more-vast.jpg" alt="A West More Vast" loading="lazy"></div><div class="cap"><b>A West More Vast</b></div></figure>
+<figure class="cover rv" data-src="img/writing/fern-and-rye.jpg" data-title="Fern and Rye" tabindex="0"><div class="jacket img"><img src="img/writing/fern-and-rye.jpg" alt="Fern and Rye" loading="lazy"></div><div class="cap"><b>Fern and Rye</b></div></figure>
+<div class="cover rv is-locked" role="button" tabindex="0" data-src="docs/the-ill-loom-and-naughty.pdf.enc" data-title="The Ill-Loom and Naughty" data-locked="1"><div class="jacket"><span class="sz" aria-hidden="true"></span><img class="ornament" src="img/brand/crossed.png" alt=""><span class="jt">The Ill-Loom and Naughty</span><span class="lock" title="Password protected"><svg><use href="#i-lock"/></svg></span></div><div class="cap"><b>The Ill-Loom and Naughty</b><span class="kind">epic poem in five parts</span></div></div>
+</div>
+</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap rv slow">
+    <img class="mark" src="img/brand/sword.png" alt="" width="350" height="1075">
+    <span>Risenblade is the collected works of Ben Bloom.</span>
+    <a class="atlas" href="https://atlasbyben.com/" target="_blank" rel="noopener"><svg class="compass" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5 13.7 9.2 21.5 12l-7.8 2.8L12 22.5l-1.7-7.7L2.5 12l7.8-2.8Zm0 3.4-.9 4.8-4.4 1.7 4.4 1.6.9 4.8.9-4.8 4.4-1.6-4.4-1.7Z"/><path fill="currentColor" d="m5.2 5.2 4.5 3.3-1.2 1.2Zm13.6 0-3.3 4.5-1.2-1.2Zm0 13.6-4.5-3.3 1.2-1.2Zm-13.6 0 3.3-4.5 1.2 1.2Z" opacity=".7"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>Atlas by Ben</a>
+    <div class="links stream">
+      <a href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener" aria-label="BeRo Bloom on Spotify"><span class="ico spotify"></span></a>
+      <a href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener" aria-label="BeRo Bloom on Apple Music"><span class="ico apple"></span></a>
+    </div>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+  <div class="bar"><h3 id="viewer-title">Untitled</h3><span class="n" id="viewer-n"></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+  <div class="stage" id="stage">
+    <button class="iconbtn navbtn prev" id="viewer-prev" type="button" aria-label="Previous" hidden><svg><use href="#i-prev"/></svg></button>
+    <button class="iconbtn navbtn next" id="viewer-next" type="button" aria-label="Next" hidden><svg><use href="#i-next"/></svg></button>
+    <div id="stage-inner" style="display:contents"></div>
+  </div>
+</div>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="box">
+    <h3 id="gate-title">Password</h3>
+    <p>This one is shared only with people who have the password.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" inputmode="text" autocapitalize="off" spellcheck="false" placeholder="Password" aria-label="Password">
+      <button class="btn" type="submit" id="gate-go">Unlock</button>
+    </form>
+    <div class="err" id="gate-err" aria-live="polite"></div>
+    <div class="row"><span class="status" id="gate-status" hidden>Unlocked for this browser session.</span><button class="btn quiet sm" type="button" id="gate-cancel">Cancel</button></div>
+  </div>
+</div>
+
+<noscript><div class="wrap" style="padding:20px 0;color:#a8967f">The music, the password gate, and the in-page readers need JavaScript. Everything else is plain HTML.</div></noscript>
+<audio id="bgm" preload="none"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script>
+(() => {
+'use strict';
+
+/* ================= SETTINGS ================= */
+const PLAYLIST = ['music/electric-heartbeat.mp3', 'music/straight-up.mp3'];
+const TRACK_NAMES = ['Electric Heartbeat', 'Straight Up'];
+const GATE = { salt: '5c74ac35616daa03aa0b7e8c72862248', verifier: '5a4ebfdbe3564a34207befb4bb7e7e460c5b0def23e055a11fb160add94cee86', iterations: 200000 };
+const PDF_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* text inputs lose focus on a tap anywhere outside */
+const blurOutside = e => { const a = document.activeElement; if (a && a.matches('input,textarea') && !a.contains(e.target)) a.blur(); };
+document.addEventListener('mousedown', blurOutside, true);
+document.addEventListener('touchstart', blurOutside, { capture: true, passive: true });
+
+/* no saving images by long press or right click */
+document.addEventListener('contextmenu', e => { if (e.target.closest('.ph,.jacket,.shot,.cover,.portrait,.album .cover,.viewer,.hero')) e.preventDefault(); });
+document.addEventListener('dragstart', e => { if (e.target.closest('img,.ph,.jacket,.shot,.portrait')) e.preventDefault(); });
+
+
+/* ================= masonry for the flowing galleries ================= */
+function masonry(el) {
+  const all = el._figs || (el._figs = $$('figure', el).map((f, i) => (f.dataset.i = i, f)));
+  const figs = all.slice();
+  const w = el.clientWidth || el.parentElement.clientWidth;
+  const n = Math.max(2, Math.min(4, Math.floor(w / 235), figs.length));
+  if (el._n === n) return;
+  el._n = n;
+  el.classList.add('js'); el.style.setProperty('--n', n);
+  el.innerHTML = '';
+  const cols = Array.from({ length: n }, () => { const c = document.createElement('div'); c.className = 'col'; el.appendChild(c); return c; });
+  const h = new Array(n).fill(0);
+  const half = n / 2;
+  const unit = f => 1 / (parseFloat(f.dataset.ar) || 1) + 0.16;
+  const solo = n === 2 && all.length % 2 === 1 ? figs.find(f => f.dataset.solo) : null;
+  if (solo) figs.splice(figs.indexOf(solo), 1);
+  const tail = figs.length > n + 2 ? figs.slice(-n) : [];           // the last few are placed by search, to level the bottom edge
+  const headItems = figs.slice(0, figs.length - tail.length);
+  const leftOf = c => c < Math.ceil(n / 2), rightOf = c => c >= Math.floor(n / 2);   // the middle column of an odd grid counts as both
+  headItems.forEach((f, idx) => {
+    const face = f.dataset.face;                       // 'l' looks left, so it belongs toward the right; 'r' the reverse
+    const lo = Math.min(...h);
+    const remaining = figs.length - idx;
+    const restL = figs.slice(idx + 1).filter(x => x.dataset.face === 'l').length, restR = figs.slice(idx + 1).filter(x => x.dataset.face === 'r').length;
+    let k;
+    if (face === 'l' || face === 'r') {
+      let pool = [...h.keys()].filter(c => (face === 'l' ? rightOf(c) : leftOf(c)) && h[c] <= lo + (n === 2 ? 3.0 : 1.8));
+      if (!pool.length) pool = [...h.keys()].filter(c => h[c] <= lo + 0.6);
+      const empties = [...h.keys()].filter(c => h[c] === 0);
+      if (empties.length && remaining <= empties.length && Math.min(...pool.map(c => h[c])) > 0) pool = empties;   // never leave a column empty
+      const m = Math.min(...pool.map(c => h[c]));
+      const ties = pool.filter(c => h[c] <= m + 0.3);
+      k = face === 'l' ? ties[ties.length - 1] : ties[0];
+    } else {
+      const ties = [...h.keys()].filter(c => h[c] <= lo + 0.6);
+      k = restL > restR ? ties[0] : restR > restL ? ties[ties.length - 1] : ties[0];   // plain pieces keep the other side free for the faces still to come
+    }
+    cols[k].appendChild(f);
+    h[k] += unit(f);
+  });
+  if (tail.length) {
+    let best = null, bestScore = Infinity;
+    const total = Math.pow(n, tail.length);
+    for (let code = 0; code < total; code++) {
+      const hh = h.slice(); let c = code;
+      let viol = 0;
+      const assign = tail.map(f => { const k = c % n; c = Math.floor(c / n); if ((f.dataset.face === 'l' && !rightOf(k)) || (f.dataset.face === 'r' && !leftOf(k))) viol++; hh[k] += unit(f); return k; });
+      const score = (Math.max(...hh) - Math.min(...hh)) + viol * 1.6;
+      if (score < bestScore) { bestScore = score; best = assign; }
+    }
+    tail.forEach((f, i) => { cols[best[i]].appendChild(f); });
+  }
+  if (solo) { const d = document.createElement('div'); d.className = 'solo'; d.appendChild(solo); el.appendChild(d); }
+}
+const flows = $$('.art.flow');
+const layoutAll = () => flows.forEach(masonry);
+layoutAll();
+let rz, lastW = document.documentElement.clientWidth;
+addEventListener('resize', () => { const w = document.documentElement.clientWidth; if (w === lastW) return; lastW = w; clearTimeout(rz); rz = setTimeout(layoutAll, 120); });   // pinch-zoom fires resize without changing the layout width; ignore it
+
+/* ================= reveal ================= */
+$$('.art figure, .shelf .cover').forEach(el => el.classList.add('rv'));
+$$('.sites .site, .albums .album').forEach(el => el.classList.add('rv'));
+const rvs = $$('.rv');
+function revealEl(el) {
+  if (el.classList.contains('in')) return;
+  const side = c => { const r = c.getBoundingClientRect(); return r.top + r.height / 2 < innerHeight / 2; };   // arriving through the top half of the screen means coming in from above
+  const up = side(el); el.classList.toggle('above', up); void el.offsetWidth;                              // start from the correct side before the transition begins
+  const sibs = Array.from(el.parentElement.children).filter(c => c.classList.contains('rv') && !c.classList.contains('in') && side(c) === up);   // only the ones arriving from the same side
+  const idx = up ? sibs.length - 1 - sibs.indexOf(el) : sibs.indexOf(el);                                  // entering from above, the lowest comes first
+  el.style.setProperty('--d', Math.min(idx, 6) * 55 + 'ms');
+  el.classList.add('in');
+}
+function hideEl(el, wentUp) { el.classList.remove('in'); el.classList.toggle('above', wentUp); el.style.setProperty('--d', '0ms'); }
+let showIO = null;
+if ('IntersectionObserver' in window && !reduced) {
+  showIO = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) revealEl(en.target); }), { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+  const hideIO = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) hideEl(en.target, en.boundingClientRect.top < 0); }), { rootMargin: '12% 0px 12% 0px', threshold: 0 });
+  rvs.filter(el => !el.closest('footer')).forEach(el => { showIO.observe(el); hideIO.observe(el); });
+  const footEls = rvs.filter(el => el.closest('footer')); footEls.forEach(el => { el.classList.add('in'); el.style.transition = 'none'; el.style.transform = 'none'; });
+  (() => {                                                   // the footer's opacity tracks how much of it is on screen, eased, so it dissolves in and back out with the scroll
+    let v = 0, last = 0;
+    const tick = now => {
+      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+      const f = document.querySelector('footer'); if (!f) return;
+      const r = f.getBoundingClientRect(), vis = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) / Math.max(1, Math.min(r.height, innerHeight));
+      const target = Math.max(0, Math.min(1, (vis - .1) / .8));
+      v += (target - v) * (1 - Math.exp(-dt / 1.1));
+      footEls.forEach(el => { el.style.opacity = v.toFixed(3); });
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
+} else rvs.forEach(el => el.classList.add('in'));
+function revealPassed() {                             // after a fast jump, anything actually on screen is shown
+  const H = innerHeight * 0.96;
+  for (const el of rvs) { if (el.classList.contains('in')) continue; const r = el.getBoundingClientRect(); if (r.top < H && r.bottom > 0) revealEl(el); }
+}
+
+/* ================= hero parallax ================= */
+const sword = $('#sword'), glow = $('.hero .glow');
+const phs = $$('.art .ph, .lead .ph, .album .cover, .jacket');
+const pxTarget = ph => ph.classList.contains('jacket') && !ph.classList.contains('img') ? ph.querySelector('.ornament') : ph.querySelector('img');
+const pxAmount = ph => ph.classList.contains('cover') ? -14 : ph.classList.contains('jacket') ? (ph.classList.contains('img') ? 0 : -8) : -16;
+const parallax = () => {
+  const y = scrollY;
+  if (!reduced) sword.style.transform = `translateY(${y * 0.22}px)`;
+  const f = Math.max(0, 1 - y / 700);
+  sword.style.opacity = 0.35 + 0.65 * f;
+  glow.style.opacity = f;
+  if (reduced) return;
+  const H = innerHeight;
+  for (const ph of phs) {
+    const r = ph.getBoundingClientRect(), img = pxTarget(ph);
+    if (!img) continue;
+    if (r.bottom < -40 || r.top > H + 40) { if (img.style.getPropertyValue('--py')) img.style.removeProperty('--py'); continue; }   // off screen: a plain image, no layer
+    const c = (r.top + r.height / 2 - H / 2) / H;      // -0.5 at the top of the screen, 0.5 at the bottom
+    img.style.setProperty('--py', (c * pxAmount(ph)).toFixed(1) + 'px');
+  }
+};
+
+/* ================= the sword and its sun, drawn as solids ================= */
+const TIP = [175, 168], IW = 350, IH = 1075, BALL0 = 32;
+const LIGHT = (() => { const L = [-.45, .62, .65]; const n = Math.hypot(...L); return [L[0] / n, L[1] / n, L[2] / n]; })();
+const gold = (b, r = 214, g = 170, bl = 106) => `rgb(${Math.min(255, r * b) | 0},${Math.min(255, g * b) | 0},${Math.min(255, bl * b) | 0})`;
+const lit = n => { const m = Math.hypot(...n) || 1; return Math.max(0, (n[0] * LIGHT[0] + n[1] * LIGHT[1] + n[2] * LIGHT[2]) / m); };
+const RAY_DEF = [{ a: 90, r0: 1.28, r1: 4.4, w: .31 }, { a: 0, r0: 1.28, r1: 4.4, w: .31 }, { a: 180, r0: 1.28, r1: 4.4, w: .31 }, { a: -90, r0: 1.28, r1: 4.4, w: .31 },
+                 { a: 45, r0: 1.4, r1: 2.72, w: .27 }, { a: 135, r0: 1.4, r1: 2.72, w: .27 }, { a: -45, r0: 1.4, r1: 2.72, w: .27 }, { a: -135, r0: 1.4, r1: 2.72, w: .27 }];   // the four cardinals equal, the four diagonals equal, so a quarter-turn ends where it began
+const face = new Image(); face.src = 'img/brand/blade.png';
+const halo = new Image(); halo.src = 'img/brand/halo.png';
+const dmask = new Image(); dmask.src = 'img/brand/diamonds.png';
+
+/* the sun: ball, ring, and eight rays in a small orbit round a point, one face always inward, turning like a dial as it goes.
+   Everything is in "image units" scaled by k; z toward the viewer; the caller decides which side of a plane at z=0 to draw. */
+function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0) {
+  const D = 1.25 * BALL, RING = 2.05 * BALL, TUBE = .11 * BALL;
+  const RAYS = RAY_DEF.map(r => ({ a: r.a, r0: r.r0 * BALL, r1: r.r1 * BALL, w: r.w * BALL }));
+  const proj = (x, y, z) => { const s = F / (F - z); return { X: cx + x * s * k, Y: cy - y * s * k, s }; };
+  const orb = [-D * Math.sin(a), 0, -D * Math.cos(a)];
+  const cb = Math.cos(bank), sb = Math.sin(bank);
+  const rot = (x, y) => { const yb = y * cb, zb = y * sb; return [x * Math.cos(a) + zb * Math.sin(a) + orb[0], yb, -x * Math.sin(a) + zb * Math.cos(a) + orb[2]]; };   // bank about the sun's own horizontal axis, then turn about the vertical one
+  const onSide = z => side === 0 || (side > 0 ? z >= 0 : z < 0);
+  function ray(d) {
+    const t = (d.a + dial) * Math.PI / 180, ux = Math.cos(t), uy = Math.sin(t);
+    const p0 = rot(ux * d.r0, uy * d.r0), p1 = rot(ux * d.r1, uy * d.r1);
+    const P0 = proj(...p0), P1 = proj(...p1), zmid = (p0[2] + p1[2]) / 2 - orb[2];
+    const dx = P1.X - P0.X, dy = P1.Y - P0.Y, len = Math.hypot(dx, dy), wpx = d.w * k * P0.s;
+    const lt = .78 + .22 * Math.max(0, (p1[2] - p0[2]) / (d.r1 - d.r0)) + .08 * zmid / (4 * BALL);
+    ctx.save();
+    if (len < wpx * .9) {
+      const g = ctx.createRadialGradient(P0.X - wpx * .18, P0.Y - wpx * .2, 0, P0.X, P0.Y, wpx * .55);
+      g.addColorStop(0, gold(1.35 * lt)); g.addColorStop(.6, gold(1.0 * lt)); g.addColorStop(1, gold(.55 * lt));
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc((P0.X + P1.X) / 2, (P0.Y + P1.Y) / 2, wpx * .5, 0, Math.PI * 2); ctx.fill(); ctx.restore(); return;
+    }
+    const nx = -dy / len, ny = dx / len, N = 12, left = [], right = [];
+    for (let i = 0; i <= N; i++) { const u = i / N, w = wpx * Math.pow(Math.sin(Math.PI * (u * .92 + .04)), .75) * (1 - u * .35); const X = P0.X + dx * u, Y = P0.Y + dy * u; left.push([X + nx * w / 2, Y + ny * w / 2]); right.push([X - nx * w / 2, Y - ny * w / 2]); }
+    ctx.beginPath(); ctx.moveTo(P0.X, P0.Y); left.forEach(p => ctx.lineTo(p[0], p[1])); ctx.lineTo(P1.X, P1.Y); right.reverse().forEach(p => ctx.lineTo(p[0], p[1])); ctx.closePath();
+    const mx = (P0.X + P1.X) / 2, my = (P0.Y + P1.Y) / 2, g = ctx.createLinearGradient(mx + nx * wpx / 2, my + ny * wpx / 2, mx - nx * wpx / 2, my - ny * wpx / 2);
+    g.addColorStop(0, gold(.5 * lt)); g.addColorStop(.3, gold(1.32 * lt, 240, 214, 150)); g.addColorStop(.55, gold(1.05 * lt)); g.addColorStop(1, gold(.45 * lt));
+    ctx.fillStyle = g; ctx.fill(); ctx.restore();
+  }
+  function ringPart(frontOfBall) {
+    const n = 140; let open = false; ctx.save(); ctx.lineCap = 'round';
+    for (let i = 0; i <= n; i++) {
+      const t = i / n * Math.PI * 2, p = rot(RING * Math.cos(t), RING * Math.sin(t)), rel = p[2] - orb[2];
+      const here = (frontOfBall ? rel >= -1e-6 : rel < -1e-6) && onSide(p[2]);
+      if (!here) { open = false; continue; }
+      const P = proj(...p), nrm = rot(Math.cos(t), Math.sin(t)); const l = .62 + .5 * lit([nrm[0] - orb[0], nrm[1], nrm[2] - orb[2]]) + .06 * rel / (2 * BALL);
+      if (open) { ctx.lineTo(P.X, P.Y); ctx.strokeStyle = gold(l, 222, 200, 150); ctx.lineWidth = Math.max(.7, TUBE * k * P.s); ctx.stroke(); }
+      ctx.beginPath(); ctx.moveTo(P.X, P.Y); open = true;
+    }
+    ctx.restore();
+  }
+  function ball() {
+    const P = proj(...orb), R = BALL * k * P.s;
+    const g = ctx.createRadialGradient(P.X - R * .38, P.Y - R * .42, R * .05, P.X, P.Y, R * 1.02);
+    g.addColorStop(0, 'rgb(255,247,215)'); g.addColorStop(.22, 'rgb(246,222,160)'); g.addColorStop(.55, 'rgb(214,170,106)'); g.addColorStop(.85, 'rgb(140,98,48)'); g.addColorStop(1, 'rgb(84,54,22)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(P.X, P.Y, R, 0, Math.PI * 2); ctx.fill();
+  }
+  const rayZ = d => { const t = (d.a + dial) * Math.PI / 180; const p0 = rot(Math.cos(t) * d.r0, Math.sin(t) * d.r0), p1 = rot(Math.cos(t) * d.r1, Math.sin(t) * d.r1); return (p0[2] + p1[2]) / 2; };
+  const zc = orb[2];
+  const backR = RAYS.filter(d => rayZ(d) < zc && onSide(rayZ(d))), frontR = RAYS.filter(d => rayZ(d) >= zc && onSide(rayZ(d)));
+  backR.forEach(ray); ringPart(false); if (onSide(zc)) ball(); ringPart(true); frontR.forEach(ray);
+}
+
+/* a sword with its sun: the drawing as the face of a thin solid, the sun orbiting its tip, the diamonds dissolving; driven by where the sword is on the screen */
+function attachSword(o) {
+  const cv = o.canvas, ctx = cv.getContext('2d'), wrap = o.wrap, layer = document.createElement('canvas'), lc = layer.getContext('2d');
+  let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, dial = 0, ang = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true;
+  const wimg = o.wordImg, wcv = o.wordCanvas, wctx = wcv ? wcv.getContext('2d') : null; let WW = 0, WH = 0;
+  function size() {
+    const r = wrap.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 3);
+    W = Math.round(wrap.offsetWidth * dpr); Hh = Math.round(wrap.offsetHeight * dpr); k = W / IW;
+    if (cv.width !== W || cv.height !== Hh) { cv.width = W; cv.height = Hh; }
+    cv.style.width = wrap.offsetWidth + 'px'; cv.style.height = wrap.offsetHeight + 'px';
+    if (wcv) { const qw = wimg.offsetWidth, qh = wimg.offsetHeight; WW = Math.round(qw * dpr); WH = Math.round(qh * dpr); if (wcv.width !== WW || wcv.height !== WH) { wcv.width = WW; wcv.height = WH; } wcv.style.width = qw + 'px'; wcv.style.height = qh + 'px'; }
+  }
+  function sword() {
+    if (!face.complete || !face.naturalWidth) return;
+    if (layer.width !== W || layer.height !== Hh) { layer.width = W; layer.height = Hh; }
+    lc.setTransform(1, 0, 0, 1, 0, 0); lc.clearRect(0, 0, W, Hh);
+    const c = Math.cos(beta), sn = Math.sin(beta), ox = TIP[0] * k, edge = 9 * sn * k;
+    lc.setTransform(k * c, 0, 0, k, ox * (1 - c) - edge, 0); lc.filter = 'brightness(.5) saturate(1.1)'; lc.drawImage(face, 0, 0, IW, IH); lc.filter = 'none';
+    lc.setTransform(k * c, 0, 0, k, ox * (1 - c), 0); lc.drawImage(face, 0, 0, IW, IH);
+    const ph = (sheenT % 7.5) / 7.5;
+    if (ph < .55) {
+      const y = (TIP[1] + 640 - 700 * (ph / .55)) * k, h = 110 * k;
+      lc.setTransform(1, 0, 0, 1, 0, 0); lc.globalCompositeOperation = 'source-atop';
+      const g = lc.createLinearGradient(0, y + h, 0, y - h); g.addColorStop(0, 'rgba(255,253,222,0)'); g.addColorStop(.5, 'rgba(255,253,222,.5)'); g.addColorStop(1, 'rgba(255,253,222,0)');
+      lc.fillStyle = g; lc.fillRect(0, y - h, W, h * 2); lc.globalCompositeOperation = 'source-over';
+    }
+    if (fade > 0 && dmask.complete && dmask.naturalWidth) {
+      lc.globalCompositeOperation = 'destination-out'; lc.globalAlpha = fade;
+      lc.setTransform(k * c, 0, 0, k, ox * (1 - c), 0); lc.drawImage(dmask, 0, 0, IW, IH);
+      lc.setTransform(k * c, 0, 0, k, ox * (1 - c) - edge, 0); lc.drawImage(dmask, 0, 0, IW, IH);
+      lc.globalAlpha = 1; lc.globalCompositeOperation = 'source-over';
+    }
+    if (halo.complete && halo.naturalWidth) { ctx.setTransform(k * c, 0, 0, k, ox * (1 - c), 0); ctx.drawImage(halo, 0, 0, IW, IH); ctx.setTransform(1, 0, 0, 1, 0, 0); }
+    ctx.drawImage(layer, 0, 0);
+  }
+  function wordmark() {
+    if (!wcv || !wimg.complete || !wimg.naturalWidth) return;
+    const iw = wimg.naturalWidth, ih = wimg.naturalHeight, kk = WW / iw, N = 48, sw = iw / N, FW = 2600 * iw / 910, cxw = iw / 2, cyw = ih / 2;
+    wctx.clearRect(0, 0, WW, WH);
+    const pass = (dark, ex) => {
+      wctx.filter = dark ? 'brightness(.4) saturate(1.15)' : 'none';
+      for (let i = 0; i < N; i++) {
+        const x0 = i * sw, xm = x0 + sw / 2 - cxw, xr = xm * Math.cos(beta), zr = -xm * Math.sin(beta), sc = FW / (FW - zr);
+        const dw = sw * Math.cos(beta) * sc * kk + .6, dh = ih * sc * kk, dx = (cxw + xr * sc - sw * Math.cos(beta) * sc / 2) * kk + ex, dy = (cyw - ih * sc / 2) * kk;
+        wctx.drawImage(wimg, x0, 0, sw, ih, dx, dy, dw, dh);
+      }
+      wctx.filter = 'none';
+    };
+    pass(true, -7 * Math.sin(beta) * kk); pass(false, 0);
+  }
+  function draw(a, t) {
+    ctx.clearRect(0, 0, W, Hh);
+    beta = reduced ? 0 : 5 * Math.PI / 180 * Math.sin(t / 26 * Math.PI * 2);
+    const cx = TIP[0] * k, cy = TIP[1] * k;
+    const bk = reduced ? 0 : Math.PI * shown * shown * (3 - 2 * shown);         // the bank goes all the way over the top: upside down by the end, which with equal rays reads as the logo again
+    drawSun(ctx, cx, cy, k, BALL0, 540, a, dial, -1, bk); sword(); drawSun(ctx, cx, cy, k, BALL0, 540, a, dial, 1, bk); wordmark();
+    if (o.plate) { const e = reduced ? 0 : bank, h = o.plate.offsetHeight; o.plate.style.transform = `perspective(850px) translateY(${(-h * 0.04 * e).toFixed(1)}px) rotateX(${(52 * e).toFixed(2)}deg) scale(${(1 - 0.18 * e).toFixed(3)})`; }
+  }
+  /* how far a point of the drawing has travelled toward leaving the screen: 0 at rest, 1 the moment it has crossed the edge */
+  const leaving = yImg => {
+    const r = wrap.getBoundingClientRect(), kk = r.width / IW, y = r.top + yImg * kk;
+    if (o.edge === 'top') { const rest = y + scrollY * (1 - (o.parallax || 0)); return Math.max(0, Math.min(1, 1 - y / rest)); }
+    const maxS = Math.max(0, document.documentElement.scrollHeight - innerHeight), back = Math.max(0, maxS - scrollY), rest = y - back;   // bottom edge: at rest with the page scrolled to its end
+    return Math.max(0, Math.min(1, back / Math.max(1, innerHeight - rest)));
+  };
+  const progress = () => leaving(o.edge === 'top' ? TIP[1] + 2.75 * BALL0 : TIP[1] - 4.7 * BALL0);
+  const diamonds = () => leaving(1066);
+  function frame(now) {
+    if (!running) return;
+    const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; clock += dt; sheenT += dt;
+    const p = progress(), tau = 1.6 - 1.45 * p;
+    let dlt = p - shown; if (dlt > .5) dlt -= 1; else if (dlt < -.5) dlt += 1;   // a full turn looks like none, so never spin back through one
+    shown += dlt * (1 - Math.exp(-dt / tau)); shown = ((shown % 1) + 1) % 1; if (Math.abs(dlt) < .0005) shown = p % 1;
+    bank += (p - bank) * (1 - Math.exp(-dt / tau)); if (Math.abs(p - bank) < .0005) bank = p;   // the same easing, but never wrapped: the plate's tilt holds at the end
+    ang = shown * Math.PI * 2; fade = diamonds(); dial = -90 * shown * shown * (3 - 2 * shown);   // the turn eases in behind the revolution, which is subtler to the eye at small angles
+    draw(ang, clock); requestAnimationFrame(frame);
+  }
+  size(); o.host.classList.add('drawn'); addEventListener('resize', size); if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+  [face, halo, dmask, wimg].forEach(im => { if (im) im.addEventListener('load', () => { size(); draw(ang, clock); }); });
+  draw(0, 0); requestAnimationFrame(frame);
+  const vis = new IntersectionObserver(es => { const on = es[0].isIntersecting && !document.hidden; if (on && !running) { running = true; last = 0; requestAnimationFrame(frame); } else if (!on) running = false; }, { rootMargin: '60px 0px' });
+  vis.observe(o.host);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else if (!running) { running = true; last = 0; requestAnimationFrame(frame); } });
+  return { set: (a, t, f) => { running = false; ang = a; fade = f || 0; draw(a, t || 0); }, resume: () => { running = true; last = 0; requestAnimationFrame(frame); }, progress, diamonds, shown: () => shown };
+}
+if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22 });
+
+/* ================= the small suns and diamonds in the rules stir gently as they cross the screen ================= */
+(() => {
+  const marks = $$('.rule .rulemark'), gems = $$('.rule.soft i');
+  if (!marks.length && !gems.length) return;
+  gems.forEach(g => { g.classList.add('solid'); for (let i = 0; i < 6; i++) g.appendChild(document.createElement('span')); });   // give each gem its six faces
+  const tip = new Image(); tip.src = 'img/brand/tip.png';
+  const SPAN = 1.0, GEM = 0.25;                                  // the suns: one full revolution and one full turn over the height of the screen; the gems: a quarter
+  const st = new Map();
+  const ease = (el, p, dt) => { const s = st.get(el) || { v: p }; s.v += (p - s.v) * (1 - Math.exp(-dt / 0.45)); st.set(el, s); return s.v; };
+  let last = 0;
+  function tick(now) {
+    const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; const H = innerHeight;
+    for (const mk of marks) {
+      const r = mk.getBoundingClientRect(); if (r.bottom < -20 || r.top > H + 20) continue;
+      const c = mk.querySelector('canvas'), dpr = Math.min(devicePixelRatio || 1, 3), pw = Math.round(r.width * dpr), ph = Math.round(r.height * dpr);
+      if (c.width !== pw || c.height !== ph) { c.width = pw; c.height = ph; }
+      if (!tip.complete || !tip.naturalWidth) continue;
+      mk.classList.add('drawn');
+      const p = ease(mk, Math.max(0, Math.min(1, 1 - (r.top + r.height / 2) / H)), dt), k = pw / 300, ctx = c.getContext('2d');   // the mark is a 300-unit square; the sun sits at (150, 143) in it
+      const sm = p * p * (3 - 2 * p), a = p * SPAN * Math.PI * 2, dial = -90 * sm, bk = Math.PI * sm;   // as in the hero: from the logo at the bottom edge, one revolution, a quarter turn of the dial, and a bank over the top by the top edge
+      ctx.clearRect(0, 0, pw, ph);
+      drawSun(ctx, 150 * k, 143 * k, k, BALL0, 540, a, dial, -1, bk); ctx.drawImage(tip, 15 * k, 45 * k, 270 * k, 210 * k); drawSun(ctx, 150 * k, 143 * k, k, BALL0, 540, a, dial, 1, bk);
+    }
+    for (const g of gems) {
+      const r = g.getBoundingClientRect(); if (r.bottom < -20 || r.top > H + 20) continue;
+      const p = ease(g, Math.max(0, Math.min(1, 1 - (r.top + r.height / 2) / H)), dt), a = p * GEM * 360, sm = p * p * (3 - 2 * p);
+      g.style.transform = `rotateY(${(-a).toFixed(1)}deg) translateZ(-3px) rotateX(${(180 * sm).toFixed(1)}deg) rotateZ(${(45 - 90 * sm).toFixed(1)}deg)`;
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* ================= press feedback on touch: lift while the finger is down, never afterwards ================= */
+(() => {
+  const SEL = '.cover, .art figure, .lead, .card';
+  const clear = () => $$('.pressed').forEach(el => el.classList.remove('pressed'));
+  addEventListener('touchstart', e => { const t = e.target.closest && e.target.closest(SEL); clear(); if (t) t.classList.add('pressed'); }, { passive: true });
+  addEventListener('touchmove', clear, { passive: true });
+  const release = () => setTimeout(clear, 160);
+  addEventListener('touchend', release, { passive: true }); addEventListener('touchcancel', release, { passive: true });
+})();
+
+/* ================= the tab row always fits: trim tracking, padding, then size until it does ================= */
+function fitTabs() {
+  const nav = $('nav.sections'), tabs = $('.tabs'); if (!nav || !tabs) return;
+  const phone = matchMedia('(max-width:700px)').matches;
+  let fs = phone ? 11.5 : 12.5, pad = phone ? 11 : 13, ls = .09;
+  const apply = () => { tabs.style.setProperty('--tfs', fs + 'px'); tabs.style.setProperty('--tpad', pad + 'px'); tabs.style.setProperty('--tls', ls + 'em'); };
+  apply();
+  for (let i = 0; i < 40 && tabs.scrollWidth > nav.clientWidth; i++) {
+    if (ls > .04) ls = +(ls - .01).toFixed(2); else if (pad > 6) pad -= 1; else if (fs > 10) fs = +(fs - .25).toFixed(2); else break;
+    apply();
+  }
+}
+fitTabs(); addEventListener('resize', fitTabs); addEventListener('load', fitTabs); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTabs);
+window.__fitTabs = fitTabs;
+
+/* ================= tabs that sweep from section to section ================= */
+const tabs = $$('.tabs a'), ind = $('.tabs .ind'), tabsBox = $('.tabs');
+const secs = tabs.map(a => $(a.getAttribute('href')));
+const headH = () => $('.top').offsetHeight;
+let shown = { i: -1, t: 0 }, settleRAF = 0, settleTimer = 0;
+function paintTabs(i, t) {
+  shown = { i, t };
+  if (i < 0) { ind.style.opacity = 0; tabs.forEach(a => a.style.setProperty('--w', 0)); return; }
+  const s = t * t * (3 - 2 * t);
+  const box = tabsBox.getBoundingClientRect(), a = tabs[i].getBoundingClientRect(), b = (tabs[i + 1] || tabs[i]).getBoundingClientRect();
+  const left = (a.left - box.left) + (b.left - a.left) * s, width = a.width + (b.width - a.width) * s;
+  ind.style.transform = `translateX(${left}px)`; ind.style.width = width + 'px'; ind.style.opacity = 1;
+  tabs.forEach((tab, k) => tab.style.setProperty('--w', k === i ? 1 - s : k === i + 1 ? s : 0));
+}
+function natural() {
+  const y = scrollY + headH() + 40;
+  const tops = secs.map(s => s.offsetTop);
+  let i = -1; tops.forEach((t, k) => { if (y >= t) i = k; });
+  let t = 0;
+  if (i >= 0 && i + 1 < secs.length) { const zone = 420, start = tops[i + 1] - zone; if (y > start) t = Math.min(1, (y - start) / zone); }
+  return { i, t };
+}
+function sweep() { cancelAnimationFrame(settleRAF); const n = natural(); paintTabs(n.i, n.t); clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }
+function settle() {                                   // when the page is still, the pill finishes its move
+  const n = natural(); if (n.i < 0 || n.t === 0 || n.t === 1) return paintTabs(n.i, n.t);
+  const from = n.t, to = n.t < 0.5 ? 0 : 1, t0 = performance.now();
+  const tick = now => { const p = Math.min(1, (now - t0) / 420), e = 1 - Math.pow(1 - p, 3); paintTabs(n.i, from + (to - from) * e); if (p < 1) settleRAF = requestAnimationFrame(tick); };
+  settleRAF = requestAnimationFrame(tick);
+}
+let ticking = false;
+const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { parallax(); sweep(); revealPassed(); ticking = false; }); };
+addEventListener('scroll', onScroll, { passive: true });
+addEventListener('resize', () => { if (document.documentElement.clientWidth !== lastW) return; onScroll(); });
+addEventListener('load', () => { scrollTo(0, 0); onScroll(); setTimeout(onScroll, 300); setTimeout(onScroll, 1200); });
+addEventListener('pageshow', e => { if (e.persisted) { scrollTo(0, 0); onScroll(); } });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(onScroll);
+if ('ResizeObserver' in window) new ResizeObserver(onScroll).observe(document.querySelector('main'));
+onScroll();
+
+/* ================= gentle scrolling to a section ================= */
+let scrollAnim = 0;
+function glideTo(y) {
+  cancelAnimationFrame(scrollAnim);
+  const start = scrollY, dist = y - start, dur = reduced ? 0 : Math.min(2600, Math.max(1100, Math.abs(dist) / 1.6));
+  if (!dur) return scrollTo(0, y);
+  const t0 = performance.now();
+  const tick = now => { const p = Math.min(1, (now - t0) / dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; scrollTo(0, start + dist * e); if (p < 1) scrollAnim = requestAnimationFrame(tick); };
+  scrollAnim = requestAnimationFrame(tick);
+}
+$$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const id = a.getAttribute('href').slice(1); const el = document.getElementById(id); if (!el) return;
+  e.preventDefault();
+  const y = id === 'top' ? 0 : el.getBoundingClientRect().top + scrollY - headH() - 6;
+  glideTo(Math.max(0, y));
+}));
+addEventListener('wheel', () => cancelAnimationFrame(scrollAnim), { passive: true });
+addEventListener('touchstart', () => cancelAnimationFrame(scrollAnim), { passive: true });
+
+/* ================= music ================= */
+const audio = $('#bgm'), spk = $('#spk'), MKEY = 'rb_music';
+let m = { i: 0, t: 0, on: true };
+try { m = Object.assign(m, JSON.parse(localStorage.getItem(MKEY) || '{}')); } catch (e) {}
+if (!(m.i >= 0 && m.i < PLAYLIST.length)) m.i = 0;
+let seekTo = m.t || 0, errors = 0, armed = false, lastSave = 0;
+const saveMusic = () => { m.t = audio.currentTime || 0; try { localStorage.setItem(MKEY, JSON.stringify(m)); } catch (e) {} };
+const label = () => { const name = TRACK_NAMES[m.i]; spk.title = m.on ? (name ? 'Playing: ' + name : 'Music on') : 'Music off'; spk.setAttribute('aria-pressed', String(m.on)); };
+const loadTrack = () => { audio.src = PLAYLIST[m.i]; audio.preload = 'auto'; audio.load(); label(); };
+const armGesture = () => {
+  if (armed) return; armed = true;
+  const go = () => { document.removeEventListener('pointerdown', go, true); document.removeEventListener('keydown', go, true); armed = false; if (m.on) audio.play().catch(() => {}); };
+  document.addEventListener('pointerdown', go, true); document.addEventListener('keydown', go, true);
+};
+const tryPlay = () => audio.play().catch(armGesture);
+audio.addEventListener('loadedmetadata', () => { if (seekTo > 0 && isFinite(audio.duration) && seekTo < audio.duration - 1) audio.currentTime = seekTo; seekTo = 0; });
+audio.addEventListener('timeupdate', () => { const now = Date.now(); if (now - lastSave > 2000) { lastSave = now; saveMusic(); } });
+audio.addEventListener('ended', () => { m.i = (m.i + 1) % PLAYLIST.length; m.t = 0; seekTo = 0; saveMusic(); loadTrack(); if (m.on) tryPlay(); });
+audio.addEventListener('error', () => { errors++; if (errors >= PLAYLIST.length) { spk.title = 'No music files found in /music'; return; } m.i = (m.i + 1) % PLAYLIST.length; m.t = 0; seekTo = 0; saveMusic(); loadTrack(); if (m.on) tryPlay(); });
+audio.addEventListener('playing', () => { errors = 0; });
+spk.addEventListener('click', () => { m.on = !m.on; label(); saveMusic(); if (m.on) { if (!audio.src) loadTrack(); tryPlay(); } else audio.pause(); });
+addEventListener('pagehide', saveMusic);
+document.addEventListener('visibilitychange', () => { if (document.hidden) saveMusic(); });
+label(); if (m.on && PLAYLIST.length) { loadTrack(); tryPlay(); }
+
+/* ================= password gate + AES-GCM ================= */
+const gate = $('#gate'), gateForm = $('#gate-form'), gateInput = $('#gate-input'), gateErr = $('#gate-err'), gateGo = $('#gate-go'), gateStatus = $('#gate-status');
+const enc = new TextEncoder();
+const hex2buf = h => new Uint8Array(h.match(/../g).map(x => parseInt(x, 16)));
+const buf2hex = b => Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+let aesKey = null, afterUnlock = null;
+async function deriveBits(pw) { const base = await crypto.subtle.importKey('raw', enc.encode(pw), 'PBKDF2', false, ['deriveBits']); return crypto.subtle.deriveBits({ name: 'PBKDF2', salt: hex2buf(GATE.salt), iterations: GATE.iterations, hash: 'SHA-256' }, base, 256); }
+const importKey = bits => crypto.subtle.importKey('raw', bits, { name: 'AES-GCM' }, false, ['decrypt']);
+async function decryptBytes(buf) { const u = new Uint8Array(buf); if (String.fromCharCode(...u.slice(0, 4)) !== 'RBL1') throw new Error('Not a locked file'); return crypto.subtle.decrypt({ name: 'AES-GCM', iv: u.slice(4, 16) }, aesKey, u.slice(16)); }
+function unlockUI() {
+  $$('[data-locked]').forEach(el => {
+    el.classList.remove('is-locked'); el.classList.add('unlocked');
+    $$('.lock use', el).forEach(u => u.setAttribute('href', '#i-unlock'));
+    $$('.lock', el).forEach(l => { l.title = 'Unlocked'; });
+    const b = $('.btn', el); if (b && b.textContent === 'Unlock') b.textContent = 'Open';
+  });
+  gateStatus.hidden = false;
+}
+function openGate(then) { afterUnlock = then || null; gateErr.textContent = ''; gateInput.value = ''; gate.classList.add('open'); lockScroll(); setTimeout(() => gateInput.focus(), 30); }
+function closeGate() { gate.classList.remove('open'); if (!viewer.classList.contains('open')) unlockScroll(); }
+$('#gate-cancel').addEventListener('click', () => { afterUnlock = null; closeGate(); });
+gate.addEventListener('click', e => { if (e.target === gate) { afterUnlock = null; closeGate(); } });
+gateForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const pw = gateInput.value; if (!pw) return;
+  gateGo.classList.add('pressed'); gateGo.textContent = 'Checking'; gateErr.textContent = '';
+  try {
+    if (!crypto.subtle) throw new Error('This browser cannot unlock files here. Open the site over https.');
+    const bits = await deriveBits(pw);
+    if (buf2hex(await crypto.subtle.digest('SHA-256', bits)) !== GATE.verifier) { gateErr.textContent = 'That is not the password.'; gateInput.select(); return; }
+    aesKey = await importKey(bits);
+    try { sessionStorage.setItem('rb_key', buf2hex(bits)); } catch (err) {}
+    unlockUI(); closeGate();
+    const fn = afterUnlock; afterUnlock = null; if (fn) fn();
+  } catch (err) { gateErr.textContent = err.message || 'Something went wrong.'; }
+  finally { gateGo.classList.remove('pressed'); gateGo.textContent = 'Unlock'; }
+});
+(async () => { try { const h = sessionStorage.getItem('rb_key'); if (h && crypto.subtle) { aesKey = await importKey(hex2buf(h)); unlockUI(); } } catch (e) {} })();
+const isUnlocked = () => !!aesKey;
+
+/* locked site card: the whole card is the link once unlocked */
+$$('.site[data-locked]').forEach(a => a.addEventListener('click', e => { if (!isUnlocked()) { e.preventDefault(); openGate(null); } }));
+
+/* ================= viewer ================= */
+const viewer = $('#viewer'), stage = $('#stage'), inner = $('#stage-inner'), vTitle = $('#viewer-title'), vN = $('#viewer-n'), vPrev = $('#viewer-prev'), vNext = $('#viewer-next');
+let gallery = null, gIndex = 0, currentPdf = null, blobUrls = [];
+const kindOf = src => { if (src.startsWith('#')) return 'text'; const ext = src.replace(/\.enc$/i, '').split('.').pop().toLowerCase(); if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(ext)) return 'image'; if (ext === 'pdf') return 'pdf'; return 'text'; };
+const isEnc = src => /\.enc$/i.test(src);
+function msg(title, body) { inner.innerHTML = ''; const d = document.createElement('div'); d.className = 'msg'; d.innerHTML = '<b></b><span></span>'; d.firstChild.textContent = title; d.lastChild.textContent = body || ''; inner.appendChild(d); }
+function clearStage() { viewer.classList.remove('img'); if (currentPdf) { try { currentPdf.destroy(); } catch (e) {} currentPdf = null; } blobUrls.forEach(u => URL.revokeObjectURL(u)); blobUrls = []; inner.innerHTML = ''; stage.scrollTop = 0; }
+let lockedY = null;
+function lockScroll() { if (lockedY !== null) return; lockedY = scrollY; document.body.style.top = -lockedY + 'px'; document.body.classList.add('locked'); }
+function unlockScroll() { if (lockedY === null) return; document.body.classList.remove('locked'); document.body.style.top = ''; const y = lockedY; lockedY = null; scrollTo(0, y); }
+function openViewer(title) { vTitle.textContent = title || ''; vN.textContent = ''; viewer.classList.add('open'); lockScroll(); $('#viewer-close').focus(); }
+function closeViewer() { viewer.classList.remove('open'); clearStage(); gallery = null; vPrev.hidden = vNext.hidden = true; if (!gate.classList.contains('open')) unlockScroll(); }
+$('#viewer-close').addEventListener('click', closeViewer);
+stage.addEventListener('click', e => { if (e.target === stage && !zoomed() && Date.now() - lastMulti > 700) closeViewer(); });
+document.addEventListener('keydown', e => {
+  if (gate.classList.contains('open')) { if (e.key === 'Escape') { afterUnlock = null; closeGate(); } return; }
+  if (!viewer.classList.contains('open')) return;
+  if (e.key === 'Escape') closeViewer(); else if (e.key === 'ArrowLeft' && gallery) step(-1); else if (e.key === 'ArrowRight' && gallery) step(1);
+});
+let tx = null, ty = null, multi = false, lastMulti = 0;
+const zoomed = () => window.visualViewport && window.visualViewport.scale > 1.02;
+let drag = null, t0 = 0;
+const canDrag = () => viewer.classList.contains('img');                    // pictures slide away; documents scroll instead
+const setDrag = dy => { stage.style.transform = `translateY(${dy}px)`; viewer.style.setProperty('--dim', String(Math.max(0.12, 1 - Math.abs(dy) / 420))); };
+const resetDrag = () => { viewer.classList.remove('dragging'); stage.style.transition = 'transform .32s ease'; viewer.style.transition = '--dim .32s ease'; stage.style.transform = ''; viewer.style.setProperty('--dim', '1'); setTimeout(() => { stage.style.transition = ''; viewer.style.transition = ''; }, 340); };
+stage.addEventListener('touchstart', e => {
+  if (e.touches.length > 1) { multi = true; lastMulti = Date.now(); drag = null; return; }
+  multi = false; tx = e.touches[0].clientX; ty = e.touches[0].clientY; t0 = Date.now(); drag = { active: false, dy: 0 };
+}, { passive: true });
+stage.addEventListener('touchmove', e => {
+  if (e.touches.length > 1) { multi = true; lastMulti = Date.now(); if (drag && drag.active) resetDrag(); drag = null; return; }
+  if (!drag || multi || zoomed() || !canDrag()) return;
+  const dx = e.touches[0].clientX - tx, dy = e.touches[0].clientY - ty;
+  if (!drag.active) { if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag.active = true; viewer.classList.add('dragging'); } else return; }
+  e.preventDefault(); drag.dy = dy; setDrag(dy);
+}, { passive: false });
+stage.addEventListener('touchend', e => {
+  if (multi || tx === null || zoomed()) { if (multi) lastMulti = Date.now(); if (e.touches.length === 0) multi = false; tx = ty = null; drag = null; return; }
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty, dt = Math.max(1, Date.now() - t0); tx = ty = null;
+  if (drag && drag.active) {                                                    // let go: far or fast enough and it leaves, otherwise it settles back
+    const far = Math.abs(dy) > Math.min(160, innerHeight * 0.22), fast = Math.abs(dy) > 60 && Math.abs(dy) / dt > 1.2;   // a real flick, not a slow half-drag
+    drag = null;
+    if (far || fast) {
+      stage.style.transition = 'transform .26s ease-in'; viewer.style.transition = '--dim .26s ease-in'; stage.style.transform = `translateY(${dy < 0 ? -110 : 110}vh)`; viewer.style.setProperty('--dim', '0');
+      setTimeout(() => { closeViewer(); viewer.classList.remove('dragging'); stage.style.transition = ''; stage.style.transform = ''; viewer.style.transition = ''; viewer.style.setProperty('--dim', '1'); }, 270);
+    } else resetDrag();
+    return;
+  }
+  drag = null;
+  if (gallery && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);    // swipe sideways: next or previous
+}, { passive: true });
+
+async function fetchBytes(src) { const r = await fetch(src, { cache: 'no-store' }); if (!r.ok) throw Object.assign(new Error('missing'), { code: r.status }); let buf = await r.arrayBuffer(); if (isEnc(src)) buf = await decryptBytes(buf); return buf; }
+const notYet = src => msg('Not added yet', 'This piece is listed, but its file is not on the site yet. It is expected at ' + src.replace(/^#/, '') + '.');
+async function showImage(src, title) {
+  clearStage(); viewer.classList.add('img');
+  const img = document.createElement('img'); img.alt = title || '';
+  if (isEnc(src)) {
+    msg('Unlocking');
+    try { const buf = await fetchBytes(src); const url = URL.createObjectURL(new Blob([buf])); blobUrls.push(url); inner.innerHTML = ''; img.src = url; inner.appendChild(img); }
+    catch (e) { e.code === 404 ? notYet(src) : msg('Could not open', e.message); }
+  } else { img.onerror = () => notYet(src); img.src = src; inner.appendChild(img); }
+}
+async function showText(src, title) {
+  clearStage(); let text;
+  if (src.startsWith('#')) { const t = document.getElementById(src.slice(1)); if (!t) return notYet(src); text = t.content ? t.content.textContent : t.textContent; }
+  else { try { text = new TextDecoder().decode(await fetchBytes(src)); } catch (e) { return e.code === 404 ? notYet(src) : msg('Could not open', e.message); } }
+  const d = document.createElement('div'); d.className = 'text'; const h = document.createElement('h2'); h.textContent = title || ''; d.appendChild(h); d.appendChild(document.createTextNode(text.trim())); inner.appendChild(d);
+}
+function pdfReady() { return new Promise((res, rej) => { const t0 = Date.now(); (function w() { if (window.pdfjsLib) return res(window.pdfjsLib); if (Date.now() - t0 > 12000) return rej(new Error('The PDF reader did not load. Check the connection and try again.')); setTimeout(w, 60); })(); }); }
+async function showPdf(src, title) {
+  clearStage(); msg('Opening');
+  try {
+    const [pdfjs, data] = await Promise.all([pdfReady(), fetchBytes(src)]);
+    pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER;
+    const pdf = await pdfjs.getDocument({ data }).promise; currentPdf = pdf;
+    inner.innerHTML = ''; const pages = document.createElement('div'); pages.className = 'pages'; inner.appendChild(pages);
+    vN.textContent = pdf.numPages + (pdf.numPages === 1 ? ' page' : ' pages');
+    const first = await pdf.getPage(1), vp0 = first.getViewport({ scale: 1 });
+    const cssW = Math.min(stage.clientWidth - 36, 980), ratio = vp0.height / vp0.width, dpr = Math.min(window.devicePixelRatio || 1, innerWidth < 900 ? 1.5 : 2);
+    const holders = [];
+    for (let i = 1; i <= pdf.numPages; i++) { const d = document.createElement('div'); d.className = 'pg'; d.style.width = cssW + 'px'; d.style.height = (cssW * ratio) + 'px'; d.dataset.page = i; pages.appendChild(d); holders.push(d); }
+    const render = async d => {
+      if (d.dataset.done || pdf !== currentPdf) return; d.dataset.done = '1';
+      const page = await pdf.getPage(+d.dataset.page); if (pdf !== currentPdf) return;
+      const vp = page.getViewport({ scale: (cssW * dpr) / page.getViewport({ scale: 1 }).width });
+      const c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height; c.style.width = cssW + 'px'; c.style.height = (vp.height / dpr) + 'px';
+      d.style.height = (vp.height / dpr) + 'px'; d.replaceChildren(c);
+      await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+    };
+    const release = d => { if (!d.dataset.done) return; delete d.dataset.done; const c = d.firstChild; if (c) { c.width = c.height = 0; d.replaceChildren(); } };
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) render(en.target); else if (en.target.dataset.done && Math.abs(en.boundingClientRect.top) > 4000) release(en.target); }), { root: stage, rootMargin: '1200px 0px' });
+    holders.forEach(d => io.observe(d)); holders.slice(0, 2).forEach(render);
+  } catch (e) { if (e.code === 404) notYet(src); else if (e.name === 'OperationError') msg('Could not unlock', 'The file did not decrypt with this password.'); else msg('Could not open', e.message || String(e)); }
+}
+function show(src, title) { const k = kindOf(src); if (k === 'image') showImage(src, title); else if (k === 'pdf') showPdf(src, title); else showText(src, title); }
+function open(src, title) { const go = () => { openViewer(title); show(src, title); }; if (isEnc(src) && !isUnlocked()) openGate(go); else go(); }
+
+/* galleries: DOM order restored from the masonry index */
+function galleryOf(fig) {
+  const name = fig.closest('[data-gallery]').dataset.gallery;
+  return $$('[data-gallery="' + name + '"] figure').map(f => ({ f, r: f.getBoundingClientRect() }))
+    .sort((a, b) => (Math.round(a.r.top / 12) - Math.round(b.r.top / 12)) || (a.r.left - b.r.left)).map(o => o.f);   // reading order, as laid out
+}
+function step(d) { if (!gallery) return; gIndex = (gIndex + d + gallery.length) % gallery.length; const f = gallery[gIndex]; vTitle.textContent = f.dataset.title || ''; vN.textContent = (gIndex + 1) + ' / ' + gallery.length; showImage(f.dataset.src, f.dataset.title); }
+function openGallery(fig) {
+  gallery = galleryOf(fig); gIndex = gallery.indexOf(fig);
+  openViewer(fig.dataset.title);
+  const many = gallery.length > 1; vPrev.hidden = vNext.hidden = !many;
+  if (many) vN.textContent = (gIndex + 1) + ' / ' + gallery.length;
+  showImage(fig.dataset.src, fig.dataset.title);
+}
+vPrev.addEventListener('click', () => step(-1)); vNext.addEventListener('click', () => step(1));
+$$('[data-gallery] figure').forEach(f => {
+  f.addEventListener('click', () => openGallery(f));
+  f.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGallery(f); } });
+});
+/* jackets: the whole tile opens the piece */
+$$('div.cover[data-src]').forEach(c => {
+  const go = () => open(c.dataset.src, c.dataset.title);
+  c.addEventListener('click', go);
+  c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+});
+$$('[data-locked] .lock').forEach(l => { l.style.cursor = 'pointer'; l.addEventListener('click', e => { if (!isUnlocked()) { e.preventDefault(); e.stopPropagation(); openGate(null); } }); });
+
+})();
+</script>
+</body>
+</html>
