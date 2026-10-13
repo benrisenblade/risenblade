@@ -735,8 +735,8 @@ footer .stream a:hover{color:var(--gold-white)}
 'use strict';
 
 /* ================= SETTINGS ================= */
-const PLAYLIST = ['music/music.wav', 'music/music2.wav', 'music/music3.wav', 'music/music4.wav', 'music/music5.wav'];
-const TRACK_NAMES = [];
+const PLAYLIST = ['music/where-the-warm-tide-turns-boom-bap-duet.mp3', 'music/where-the-warm-tide-turns-edm-classical.mp3'];
+const TRACK_NAMES = ['Where the Warm Tide Turns (Boom Bap Duet)', 'Where the Warm Tide Turns (EDM Classical)'];
 const GATE = { salt: '5c74ac35616daa03aa0b7e8c72862248', verifier: '5a4ebfdbe3564a34207befb4bb7e7e460c5b0def23e055a11fb160add94cee86', iterations: 200000 };
 const PDF_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -1146,6 +1146,7 @@ addEventListener('touchstart', () => cancelAnimationFrame(scrollAnim), { passive
 const audio = $('#bgm'), spk = $('#spk'), MKEY = 'rb_music';
 let m = { i: 0, t: 0, on: true };
 try { m = Object.assign(m, JSON.parse(localStorage.getItem(MKEY) || '{}')); } catch (e) {}
+if (m.list !== PLAYLIST.join('|')) { m.list = PLAYLIST.join('|'); m.i = 0; m.t = 0; }   // a changed playlist starts again from its first song, for returning visitors too
 if (!(m.i >= 0 && m.i < PLAYLIST.length)) m.i = 0;
 let seekTo = m.t || 0, armed = false, lastSave = 0;
 const missing = new Set();   // slots with no file behind them; skipped for the rest of the visit
