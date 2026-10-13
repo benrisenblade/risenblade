@@ -81,6 +81,7 @@
 [hidden]{display:none!important}
 body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 html{scroll-padding-top:calc(74px + env(safe-area-inset-top,0px))}
+html,body{overscroll-behavior-y:contain}
 body{
   margin:0;background:var(--bg);color:var(--ivory);position:relative;
   font-family:var(--serif);font-size:19px;line-height:1.5;
@@ -473,7 +474,7 @@ footer .stream a:hover{color:var(--gold-white)}
     <div class="group">
       <div class="group-head rv"><h3>Geography Games</h3></div>
       <div class="sites">
-<a class="card site rv" href="https://marcothegame.com/" target="_blank" rel="noopener"><span class="shot"><img src="img/sites/marco.jpg" alt="" loading="lazy"></span><span class="body"><span class="t">Marco</span><span class="d">Guess the notable person from their cartographic birth and death information.</span><span class="foot"><span class="btn">Open</span><span class="url">marcothegame.com</span></span></span></a>
+<a class="card site rv" href="https://marcothegame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://marcothegame.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Marco</span><span class="d">Guess the notable person from their cartographic birth and death information.</span><span class="foot"><span class="btn">Open</span><span class="url">marcothegame.com</span></span></span></a>
 <a class="card site rv" href="https://genghisgame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://genghisgame.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Genghis</span><span class="d">Cross from one country to another by land, through as few borders as you can.</span><span class="foot"><span class="btn">Open</span><span class="url">genghisgame.com</span></span></span></a>
       </div>
     </div>
@@ -748,6 +749,16 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const blurOutside = e => { const a = document.activeElement; if (a && a.matches('input,textarea') && !a.contains(e.target)) a.blur(); };
 document.addEventListener('mousedown', blurOutside, true);
 document.addEventListener('touchstart', blurOutside, { capture: true, passive: true });
+
+/* no pull-to-refresh: there is nothing here to refresh, and a reload only stops the music. A one-finger pull downward that starts at the very top is refused; every other gesture is left alone */
+let pullY = null;
+const pullable = () => scrollY <= 0 && !document.body.classList.contains('locked') && !(window.visualViewport && visualViewport.scale > 1.01);
+document.addEventListener('touchstart', e => { pullY = e.touches.length === 1 && pullable() ? e.touches[0].clientY : null; }, { passive: true });
+document.addEventListener('touchmove', e => {
+  if (pullY === null) return;
+  if (e.touches.length === 1 && e.touches[0].clientY > pullY && pullable()) { if (e.cancelable) e.preventDefault(); }
+  else pullY = null;   // the finger went up, or a second finger joined: an ordinary scroll or pinch from here on
+}, { passive: false });
 
 /* no saving images by long press or right click */
 document.addEventListener('contextmenu', e => { if (e.target.closest('.ph,.jacket,.shot,.cover,.portrait,.album .cover,.viewer,.hero')) e.preventDefault(); });
