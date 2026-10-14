@@ -42,7 +42,7 @@
     { "@type": "Person", "@id": "https://risenblade.com/#person", "name": "Ben Bloom", "alternateName": "BeRo Bloom", "url": "https://risenblade.com/",
       "sameAs": ["https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf","https://music.apple.com/us/artist/bero-bloom/1493743634","https://atlasbyben.com/"] },
     { "@type": "ItemList", "name": "Websites and games by Ben Bloom", "itemListElement": [
-        { "@type": "ListItem", "position": 1, "url": "https://albumsbyartist.com/", "name": "Albums by Artist" },
+        { "@type": "ListItem", "position": 1, "url": "https://albumhound.com/", "name": "Albumhound" },
         { "@type": "ListItem", "position": 2, "url": "https://paffolio.com/", "name": "Paffolio" },
         { "@type": "ListItem", "position": 3, "url": "https://marcothegame.com/", "name": "Marco" },
         { "@type": "ListItem", "position": 4, "url": "https://genghisgame.com/", "name": "Genghis" },
@@ -375,6 +375,15 @@ section.medium{padding:clamp(40px,6vw,80px) 0 clamp(36px,5vw,60px)}
 .viewer .bar{display:flex;align-items:center;gap:14px;padding:12px clamp(14px,3vw,28px);border-bottom:1px solid var(--line);flex:none}
 .viewer .bar h3{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.08em;color:var(--gold-hi);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .viewer .bar .n{color:var(--muted);font-size:15px}
+.viewer .bar h3{display:grid}
+.viewer .bar h3 .tt{grid-area:1/1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.viewer .bar h3 .nxt{opacity:0}
+.viewer .bar h3.anim .tt{transition:opacity .4s ease}
+.viewer.gal .stage{padding:0;overflow:hidden;justify-content:flex-start}
+.viewer .track{display:flex;width:300%;height:100%;flex:none;will-change:transform}
+.viewer .track.anim{transition:transform .42s cubic-bezier(.22,.61,.36,1)}
+.viewer .slide{width:33.3333%;flex:none;display:flex;align-items:center;justify-content:center;padding:18px}
+.viewer .slide .msg{margin:0}
 .viewer .stage{flex:1;min-height:0;overflow:auto;position:relative;display:flex;align-items:flex-start;justify-content:center;padding:18px}
 .viewer.img .stage{align-items:center}
 .viewer .stage img{max-width:100%;max-height:calc(100dvh - 120px);object-fit:contain;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.7);border-radius:4px}
@@ -413,7 +422,8 @@ footer .rv.slow{transition-duration:1.6s;transform:none}
 footer .links{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
 footer a{color:var(--ivory-2);text-decoration:none;border-bottom:1px solid var(--line)}
 footer a:hover{color:var(--gold-white);border-color:var(--gold-hi)}
-footer .atlas{display:inline-flex;align-items:center;gap:8px;border:0;font-family:var(--display);font-size:13px;letter-spacing:.08em;color:var(--ivory-2)}
+footer .sl{display:inline-flex;align-items:center;gap:8px;border:0;font-family:var(--display);font-size:13px;letter-spacing:.08em;color:var(--ivory-2)}
+footer .sites{gap:10px 26px}
 footer .compass{width:18px;height:18px}
 footer .stream{gap:22px}
 footer .stream a{border:0;color:var(--ivory-2);display:inline-flex;padding:4px}
@@ -460,7 +470,7 @@ footer .stream a:hover{color:var(--gold-white)}
     <div class="group">
       <div class="group-head rv"><h3>Music</h3></div>
       <div class="sites">
-<a class="card site rv" href="https://albumsbyartist.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://albumsbyartist.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Albums by Artist</span><span class="d">An artist’s studio albums, in order.</span><span class="foot"><span class="btn">Open</span><span class="url">albumsbyartist.com</span></span></span></a>
+<a class="card site rv" href="https://albumhound.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://albumsbyartist.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Albumhound</span><span class="d">Search any artist’s studio album discography.</span><span class="foot"><span class="btn">Open</span><span class="url">albumhound.com</span></span></span></a>
       </div>
     </div>
     <div class="rule soft rv" aria-hidden="true"><i></i></div>
@@ -510,10 +520,10 @@ footer .stream a:hover{color:var(--gold-white)}
 <div class="group" id="hats">
   <div class="group-head rv"><h3>Headwear</h3></div>
   <div class="art flow" data-gallery="hats">
-<figure data-src="img/art/hats/sample-oxblood-brim.jpg" data-title="Oxblood Brim — sample" data-ar="1.0000" data-face="r" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-oxblood-brim.t.jpg" alt="Oxblood Brim" loading="lazy"></div><figcaption><b>Oxblood Brim</b><span>sample</span></figcaption></figure>
-<figure data-src="img/art/hats/sample-silver-diamond.jpg" data-title="Silver Diamond — sample" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-silver-diamond.t.jpg" alt="Silver Diamond" loading="lazy"></div><figcaption><b>Silver Diamond</b><span>sample</span></figcaption></figure>
-<figure data-src="img/art/hats/sample-black-diamond.jpg" data-title="Black Diamond — sample" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-black-diamond.t.jpg" alt="Black Diamond" loading="lazy"></div><figcaption><b>Black Diamond</b><span>sample</span></figcaption></figure>
-<figure data-src="img/art/hats/sample-red-brim.jpg" data-title="Red Brim — sample" data-ar="1.0000" data-face="l" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-red-brim.t.jpg" alt="Red Brim" loading="lazy"></div><figcaption><b>Red Brim</b><span>sample</span></figcaption></figure>
+<figure data-src="img/art/hats/sample-oxblood-brim.jpg" data-title="Oxblood Brim" data-ar="1.0000" data-face="r" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-oxblood-brim.t.jpg" alt="Oxblood Brim" loading="lazy"></div><figcaption><b>Oxblood Brim</b></figcaption></figure>
+<figure data-src="img/art/hats/sample-silver-diamond.jpg" data-title="Silver Diamond" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-silver-diamond.t.jpg" alt="Silver Diamond" loading="lazy"></div><figcaption><b>Silver Diamond</b></figcaption></figure>
+<figure data-src="img/art/hats/sample-black-diamond.jpg" data-title="Black Diamond" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-black-diamond.t.jpg" alt="Black Diamond" loading="lazy"></div><figcaption><b>Black Diamond</b></figcaption></figure>
+<figure data-src="img/art/hats/sample-red-brim.jpg" data-title="Red Brim" data-ar="1.0000" data-face="l" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/sample-red-brim.t.jpg" alt="Red Brim" loading="lazy"></div><figcaption><b>Red Brim</b></figcaption></figure>
 <figure data-src="img/art/hats/gold.jpg" data-title="The Aurum" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/gold.t.jpg" alt="The Aurum" loading="lazy"></div><figcaption><b>The Aurum</b></figcaption></figure>
 <figure data-src="img/art/hats/red-cap.jpg" data-title="The Honeycomb" data-ar="0.6667" data-face="l" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/hats/red-cap.t.jpg" alt="The Honeycomb" loading="lazy"></div><figcaption><b>The Honeycomb</b></figcaption></figure>
 <figure data-src="img/art/hats/cobalt.jpg" data-title="The Kingfisher" data-ar="1.0000" tabindex="0" style="--ar:1.0000"><div class="ph"><img src="img/art/hats/cobalt.t.jpg" alt="The Kingfisher" loading="lazy"></div><figcaption><b>The Kingfisher</b></figcaption></figure>
@@ -544,7 +554,7 @@ footer .stream a:hover{color:var(--gold-white)}
 <div class="rule soft rv" aria-hidden="true"><i></i></div>
 <div class="group" id="furniture">
   <div class="group-head rv"><h3>Furniture Design</h3></div>
-  <p class="note rv">The Cartouche is a black-lacquer chair with a brass rim that closes around whomever sits in it.</p><div data-gallery="cartouche"><figure class="lead" data-src="img/art/furniture/cartouche-eight.jpg" data-title="The Cartouche — all eight" data-ar="1.5000" tabindex="0" style="--ar:1.5000"><div class="ph"><img src="img/art/furniture/cartouche-eight.t.jpg" alt="The Cartouche" loading="lazy"></div><figcaption><b>The Cartouche</b><span>all eight</span></figcaption></figure></div>
+  <p class="note rv">The Cartouche is a black-lacquer chair with a brass rim that closes around whomever sits in it.</p><div data-gallery="cartouche"><figure class="lead" data-src="img/art/furniture/cartouche-eight.jpg" data-title="The Cartouche" data-ar="1.5000" tabindex="0" style="--ar:1.5000"><div class="ph"><img src="img/art/furniture/cartouche-eight.t.jpg" alt="The Cartouche" loading="lazy"></div><figcaption><b>The Cartouche</b></figcaption></figure></div>
 <div class="art flow" data-gallery="cartouche">
 <figure data-src="img/art/furniture/cartouche-leopard.jpg" data-title="The Panthera — natural leopard" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-leopard.t.jpg" alt="The Panthera" loading="lazy"></div><figcaption><b>The Panthera</b><span>natural leopard</span></figcaption></figure>
 <figure data-src="img/art/furniture/cartouche-amethyst-velvet.jpg" data-title="The Amethyst — amethyst velvet" data-ar="0.6667" tabindex="0" style="--ar:0.6667"><div class="ph"><img src="img/art/furniture/cartouche-amethyst-velvet.t.jpg" alt="The Amethyst" loading="lazy"></div><figcaption><b>The Amethyst</b><span>amethyst velvet</span></figcaption></figure>
@@ -637,7 +647,7 @@ footer .stream a:hover{color:var(--gold-white)}
         <div class="portrait"><img src="img/music/artist.jpg" alt="BeRo Bloom" loading="lazy"></div>
         <div class="body">
           <h4>BeRo Bloom</h4>
-          <p>All albums and singles.</p>
+          <p>Other albums and singles.</p>
           <div class="links">
             <a class="glass" href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a>
             <a class="glass" href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a>
@@ -698,7 +708,11 @@ footer .stream a:hover{color:var(--gold-white)}
   <div class="wrap rv slow">
     <img class="mark" src="img/brand/sword.png" alt="" width="350" height="1075">
     <span>Risenblade is the collected works of Ben Bloom.</span>
-    <a class="atlas" href="https://atlasbyben.com/" target="_blank" rel="noopener"><svg class="compass" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5 13.7 9.2 21.5 12l-7.8 2.8L12 22.5l-1.7-7.7L2.5 12l7.8-2.8Zm0 3.4-.9 4.8-4.4 1.7 4.4 1.6.9 4.8.9-4.8 4.4-1.6-4.4-1.7Z"/><path fill="currentColor" d="m5.2 5.2 4.5 3.3-1.2 1.2Zm13.6 0-3.3 4.5-1.2-1.2Zm0 13.6-4.5-3.3 1.2-1.2Zm-13.6 0 3.3-4.5 1.2 1.2Z" opacity=".7"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>Atlas by Ben</a>
+    <div class="links sites">
+      <a class="sl" href="https://albumhound.com/" target="_blank" rel="noopener">Albumhound</a>
+      <a class="sl" href="https://paffolio.com/" target="_blank" rel="noopener">Paffolio</a>
+      <a class="sl atlas" href="https://atlasbyben.com/" target="_blank" rel="noopener"><svg class="compass" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5 13.7 9.2 21.5 12l-7.8 2.8L12 22.5l-1.7-7.7L2.5 12l7.8-2.8Zm0 3.4-.9 4.8-4.4 1.7 4.4 1.6.9 4.8.9-4.8 4.4-1.6-4.4-1.7Z"/><path fill="currentColor" d="m5.2 5.2 4.5 3.3-1.2 1.2Zm13.6 0-3.3 4.5-1.2-1.2Zm0 13.6-4.5-3.3 1.2-1.2Zm-13.6 0 3.3-4.5 1.2 1.2Z" opacity=".7"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>Atlas by Ben</a>
+    </div>
     <div class="links stream">
       <a href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener" aria-label="BeRo Bloom on Spotify"><span class="ico spotify"></span></a>
       <a href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener" aria-label="BeRo Bloom on Apple Music"><span class="ico apple"></span></a>
@@ -707,7 +721,7 @@ footer .stream a:hover{color:var(--gold-white)}
 </footer>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
-  <div class="bar"><h3 id="viewer-title">Untitled</h3><span class="n" id="viewer-n"></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+  <div class="bar"><h3 id="viewer-title"><span class="tt cur">Untitled</span><span class="tt nxt"></span></h3><span class="n" id="viewer-n"></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
   <div class="stage" id="stage">
     <button class="iconbtn navbtn prev" id="viewer-prev" type="button" aria-label="Previous" hidden><svg><use href="#i-prev"/></svg></button>
     <button class="iconbtn navbtn next" id="viewer-next" type="button" aria-label="Next" hidden><svg><use href="#i-next"/></svg></button>
@@ -1225,19 +1239,20 @@ const isUnlocked = () => !!aesKey;
 $$('.site[data-locked]').forEach(a => a.addEventListener('click', e => { if (!isUnlocked()) { e.preventDefault(); openGate(null); } }));
 
 /* ================= viewer ================= */
-const viewer = $('#viewer'), stage = $('#stage'), inner = $('#stage-inner'), vTitle = $('#viewer-title'), vN = $('#viewer-n'), vPrev = $('#viewer-prev'), vNext = $('#viewer-next');
+const viewer = $('#viewer'), stage = $('#stage'), inner = $('#stage-inner'), vTitle = $('#viewer-title'), vT1 = $('#viewer-title .cur'), vT2 = $('#viewer-title .nxt'), vN = $('#viewer-n'), vPrev = $('#viewer-prev'), vNext = $('#viewer-next');
+const setTitle = t => { vT1.textContent = t || ''; vT2.textContent = ''; vTitle.classList.remove('anim'); vT1.style.opacity = ''; vT2.style.opacity = ''; };
 let gallery = null, gIndex = 0, currentPdf = null, blobUrls = [];
 const kindOf = src => { if (src.startsWith('#')) return 'text'; const ext = src.replace(/\.enc$/i, '').split('.').pop().toLowerCase(); if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(ext)) return 'image'; if (ext === 'pdf') return 'pdf'; return 'text'; };
 const isEnc = src => /\.enc$/i.test(src);
 function msg(title, body) { inner.innerHTML = ''; const d = document.createElement('div'); d.className = 'msg'; d.innerHTML = '<b></b><span></span>'; d.firstChild.textContent = title; d.lastChild.textContent = body || ''; inner.appendChild(d); }
-function clearStage() { viewer.classList.remove('img'); if (currentPdf) { try { currentPdf.destroy(); } catch (e) {} currentPdf = null; } blobUrls.forEach(u => URL.revokeObjectURL(u)); blobUrls = []; inner.innerHTML = ''; stage.scrollTop = 0; }
+function clearStage() { viewer.classList.remove('img', 'gal'); track = null; if (currentPdf) { try { currentPdf.destroy(); } catch (e) {} currentPdf = null; } blobUrls.forEach(u => URL.revokeObjectURL(u)); blobUrls = []; inner.innerHTML = ''; stage.scrollTop = 0; }
 let lockedY = null;
 function lockScroll() { if (lockedY !== null) return; lockedY = scrollY; document.body.style.top = -lockedY + 'px'; document.body.classList.add('locked'); }
 function unlockScroll() { if (lockedY === null) return; document.body.classList.remove('locked'); document.body.style.top = ''; const y = lockedY; lockedY = null; scrollTo(0, y); }
-function openViewer(title) { vTitle.textContent = title || ''; vN.textContent = ''; viewer.classList.add('open'); lockScroll(); $('#viewer-close').focus(); }
-function closeViewer() { viewer.classList.remove('open'); clearStage(); gallery = null; vPrev.hidden = vNext.hidden = true; if (!gate.classList.contains('open')) unlockScroll(); }
+function openViewer(title) { setTitle(title); vN.textContent = ''; viewer.classList.add('open'); lockScroll(); $('#viewer-close').focus(); }
+function closeViewer() { viewer.classList.remove('open'); clearStage(); gallery = null; preloads = []; pending = 0; sliding = false; vPrev.hidden = vNext.hidden = true; if (!gate.classList.contains('open')) unlockScroll(); }
 $('#viewer-close').addEventListener('click', closeViewer);
-stage.addEventListener('click', e => { if (e.target === stage && !zoomed() && Date.now() - lastMulti > 700) closeViewer(); });
+stage.addEventListener('click', e => { if ((e.target === stage || e.target.classList.contains('slide')) && !zoomed() && Date.now() - lastMulti > 700) closeViewer(); });
 document.addEventListener('keydown', e => {
   if (gate.classList.contains('open')) { if (e.key === 'Escape') { afterUnlock = null; closeGate(); } return; }
   if (!viewer.classList.contains('open')) return;
@@ -1254,15 +1269,26 @@ stage.addEventListener('touchstart', e => {
   multi = false; tx = e.touches[0].clientX; ty = e.touches[0].clientY; t0 = Date.now(); drag = { active: false, dy: 0 };
 }, { passive: true });
 stage.addEventListener('touchmove', e => {
-  if (e.touches.length > 1) { multi = true; lastMulti = Date.now(); if (drag && drag.active) resetDrag(); drag = null; return; }
+  if (e.touches.length > 1) { multi = true; lastMulti = Date.now(); if (drag && drag.active === 'x') settleTrack(); else if (drag && drag.active) resetDrag(); drag = null; return; }
   if (!drag || multi || zoomed() || !canDrag()) return;
   const dx = e.touches[0].clientX - tx, dy = e.touches[0].clientY - ty;
-  if (!drag.active) { if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag.active = true; viewer.classList.add('dragging'); } else return; }
-  e.preventDefault(); drag.dy = dy; setDrag(dy);
+  if (!drag.active) {
+    if (track && !sliding && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) drag.active = 'x';
+    else if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag.active = 'y'; viewer.classList.add('dragging'); }
+    else return;
+  }
+  e.preventDefault();
+  if (drag.active === 'x') { drag.dx = dx; moveTrack(dx); } else { drag.dy = dy; setDrag(dy); }
 }, { passive: false });
 stage.addEventListener('touchend', e => {
   if (multi || tx === null || zoomed()) { if (multi) lastMulti = Date.now(); if (e.touches.length === 0) multi = false; tx = ty = null; drag = null; return; }
   const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty, dt = Math.max(1, Date.now() - t0); tx = ty = null;
+  if (drag && drag.active === 'x') {                                             // let go sideways: far or fast enough and the next picture arrives, otherwise this one settles back
+    const far = Math.abs(dx) > slideW * 0.28, fast = Math.abs(dx) > 40 && Math.abs(dx) / dt > 0.9;
+    drag = null;
+    if (far || fast) goTo(dx < 0 ? 1 : -1); else settleTrack();
+    return;
+  }
   if (drag && drag.active) {                                                    // let go: far or fast enough and it leaves, otherwise it settles back
     const far = Math.abs(dy) > Math.min(160, innerHeight * 0.22), fast = Math.abs(dy) > 60 && Math.abs(dy) / dt > 1.2;   // a real flick, not a slow half-drag
     drag = null;
@@ -1273,7 +1299,7 @@ stage.addEventListener('touchend', e => {
     return;
   }
   drag = null;
-  if (gallery && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);    // swipe sideways: next or previous
+  if (gallery && !track && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);    // swipe sideways: next or previous
 }, { passive: true });
 
 async function fetchBytes(src) { const r = await fetch(src, { cache: 'no-store' }); if (!r.ok) throw Object.assign(new Error('missing'), { code: r.status }); let buf = await r.arrayBuffer(); if (isEnc(src)) buf = await decryptBytes(buf); return buf; }
@@ -1328,14 +1354,61 @@ function galleryOf(fig) {
   return $$('[data-gallery="' + name + '"] figure').map(f => ({ f, r: f.getBoundingClientRect() }))
     .sort((a, b) => (Math.round(a.r.top / 12) - Math.round(b.r.top / 12)) || (a.r.left - b.r.left)).map(o => o.f);   // reading order, as laid out
 }
-function step(d) { if (!gallery) return; gIndex = (gIndex + d + gallery.length) % gallery.length; const f = gallery[gIndex]; vTitle.textContent = f.dataset.title || ''; vN.textContent = (gIndex + 1) + ' / ' + gallery.length; showImage(f.dataset.src, f.dataset.title); }
+/* the pictures of a gallery sit on a strip three wide: the one before, this one, the one after. A sideways drag moves the strip; letting go far or fast enough brings the neighbour to the middle and the strip is re-centred without a visible change. The ends join, so the last picture follows the first. Every picture in the gallery is fetched as soon as the viewer opens, nearest first */
+let track = null, slideW = 0, sliding = false, pending = 0, preloads = [];
+const at = i => gallery[(i + gallery.length) % gallery.length];
+function makeSlide(f) {
+  const d = document.createElement('div'); d.className = 'slide';
+  const src = f.dataset.src, img = document.createElement('img'); img.alt = f.dataset.title || '';
+  const fail = () => { d.innerHTML = ''; const m = document.createElement('div'); m.className = 'msg'; m.innerHTML = '<b></b><span></span>'; m.firstChild.textContent = 'Not added yet'; m.lastChild.textContent = 'This piece is listed, but its file is not on the site yet. It is expected at ' + src + '.'; d.appendChild(m); };
+  img.onerror = fail;
+  if (isEnc(src)) fetchBytes(src).then(buf => { const url = URL.createObjectURL(new Blob([buf])); blobUrls.push(url); img.src = url; }).catch(fail); else img.src = src;
+  d.appendChild(img); return d;
+}
+const placeTrack = (dx, anim) => { if (!track) return; track.classList.toggle('anim', !!anim); if (!anim) void track.offsetWidth; track.style.transform = 'translate3d(' + (dx - slideW) + 'px,0,0)'; };
+function buildTrack() {
+  clearStage(); viewer.classList.add('img', 'gal');
+  track = document.createElement('div'); track.className = 'track';
+  [-1, 0, 1].forEach(d => track.appendChild(makeSlide(at(gIndex + d))));
+  inner.appendChild(track); slideW = stage.clientWidth; placeTrack(0, false);
+}
+function moveTrack(dx) {                                                       // under the finger: the strip follows, and the title gives way to the neighbour's in step with it
+  placeTrack(dx, false);
+  const p = Math.min(1, Math.abs(dx) / slideW), nf = at(gIndex + (dx < 0 ? 1 : -1));
+  if (vT2.textContent !== (nf.dataset.title || '')) vT2.textContent = nf.dataset.title || '';
+  vTitle.classList.remove('anim'); vT1.style.opacity = String(1 - p); vT2.style.opacity = String(p);
+}
+function settleTrack() { placeTrack(0, true); vTitle.classList.add('anim'); vT1.style.opacity = '1'; vT2.style.opacity = '0'; setTimeout(() => { if (!sliding) { vTitle.classList.remove('anim'); vT1.style.opacity = ''; vT2.style.opacity = ''; vT2.textContent = ''; } }, 420); }
+function goTo(d) {
+  if (!track || gallery.length < 2) return;
+  if (sliding) { pending += d; return; }                                        // pressed again mid-slide: taken in turn, one slide after the other
+  sliding = true;
+  const nf = at(gIndex + d);
+  vT2.textContent = nf.dataset.title || ''; vTitle.classList.add('anim'); vT1.style.opacity = '0'; vT2.style.opacity = '1';
+  placeTrack(-d * slideW, true);
+  let tm; const done = () => {
+    clearTimeout(tm); track.removeEventListener('transitionend', done);
+    gIndex = (gIndex + d + gallery.length) % gallery.length; vN.textContent = (gIndex + 1) + ' / ' + gallery.length;
+    if (d > 0) { track.removeChild(track.firstElementChild); track.appendChild(makeSlide(at(gIndex + 1))); } else { track.removeChild(track.lastElementChild); track.insertBefore(makeSlide(at(gIndex - 1)), track.firstElementChild); }
+    placeTrack(0, false);
+    setTitle(nf.dataset.title); sliding = false;
+    if (pending) { const q = Math.sign(pending); pending -= q; goTo(q); }
+  };
+  track.addEventListener('transitionend', done); tm = setTimeout(done, reduced ? 0 : 520);
+}
+function step(d) { if (!gallery) return; if (track) return goTo(d); gIndex = (gIndex + d + gallery.length) % gallery.length; const f = gallery[gIndex]; setTitle(f.dataset.title); vN.textContent = (gIndex + 1) + ' / ' + gallery.length; showImage(f.dataset.src, f.dataset.title); }
 function openGallery(fig) {
   gallery = galleryOf(fig); gIndex = gallery.indexOf(fig);
   openViewer(fig.dataset.title);
   const many = gallery.length > 1; vPrev.hidden = vNext.hidden = !many;
   if (many) vN.textContent = (gIndex + 1) + ' / ' + gallery.length;
-  showImage(fig.dataset.src, fig.dataset.title);
+  if (many) {
+    buildTrack();
+    const order = gallery.map((f, i) => i).sort((a, b) => Math.min(Math.abs(a - gIndex), gallery.length - Math.abs(a - gIndex)) - Math.min(Math.abs(b - gIndex), gallery.length - Math.abs(b - gIndex)));
+    preloads = order.filter(i => !isEnc(gallery[i].dataset.src)).map(i => { const im = new Image(); im.decoding = 'async'; im.src = gallery[i].dataset.src; return im; });
+  } else showImage(fig.dataset.src, fig.dataset.title);
 }
+addEventListener('resize', () => { if (track) { slideW = stage.clientWidth; placeTrack(0, false); } });
 vPrev.addEventListener('click', () => step(-1)); vNext.addEventListener('click', () => step(1));
 $$('[data-gallery] figure').forEach(f => {
   f.addEventListener('click', () => openGallery(f));
