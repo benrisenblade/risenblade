@@ -425,6 +425,12 @@ footer a:hover{color:var(--gold-white);border-color:var(--gold-hi)}
 footer .sl{display:inline-flex;align-items:center;gap:8px;border:0;font-family:var(--display);font-size:13px;letter-spacing:.08em;color:var(--ivory-2)}
 footer .sites{gap:10px 26px}
 footer .compass{width:18px;height:18px}
+/* the two sites' own marks, as they sit beside their names in their own headers: Albumhound's hound, and Paffolio's brass P */
+footer .hound{width:22px;height:22px;object-fit:contain}
+footer .pmark{display:inline-grid;place-items:center;box-sizing:border-box;width:18px;height:18px;border-radius:5px;border:1px solid #3a2a0c;position:relative;isolation:isolate;overflow:hidden;color:#1a1305;font-family:var(--serif);font-weight:700;font-size:12px;line-height:1;padding-bottom:1px;letter-spacing:0;
+  background-image:linear-gradient(180deg,rgba(255,255,255,0) 60%,rgba(255,255,255,.08) 100%),linear-gradient(180deg,#e8cc7c,#b8923e 50%,#7d5f22);
+  box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22),inset 0 .5px 0 rgba(255,255,255,.45),inset 0 -1.5px 2px rgba(0,0,0,.4),0 1px 0 #3a2a0c}
+footer .pmark::before{content:"";position:absolute;left:8%;right:8%;top:.5px;height:50%;border-radius:999px;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.08) 55%,rgba(255,255,255,0))}
 footer .stream{gap:22px}
 footer .stream a{border:0;color:var(--ivory-2);display:inline-flex;padding:4px}
 footer .stream .ico{width:24px;height:24px}
@@ -470,7 +476,7 @@ footer .stream a:hover{color:var(--gold-white)}
     <div class="group">
       <div class="group-head rv"><h3>Music</h3></div>
       <div class="sites">
-<a class="card site rv" href="https://albumhound.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://albumsbyartist.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Albumhound</span><span class="d">Search any artist’s studio album discography.</span><span class="foot"><span class="btn">Open</span><span class="url">albumhound.com</span></span></span></a>
+<a class="card site rv" href="https://albumhound.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://albumhound.com/og-image.png" alt="" loading="lazy"></span><span class="body"><span class="t">Albumhound</span><span class="d">Search any artist’s studio album discography.</span><span class="foot"><span class="btn">Open</span><span class="url">albumhound.com</span></span></span></a>
       </div>
     </div>
     <div class="rule soft rv" aria-hidden="true"><i></i></div>
@@ -647,7 +653,7 @@ footer .stream a:hover{color:var(--gold-white)}
         <div class="portrait"><img src="img/music/artist.jpg" alt="BeRo Bloom" loading="lazy"></div>
         <div class="body">
           <h4>BeRo Bloom</h4>
-          <p>Other albums and singles.</p>
+          <p>All albums and singles</p>
           <div class="links">
             <a class="glass" href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener"><span class="ico spotify"></span>Spotify</a>
             <a class="glass" href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener"><span class="ico apple"></span>Apple Music</a>
@@ -709,8 +715,8 @@ footer .stream a:hover{color:var(--gold-white)}
     <img class="mark" src="img/brand/sword.png" alt="" width="350" height="1075">
     <span>Risenblade is the collected works of Ben Bloom.</span>
     <div class="links sites">
-      <a class="sl" href="https://albumhound.com/" target="_blank" rel="noopener">Albumhound</a>
-      <a class="sl" href="https://paffolio.com/" target="_blank" rel="noopener">Paffolio</a>
+      <a class="sl" href="https://albumhound.com/" target="_blank" rel="noopener"><img class="hound" src="img/brand/hound.png" alt="" width="96" height="96">Albumhound</a>
+      <a class="sl" href="https://paffolio.com/" target="_blank" rel="noopener"><span class="pmark" aria-hidden="true">P</span>Paffolio</a>
       <a class="sl atlas" href="https://atlasbyben.com/" target="_blank" rel="noopener"><svg class="compass" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5 13.7 9.2 21.5 12l-7.8 2.8L12 22.5l-1.7-7.7L2.5 12l7.8-2.8Zm0 3.4-.9 4.8-4.4 1.7 4.4 1.6.9 4.8.9-4.8 4.4-1.6-4.4-1.7Z"/><path fill="currentColor" d="m5.2 5.2 4.5 3.3-1.2 1.2Zm13.6 0-3.3 4.5-1.2-1.2Zm0 13.6-4.5-3.3 1.2-1.2Zm-13.6 0 3.3-4.5 1.2 1.2Z" opacity=".7"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>Atlas by Ben</a>
     </div>
     <div class="links stream">
