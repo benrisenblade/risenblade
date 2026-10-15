@@ -157,6 +157,9 @@ nav.sections{margin-left:auto;min-width:0}
 .hero.drawn .sword{opacity:0}
 /* the sword and its sun are drawn as solids on this canvas, which covers the sword exactly */
 .hero .sun3d{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+/* the sun on its journey: one canvas under the sword and the name, one over everything, both fixed to the screen */
+.orb{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+.orb.over{z-index:30}
 }33%,35%{opacity:.78;filter:brightness(.85)}38%,62%{opacity:1;filter:brightness(1)}66%,84%{opacity:.78;filter:brightness(.85)}88%,100%{opacity:1;filter:brightness(1)}}
 }
 @keyframes sheen{0%{background-position:0 130%}55%{background-position:0 -130%}100%{background-position:0 -130%}}
@@ -376,7 +379,10 @@ section.medium{padding:clamp(40px,6vw,80px) 0 clamp(36px,5vw,60px)}
 .viewer.dragging .stage img{transition:none}
 .viewer .bar{display:flex;align-items:center;gap:14px;padding:12px clamp(14px,3vw,28px);border-bottom:1px solid var(--line);flex:none}
 .viewer .bar h3{font-family:var(--display);font-weight:500;font-size:16px;letter-spacing:.08em;color:var(--gold-hi);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.viewer .bar .n{color:var(--muted);font-size:15px}
+.viewer .bar .n{color:var(--muted);font-size:15px;display:grid;font-variant-numeric:tabular-nums}
+.viewer .bar .n .nn{grid-area:1/1;white-space:nowrap}
+.viewer .bar .n .nxt{opacity:0}
+.viewer .bar .n.anim .nn{transition:opacity .4s ease}
 .viewer .bar h3{display:grid}
 .viewer .bar h3 .tt{grid-area:1/1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .viewer .bar h3 .nxt{opacity:0}
@@ -732,7 +738,7 @@ footer .stream a:hover{color:var(--gold-white)}
 </footer>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
-  <div class="bar"><h3 id="viewer-title"><span class="tt cur">Untitled</span><span class="tt nxt"></span></h3><span class="n" id="viewer-n"></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+  <div class="bar"><h3 id="viewer-title"><span class="tt cur">Untitled</span><span class="tt nxt"></span></h3><span class="n" id="viewer-n"><span class="nn cur"></span><span class="nn nxt"></span></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
   <div class="stage" id="stage">
     <button class="iconbtn navbtn prev" id="viewer-prev" type="button" aria-label="Previous" hidden><svg><use href="#i-prev"/></svg></button>
     <button class="iconbtn navbtn next" id="viewer-next" type="button" aria-label="Next" hidden><svg><use href="#i-next"/></svg></button>
@@ -924,11 +930,11 @@ const dmask = new Image(); dmask.src = 'img/brand/diamonds.png';
 
 /* the sun: ball, ring, and eight rays in a small orbit round a point, one face always inward, turning like a dial as it goes.
    Everything is in "image units" scaled by k; z toward the viewer; the caller decides which side of a plane at z=0 to draw. */
-function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0) {
+function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
   const D = 1.25 * BALL, RING = 2.05 * BALL, TUBE = .11 * BALL;
   const RAYS = RAY_DEF.map(r => ({ a: r.a, r0: r.r0 * BALL, r1: r.r1 * BALL, w: r.w * BALL }));
   const proj = (x, y, z) => { const s = F / (F - z); return { X: cx + x * s * k, Y: cy - y * s * k, s }; };
-  const orb = [-D * Math.sin(a), 0, -D * Math.cos(a)];
+  const orb = pos || [-D * Math.sin(a), 0, -D * Math.cos(a)];
   const cb = Math.cos(bank), sb = Math.sin(bank);
   const rot = (x, y) => { const yb = y * cb, zb = y * sb; return [x * Math.cos(a) + zb * Math.sin(a) + orb[0], yb, -x * Math.sin(a) + zb * Math.cos(a) + orb[2]]; };   // bank about the sun's own horizontal axis, then turn about the vertical one
   const onSide = z => side === 0 || (side > 0 ? z >= 0 : z < 0);
@@ -975,18 +981,29 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0) {
   backR.forEach(ray); ringPart(false); if (onSide(zc)) ball(); ringPart(true); frontR.forEach(ray);
 }
 
-/* a sword with its sun: the drawing as the face of a thin solid, the sun orbiting its tip, the diamonds dissolving; driven by where the sword is on the screen */
+/* a sword with its sun: the drawing as the face of a thin solid, the diamonds dissolving, the name tilting back, all driven by where the sword is on the
+   screen; and the sun's journey, driven by how far the page has been scrolled toward the first section. Twice round the blade from the tip to the pommel,
+   descending as the page does; on down behind the name and into the distance; then back toward the viewer, past everything, and off the right of the
+   screen. The sun is drawn on two canvases fixed to the screen, one under the sword and the name and one over everything, and split between them at the
+   plane of the page, so it passes behind the blade and the letters and in front of them. It follows the scroll with a short lag and a top speed, so a
+   fast flick still shows the whole flight, and scrolling back up flies it home the same way. */
 function attachSword(o) {
   const cv = o.canvas, ctx = cv.getContext('2d'), wrap = o.wrap, layer = document.createElement('canvas'), lc = layer.getContext('2d');
-  let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, dial = 0, ang = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true;
+  let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true, heroOn = true;
   const wimg = o.wordImg, wcv = o.wordCanvas, wctx = wcv ? wcv.getContext('2d') : null; let WW = 0, WH = 0;
+  const under = document.createElement('canvas'), over = document.createElement('canvas'); under.className = 'orb'; over.className = 'orb over';
+  wrap.parentNode.insertBefore(under, wrap); document.body.appendChild(over);
+  const uc = under.getContext('2d'), oc = over.getContext('2d'); let VW = 0, VH = 0; const dirt = [null, null];   // the patch each canvas was last drawn on
   function size() {
-    const r = wrap.getBoundingClientRect(); dpr = Math.min(devicePixelRatio || 1, 3);
+    dpr = Math.min(devicePixelRatio || 1, 3);
     W = Math.round(wrap.offsetWidth * dpr); Hh = Math.round(wrap.offsetHeight * dpr); k = W / IW;
     if (cv.width !== W || cv.height !== Hh) { cv.width = W; cv.height = Hh; }
     cv.style.width = wrap.offsetWidth + 'px'; cv.style.height = wrap.offsetHeight + 'px';
     if (wcv) { const qw = wimg.offsetWidth, qh = wimg.offsetHeight; WW = Math.round(qw * dpr); WH = Math.round(qh * dpr); if (wcv.width !== WW || wcv.height !== WH) { wcv.width = WW; wcv.height = WH; } wcv.style.width = qw + 'px'; wcv.style.height = qh + 'px'; }
+    VW = Math.round(innerWidth * dpr); VH = Math.round(innerHeight * dpr);
+    [under, over].forEach(c => { if (c.width !== VW || c.height !== VH) { c.width = VW; c.height = VH; } }); dirt[0] = dirt[1] = null;
   }
+  const ss = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x), seg = (x, a, b) => ss((x - a) / (b - a)), mix = (a, b, t) => a + (b - a) * t;
   function sword() {
     if (!face.complete || !face.naturalWidth) return;
     if (layer.width !== W || layer.height !== Hh) { layer.width = W; layer.height = Hh; }
@@ -1007,7 +1024,8 @@ function attachSword(o) {
       lc.setTransform(k * c, 0, 0, k, ox * (1 - c) - edge, 0); lc.drawImage(dmask, 0, 0, IW, IH);
       lc.globalAlpha = 1; lc.globalCompositeOperation = 'source-over';
     }
-    if (halo.complete && halo.naturalWidth) { ctx.setTransform(k * c, 0, 0, k, ox * (1 - c), 0); ctx.drawImage(halo, 0, 0, IW, IH); ctx.setTransform(1, 0, 0, 1, 0, 0); }
+    const haloA = 1 - ss(shown * 12);   // the tip's aura belongs to the sun, and goes with it
+    if (haloA > 0 && halo.complete && halo.naturalWidth) { ctx.globalAlpha = haloA; ctx.setTransform(k * c, 0, 0, k, ox * (1 - c), 0); ctx.drawImage(halo, 0, 0, IW, IH); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; }
     ctx.drawImage(layer, 0, 0);
   }
   function wordmark() {
@@ -1025,13 +1043,47 @@ function attachSword(o) {
     };
     pass(true, -7 * Math.sin(beta) * kk); pass(false, 0);
   }
-  function draw(a, t) {
+  /* the sun at a point of its journey (0 at rest on the tip, 1 gone): where its centre is on the screen (CSS px), how deep it is (image units, + toward
+     the viewer; the sun is split at 0), its size against the one on the tip, and the turn of its face, ring, and rays */
+  const F = 540, P1 = .5, P2 = .7, DEEP = -150, NEAR = 150;
+  function orbState(t) {
+    const r = wrap.getBoundingClientRect(), kk = r.width / IW, vw = innerWidth, vh = innerHeight;
+    const u1 = Math.min(1, t / P1), u2 = seg(t, P1, P2), u3 = seg(t, P2, 1);
+    const a = u1 * 4 * Math.PI + (u2 + u3) * Math.PI;                                       // twice round the blade, then a slower turn on
+    const R = (1.25 + .4 * Math.sin(Math.PI * u1)) * BALL0;                                   // the orbit, a little wider down the blade than at the tip
+    let z = -R * Math.cos(a), g = 1; const sc = F / (F - z);
+    let x = r.left + TIP[0] * kk - R * Math.sin(a) * sc * kk, y = r.top + (TIP[1] + (1066 - TIP[1]) * u1) * kk;
+    const wr = wimg.getBoundingClientRect(), pcx = wr.left + wr.width / 2, pcy = wr.top + wr.height / 2;   // the name, as it stands on the screen
+    if (u2 > 0) {   // on down behind the name, leaning out to the left on the way, and away into the distance
+      const e = ss(u2); x = mix(x, pcx, e) - .16 * vw * Math.sin(Math.PI * u2); y = mix(y, pcy, e); z = mix(z, DEEP, e); g = mix(1, .5, e);
+    }
+    if (u3 > 0) {   // back toward the viewer, a little left of and below the name; then a sweep through the lower left of the screen and off its right edge
+      const e1 = ss(u3 / .3), e2 = seg(u3, .3, 1), nx = pcx - .12 * vw, ny = pcy + .09 * vh;
+      x = mix(pcx, nx, e1); y = mix(pcy, ny, e1); z = mix(DEEP, 80, e1); g = mix(.5, 1.1, e1);
+      if (e2 > 0) {
+        const q = 1 - e2, cx1 = nx - .22 * vw, cy1 = ny + .26 * vh, ex = vw + 4.6 * BALL0 * 2.3 * kk * 2.4, ey = .3 * vh;   // the end lies far enough out that the longest ray has left the screen
+        x = q * q * nx + 2 * q * e2 * cx1 + e2 * e2 * ex; y = q * q * ny + 2 * q * e2 * cy1 + e2 * e2 * ey; z = mix(80, NEAR, e2); g = mix(1.1, 2.3, e2);
+      }
+    }
+    const bk = reduced ? 0 : Math.PI * ss(u1) + Math.PI * seg(u3, .3, 1), dl = -90 * ss(u1) - 90 * ss(u2);   // over the top once on the way down the blade, once more on the way out; the rays' quarter-turn, then another
+    return { x, y, z, g, a, bk, dl, kk };
+  }
+  function orb() {
+    const st = orbState(shown), K = st.kk * dpr, X = st.x * dpr, Y = st.y * dpr;
+    const reach = 4.6 * BALL0 * st.g * K * F / Math.max(60, F - st.z - 4.4 * BALL0) + 8 * dpr;   // the farthest any ray can reach on the screen
+    [[uc, -1, 0], [oc, 1, 1]].forEach(([c, side, i]) => {
+      const d = dirt[i]; if (d) c.clearRect(d[0], d[1], d[2], d[3]);
+      if (X + reach < 0 || X - reach > VW || Y + reach < 0 || Y - reach > VH) { dirt[i] = null; return; }
+      dirt[i] = [X - reach, Y - reach, 2 * reach, 2 * reach];
+      drawSun(c, X, Y, K, BALL0 * st.g, F * st.g, st.a, st.dl, side, st.bk, [0, 0, st.z * st.g]);
+    });
+  }
+  function draw(t) {
     ctx.clearRect(0, 0, W, Hh);
     beta = reduced ? 0 : 5 * Math.PI / 180 * Math.sin(t / 26 * Math.PI * 2);
-    const cx = TIP[0] * k, cy = TIP[1] * k;
-    const bk = reduced ? 0 : Math.PI * shown * shown * (3 - 2 * shown);         // the bank goes all the way over the top: upside down by the end, which with equal rays reads as the logo again
-    drawSun(ctx, cx, cy, k, BALL0, 540, a, dial, -1, bk); sword(); drawSun(ctx, cx, cy, k, BALL0, 540, a, dial, 1, bk); wordmark();
+    sword(); wordmark();
     if (o.plate) { const e = reduced ? 0 : bank, h = o.plate.offsetHeight; o.plate.style.transform = `perspective(850px) translateY(${(-h * 0.04 * e).toFixed(1)}px) rotateX(${(52 * e).toFixed(2)}deg) scale(${(1 - 0.18 * e).toFixed(3)})`; }
+    orb();
   }
   /* how far a point of the drawing has travelled toward leaving the screen: 0 at rest, 1 the moment it has crossed the edge */
   const leaving = yImg => {
@@ -1042,25 +1094,33 @@ function attachSword(o) {
   };
   const progress = () => leaving(o.edge === 'top' ? TIP[1] + 2.75 * BALL0 : TIP[1] - 4.7 * BALL0);
   const diamonds = () => leaving(1066);
+  /* the journey's own clock: 0 with the page at its top, 1 when the first section has reached the bar. While the viewer holds the page still, the page's own place is used */
+  const scrollNow = () => document.body.classList.contains('locked') ? -parseFloat(document.body.style.top || '0') || 0 : scrollY;
+  const target = () => { const y = scrollNow(), n = o.next ? o.next.getBoundingClientRect().top + y - (o.bar ? o.bar.offsetHeight : 0) : innerHeight; return Math.max(0, Math.min(1, y / Math.max(1, n))); };
   function frame(now) {
     if (!running) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; clock += dt; sheenT += dt;
-    const p = progress(), tau = 1.6 - 1.45 * p;
-    let dlt = p - shown; if (dlt > .5) dlt -= 1; else if (dlt < -.5) dlt += 1;   // a full turn looks like none, so never spin back through one
-    shown += dlt * (1 - Math.exp(-dt / tau)); shown = ((shown % 1) + 1) % 1; if (Math.abs(dlt) < .0005) shown = p % 1;
-    bank += (p - bank) * (1 - Math.exp(-dt / tau)); if (Math.abs(p - bank) < .0005) bank = p;   // the same easing, but never wrapped: the plate's tilt holds at the end
-    ang = shown * Math.PI * 2; fade = diamonds(); dial = -90 * shown * shown * (3 - 2 * shown);   // the turn eases in behind the revolution, which is subtler to the eye at small angles
-    draw(ang, clock); requestAnimationFrame(frame);
+    const p = target(), lv = progress();
+    const gap = p - shown; let d = gap * (1 - Math.exp(-dt / .3)); const cap = 1.15 * dt, floor = Math.min(Math.abs(gap), .35 * dt);   // the sun follows the scroll closely, never faster than the whole journey in most of a second, and never so slowly that it hangs short of where it is going
+    if (Math.abs(d) > cap) d = Math.sign(gap) * cap; else if (Math.abs(d) < floor) d = Math.sign(gap) * floor;
+    shown += d; if (Math.abs(p - shown) < .0004) shown = p;
+    const tb = 1.6 - 1.45 * lv; bank += (lv - bank) * (1 - Math.exp(-dt / tb)); if (Math.abs(lv - bank) < .0005) bank = lv;   // the name's tilt, eased, never wrapped: it holds at the end
+    fade = diamonds();
+    draw(clock);
+    if (!heroOn && shown === p) { running = false; return; }   // the sword is off the screen and the sun has nowhere left to go
+    requestAnimationFrame(frame);
   }
+  const wake = () => { if (!running && !document.hidden) { running = true; last = 0; requestAnimationFrame(frame); } };
   size(); o.host.classList.add('drawn'); addEventListener('resize', size); if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
-  [face, halo, dmask, wimg].forEach(im => { if (im) im.addEventListener('load', () => { size(); draw(ang, clock); }); });
-  draw(0, 0); requestAnimationFrame(frame);
-  const vis = new IntersectionObserver(es => { const on = es[0].isIntersecting && !document.hidden; if (on && !running) { running = true; last = 0; requestAnimationFrame(frame); } else if (!on) running = false; }, { rootMargin: '60px 0px' });
+  [face, halo, dmask, wimg].forEach(im => { if (im) im.addEventListener('load', () => { size(); draw(clock); }); });
+  draw(0); requestAnimationFrame(frame);
+  const vis = new IntersectionObserver(es => { heroOn = es[0].isIntersecting; if (heroOn) wake(); }, { rootMargin: '60px 0px' });
   vis.observe(o.host);
-  document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else if (!running) { running = true; last = 0; requestAnimationFrame(frame); } });
-  return { set: (a, t, f) => { running = false; ang = a; fade = f || 0; draw(a, t || 0); }, resume: () => { running = true; last = 0; requestAnimationFrame(frame); }, progress, diamonds, shown: () => shown };
+  addEventListener('scroll', wake, { passive: true });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else wake(); });
+  return { set: (a, t, f) => { running = false; shown = a; fade = f || 0; draw(t || 0); }, resume: wake, progress, diamonds, target, shown: () => shown };
 }
-if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22 });
+if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22, next: $('#websites'), bar: $('header.top') });
 
 /* ================= the small suns and diamonds in the rules stir gently as they cross the screen ================= */
 (() => {
@@ -1182,9 +1242,8 @@ addEventListener('touchstart', () => cancelAnimationFrame(scrollAnim), { passive
 const audio = $('#bgm'), spk = $('#spk'), MKEY = 'rb_music';
 let m = { i: 0, t: 0, on: true };
 try { m = Object.assign(m, JSON.parse(localStorage.getItem(MKEY) || '{}')); } catch (e) {}
-if (m.list !== PLAYLIST.join('|')) { m.list = PLAYLIST.join('|'); m.i = 0; m.t = 0; }   // a changed playlist starts again from its first song, for returning visitors too
-if (!(m.i >= 0 && m.i < PLAYLIST.length)) m.i = 0;
-let seekTo = m.t || 0, armed = false, lastSave = 0;
+m.i = 0; m.t = 0; m.list = PLAYLIST.join('|');   // every visit starts with the first song from its beginning; only the choice of on or off is kept
+let seekTo = 0, armed = false, lastSave = 0;
 const missing = new Set();   // slots with no file behind them; skipped for the rest of the visit
 const nextTrack = () => { for (let k = 1; k <= PLAYLIST.length; k++) { const j = (m.i + k) % PLAYLIST.length; if (!missing.has(j)) return j; } return -1; };
 const advance = () => { const j = nextTrack(); if (j < 0) { spk.title = 'No music files found in /music'; return; } m.i = j; m.t = 0; seekTo = 0; saveMusic(); loadTrack(); if (m.on) tryPlay(); };
@@ -1250,8 +1309,10 @@ const isUnlocked = () => !!aesKey;
 $$('.site[data-locked]').forEach(a => a.addEventListener('click', e => { if (!isUnlocked()) { e.preventDefault(); openGate(null); } }));
 
 /* ================= viewer ================= */
-const viewer = $('#viewer'), stage = $('#stage'), inner = $('#stage-inner'), vTitle = $('#viewer-title'), vT1 = $('#viewer-title .cur'), vT2 = $('#viewer-title .nxt'), vN = $('#viewer-n'), vPrev = $('#viewer-prev'), vNext = $('#viewer-next');
+const viewer = $('#viewer'), stage = $('#stage'), inner = $('#stage-inner'), vTitle = $('#viewer-title'), vT1 = $('#viewer-title .cur'), vT2 = $('#viewer-title .nxt'), vN = $('#viewer-n'), vN1 = $('#viewer-n .cur'), vN2 = $('#viewer-n .nxt'), vPrev = $('#viewer-prev'), vNext = $('#viewer-next');
 const setTitle = t => { vT1.textContent = t || ''; vT2.textContent = ''; vTitle.classList.remove('anim'); vT1.style.opacity = ''; vT2.style.opacity = ''; };
+const setN = t => { vN1.textContent = t || ''; vN2.textContent = ''; vN.classList.remove('anim'); vN1.style.opacity = ''; vN2.style.opacity = ''; };
+const countOf = i => ((i + gallery.length) % gallery.length + 1) + ' / ' + gallery.length;
 let gallery = null, gIndex = 0, currentPdf = null, blobUrls = [];
 const kindOf = src => { if (src.startsWith('#')) return 'text'; const ext = src.replace(/\.enc$/i, '').split('.').pop().toLowerCase(); if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif'].includes(ext)) return 'image'; if (ext === 'pdf') return 'pdf'; return 'text'; };
 const isEnc = src => /\.enc$/i.test(src);
@@ -1260,7 +1321,7 @@ function clearStage() { viewer.classList.remove('img', 'gal'); track = null; if 
 let lockedY = null;
 function lockScroll() { if (lockedY !== null) return; lockedY = scrollY; document.body.style.top = -lockedY + 'px'; document.body.classList.add('locked'); }
 function unlockScroll() { if (lockedY === null) return; document.body.classList.remove('locked'); document.body.style.top = ''; const y = lockedY; lockedY = null; scrollTo(0, y); }
-function openViewer(title) { setTitle(title); vN.textContent = ''; viewer.classList.add('open'); lockScroll(); $('#viewer-close').focus(); }
+function openViewer(title) { setTitle(title); setN(''); viewer.classList.add('open'); lockScroll(); $('#viewer-close').focus(); }
 function closeViewer() { viewer.classList.remove('open'); clearStage(); gallery = null; preloads = []; pending = 0; sliding = false; vPrev.hidden = vNext.hidden = true; if (!gate.classList.contains('open')) unlockScroll(); }
 $('#viewer-close').addEventListener('click', closeViewer);
 stage.addEventListener('click', e => { if ((e.target === stage || e.target.classList.contains('slide')) && !zoomed() && Date.now() - lastMulti > 700) closeViewer(); });
@@ -1338,7 +1399,7 @@ async function showPdf(src, title) {
     pdfjs.GlobalWorkerOptions.workerSrc = PDF_WORKER;
     const pdf = await pdfjs.getDocument({ data }).promise; currentPdf = pdf;
     inner.innerHTML = ''; const pages = document.createElement('div'); pages.className = 'pages'; inner.appendChild(pages);
-    vN.textContent = pdf.numPages + (pdf.numPages === 1 ? ' page' : ' pages');
+    setN(pdf.numPages + (pdf.numPages === 1 ? ' page' : ' pages'));
     const first = await pdf.getPage(1), vp0 = first.getViewport({ scale: 1 });
     const cssW = Math.min(stage.clientWidth - 36, 980), ratio = vp0.height / vp0.width, dpr = Math.min(window.devicePixelRatio || 1, innerWidth < 900 ? 1.5 : 2);
     const holders = [];
@@ -1387,32 +1448,35 @@ function moveTrack(dx) {                                                       /
   placeTrack(dx, false);
   const p = Math.min(1, Math.abs(dx) / slideW), nf = at(gIndex + (dx < 0 ? 1 : -1));
   if (vT2.textContent !== (nf.dataset.title || '')) vT2.textContent = nf.dataset.title || '';
+  const nc = countOf(gIndex + (dx < 0 ? 1 : -1)); if (vN2.textContent !== nc) vN2.textContent = nc;
   vTitle.classList.remove('anim'); vT1.style.opacity = String(1 - p); vT2.style.opacity = String(p);
+  vN.classList.remove('anim'); vN1.style.opacity = String(1 - p); vN2.style.opacity = String(p);
 }
-function settleTrack() { placeTrack(0, true); vTitle.classList.add('anim'); vT1.style.opacity = '1'; vT2.style.opacity = '0'; setTimeout(() => { if (!sliding) { vTitle.classList.remove('anim'); vT1.style.opacity = ''; vT2.style.opacity = ''; vT2.textContent = ''; } }, 420); }
+function settleTrack() { placeTrack(0, true); vTitle.classList.add('anim'); vT1.style.opacity = '1'; vT2.style.opacity = '0'; vN.classList.add('anim'); vN1.style.opacity = '1'; vN2.style.opacity = '0'; setTimeout(() => { if (!sliding) { vTitle.classList.remove('anim'); vT1.style.opacity = ''; vT2.style.opacity = ''; vT2.textContent = ''; vN.classList.remove('anim'); vN1.style.opacity = ''; vN2.style.opacity = ''; vN2.textContent = ''; } }, 420); }
 function goTo(d) {
   if (!track || gallery.length < 2) return;
   if (sliding) { pending += d; return; }                                        // pressed again mid-slide: taken in turn, one slide after the other
   sliding = true;
   const nf = at(gIndex + d);
   vT2.textContent = nf.dataset.title || ''; vTitle.classList.add('anim'); vT1.style.opacity = '0'; vT2.style.opacity = '1';
+  vN2.textContent = countOf(gIndex + d); vN.classList.add('anim'); vN1.style.opacity = '0'; vN2.style.opacity = '1';
   placeTrack(-d * slideW, true);
   let tm; const done = () => {
     clearTimeout(tm); track.removeEventListener('transitionend', done);
-    gIndex = (gIndex + d + gallery.length) % gallery.length; vN.textContent = (gIndex + 1) + ' / ' + gallery.length;
+    gIndex = (gIndex + d + gallery.length) % gallery.length;
     if (d > 0) { track.removeChild(track.firstElementChild); track.appendChild(makeSlide(at(gIndex + 1))); } else { track.removeChild(track.lastElementChild); track.insertBefore(makeSlide(at(gIndex - 1)), track.firstElementChild); }
     placeTrack(0, false);
-    setTitle(nf.dataset.title); sliding = false;
+    setTitle(nf.dataset.title); setN(countOf(gIndex)); sliding = false;
     if (pending) { const q = Math.sign(pending); pending -= q; goTo(q); }
   };
   track.addEventListener('transitionend', done); tm = setTimeout(done, reduced ? 0 : 520);
 }
-function step(d) { if (!gallery) return; if (track) return goTo(d); gIndex = (gIndex + d + gallery.length) % gallery.length; const f = gallery[gIndex]; setTitle(f.dataset.title); vN.textContent = (gIndex + 1) + ' / ' + gallery.length; showImage(f.dataset.src, f.dataset.title); }
+function step(d) { if (!gallery) return; if (track) return goTo(d); gIndex = (gIndex + d + gallery.length) % gallery.length; const f = gallery[gIndex]; setTitle(f.dataset.title); setN(countOf(gIndex)); showImage(f.dataset.src, f.dataset.title); }
 function openGallery(fig) {
   gallery = galleryOf(fig); gIndex = gallery.indexOf(fig);
   openViewer(fig.dataset.title);
   const many = gallery.length > 1; vPrev.hidden = vNext.hidden = !many;
-  if (many) vN.textContent = (gIndex + 1) + ' / ' + gallery.length;
+  if (many) setN(countOf(gIndex));
   if (many) {
     buildTrack();
     const order = gallery.map((f, i) => i).sort((a, b) => Math.min(Math.abs(a - gIndex), gallery.length - Math.abs(a - gIndex)) - Math.min(Math.abs(b - gIndex), gallery.length - Math.abs(b - gIndex)));
