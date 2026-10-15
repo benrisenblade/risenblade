@@ -1045,24 +1045,29 @@ function attachSword(o) {
     pass(true, -7 * Math.sin(beta) * kk); pass(false, 0);
   }
   /* the sun at a point of its journey (0 at rest on the tip, 1 gone): where its centre is on the screen (CSS px), how deep it is (image units, + toward the
-     viewer; the sun is split at 0), its size and its light against the sun on the tip, and the turn of its face, ring, and rays.
-     The journey runs from the page at its top to the sword's part of the page gone under the bar; the sun is away by PB of that. */
-  const F = 540, PA = .3, PB = .78, DEEP = -150, LOW = 560;   // LOW: how far down the blade the sun comes, in image units, clear above the guard
+     viewer; the sun is split at 0), its size and its light against the sun on the tip, and the turn of its face, ring, and rays. The journey's clock runs
+     from the page at its top to the sword's part of the page gone under the bar; the sun is away by PB of that. It is always on its way down the screen:
+     round the blade it descends faster than the sword rises, and the way out is one curve that only falls. */
+  const F = 540, PA = .25, PB = .55, DEEP = -150, LOW = 680;   // LOW: how far down the blade the sun comes, in image units: the rays just clear the guard
+  const scrollNow = () => document.body.classList.contains('locked') ? -parseFloat(document.body.style.top || '0') || 0 : scrollY;
+  const span = () => Math.max(1, o.host.getBoundingClientRect().bottom + scrollNow() - (o.bar ? o.bar.offsetHeight : 0));
   function orbState(t) {
-    const r = wrap.getBoundingClientRect(), kk = r.width / IW, vw = innerWidth, barH = o.bar ? o.bar.offsetHeight : 0;
-    const wr = wimg.getBoundingClientRect(), pcx = wr.left + wr.width / 2, pcy = wr.top + wr.height / 2;   // the name, as it stands on the screen
-    const ax = r.left + TIP[0] * kk, dir = pcx - ax > 60 * kk ? 1 : -1;                                   // the way out: toward the name when it stands beside the sword, else to the left
-    const u1 = Math.min(1, t / PA), u2 = seg(t, PA, PB);
-    const a = u1 * 2 * Math.PI + u2 * .4 * Math.PI;                                                       // once round the blade, then a slow turn on
+    const r = wrap.getBoundingClientRect(), kk = r.width / IW, vw = innerWidth, vh = innerHeight, ax = r.left + TIP[0] * kk;
+    const u1 = Math.min(1, t / PA), u2 = Math.max(0, Math.min(1, (t - PA) / (PB - PA)));
+    const a = 2 * Math.PI * (.5 * u1 + .5 * u1 * u1) + .5 * Math.PI * u2;                                    // once round the blade, coming round the front of it past halfway down; then a slow turn on
     const R = mix(1.25, 3, ss(u1 * 4)) * BALL0;                                                           // out from the tip's own small orbit to a clear distance from the steel within the first quarter turn
     let z = -R * Math.cos(a), g = 1, sh = 1; const sc = F / (F - z);
-    let x = ax + dir * R * Math.sin(a) * sc * kk, y = r.top + (TIP[1] + (LOW - TIP[1]) * u1) * kk;
-    if (u2 > 0) {   // one arc: on past the blade, down behind the name and away into the dark, and off the edge of the screen from behind the letters
-      const w = ss(u2 / .6), t1 = Math.min(1, u2 / .75), f = .4 * (1 - (1 - t1) * (1 - t1)) + .6 * seg(u2, .72, 1);   // w: how far it has fallen away; f: how far along the way out: it drifts in behind the letters as it falls back, then slips away from behind them
-      const reach = 4.6 * BALL0 * .5 * kk, ex = dir > 0 ? vw + reach : -reach, ey = Math.max(pcy + 8 * kk, barH + 80);   // the way out ends beyond the edge, level with the letters (or, with the name already gone, a little under the bar)
-      x = mix(x, ex, f); y = mix(y, ey, w); z = mix(z, DEEP, ss(u2 / .3)); g = mix(1, .5, w); sh = mix(1, .42, w);
+    let x = ax + R * Math.sin(a) * sc * kk, y = r.top + mix(TIP[1], LOW, u1) * kk;
+    if (u2 > 0) {   // the way out, from where the orbit ended on the screen: one curve down and to the right, behind the name as it rises past, and off the edge, smaller and dimmer as it falls away from the light
+      const y0 = r.top + (scrollNow() - PA * span()) * (1 - (reduced ? 0 : o.parallax || 0)) + LOW * kk;   // where the orbit ended on the screen, whatever the page's place now (the sword rises at its own pace)
+      const q = 1 - u2, ex = vw + 4.6 * BALL0 * .5 * kk + 12;
+      const px = [ax, ax + .26 * vw, ax + .3 * vw, ex], py = [y0, y0 + .06 * vh, y0 + .14 * vh, y0 + .19 * vh];
+      x = q * q * q * px[0] + 3 * q * q * u2 * px[1] + 3 * q * u2 * u2 * px[2] + u2 * u2 * u2 * px[3];
+      y = q * q * q * py[0] + 3 * q * q * u2 * py[1] + 3 * q * u2 * u2 * py[2] + u2 * u2 * u2 * py[3];
+      x += 8 * kk * Math.sin(u2 * 7.3); y += 3 * kk * Math.sin(u2 * 9.1 + 1.7);                           // a little life on the way: a slight sway, small against the fall
+      const w = ss(u2 / .55); z = mix(-R, DEEP, ss(u2 / .35)); g = mix(1, .5, w); sh = mix(1, .42, w);
     }
-    const bk = reduced ? 0 : Math.PI * ss(u1), dl = -90 * ss(u1);   // over the top once on the way round, and the rays' quarter-turn, as the sun on the tip always did
+    const bk = reduced ? 0 : Math.PI * ss(u1) + .35 * Math.sin(u2 * 5), dl = -90 * ss(u1) - 40 * u2;   // over the top once on the way round, with a slight roll on the way out; the rays' quarter-turn, then a little more
     return { x, y, z, g, sh, a, bk, dl, kk };
   }
   function orb() {
@@ -1092,8 +1097,7 @@ function attachSword(o) {
   const progress = () => leaving(o.edge === 'top' ? TIP[1] + 2.75 * BALL0 : TIP[1] - 4.7 * BALL0);
   const diamonds = () => leaving(1066);
   /* the journey's own clock: 0 with the page at its top, 1 when the foot of the sword's part of the page has gone under the bar. While the viewer holds the page still, the page's own place is used */
-  const scrollNow = () => document.body.classList.contains('locked') ? -parseFloat(document.body.style.top || '0') || 0 : scrollY;
-  const target = () => { const y = scrollNow(), n = o.host.getBoundingClientRect().bottom + y - (o.bar ? o.bar.offsetHeight : 0); return Math.max(0, Math.min(1, y / Math.max(1, n))); };
+  const target = () => Math.max(0, Math.min(1, scrollNow() / span()));
   function frame(now) {
     if (!running) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; clock += dt; sheenT += dt;
@@ -1115,7 +1119,7 @@ function attachSword(o) {
   vis.observe(o.host);
   addEventListener('scroll', wake, { passive: true });
   document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else wake(); });
-  return { set: (a, t, f) => { running = false; shown = a; fade = f || 0; draw(t || 0); }, resume: wake, progress, diamonds, target, shown: () => shown };
+  return { set: (a, t, f) => { running = false; shown = a; fade = f || 0; draw(t || 0); }, resume: wake, progress, diamonds, target, shown: () => shown, state: orbState };
 }
 if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22, bar: $('header.top') });
 
