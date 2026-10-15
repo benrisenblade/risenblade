@@ -930,7 +930,8 @@ const dmask = new Image(); dmask.src = 'img/brand/diamonds.png';
 
 /* the sun: ball, ring, and eight rays in a small orbit round a point, one face always inward, turning like a dial as it goes.
    Everything is in "image units" scaled by k; z toward the viewer; the caller decides which side of a plane at z=0 to draw. */
-function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
+function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null, shade = 1) {
+  const G = (b, r, g, bl) => gold(b * shade, r, g, bl), rgb = (r, g, b) => `rgb(${r * shade | 0},${g * shade | 0},${b * shade | 0})`;
   const D = 1.25 * BALL, RING = 2.05 * BALL, TUBE = .11 * BALL;
   const RAYS = RAY_DEF.map(r => ({ a: r.a, r0: r.r0 * BALL, r1: r.r1 * BALL, w: r.w * BALL }));
   const proj = (x, y, z) => { const s = F / (F - z); return { X: cx + x * s * k, Y: cy - y * s * k, s }; };
@@ -947,14 +948,14 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
     ctx.save();
     if (len < wpx * .9) {
       const g = ctx.createRadialGradient(P0.X - wpx * .18, P0.Y - wpx * .2, 0, P0.X, P0.Y, wpx * .55);
-      g.addColorStop(0, gold(1.35 * lt)); g.addColorStop(.6, gold(1.0 * lt)); g.addColorStop(1, gold(.55 * lt));
+      g.addColorStop(0, G(1.35 * lt)); g.addColorStop(.6, G(1.0 * lt)); g.addColorStop(1, G(.55 * lt));
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc((P0.X + P1.X) / 2, (P0.Y + P1.Y) / 2, wpx * .5, 0, Math.PI * 2); ctx.fill(); ctx.restore(); return;
     }
     const nx = -dy / len, ny = dx / len, N = 12, left = [], right = [];
     for (let i = 0; i <= N; i++) { const u = i / N, w = wpx * Math.pow(Math.sin(Math.PI * (u * .92 + .04)), .75) * (1 - u * .35); const X = P0.X + dx * u, Y = P0.Y + dy * u; left.push([X + nx * w / 2, Y + ny * w / 2]); right.push([X - nx * w / 2, Y - ny * w / 2]); }
     ctx.beginPath(); ctx.moveTo(P0.X, P0.Y); left.forEach(p => ctx.lineTo(p[0], p[1])); ctx.lineTo(P1.X, P1.Y); right.reverse().forEach(p => ctx.lineTo(p[0], p[1])); ctx.closePath();
     const mx = (P0.X + P1.X) / 2, my = (P0.Y + P1.Y) / 2, g = ctx.createLinearGradient(mx + nx * wpx / 2, my + ny * wpx / 2, mx - nx * wpx / 2, my - ny * wpx / 2);
-    g.addColorStop(0, gold(.5 * lt)); g.addColorStop(.3, gold(1.32 * lt, 240, 214, 150)); g.addColorStop(.55, gold(1.05 * lt)); g.addColorStop(1, gold(.45 * lt));
+    g.addColorStop(0, G(.5 * lt)); g.addColorStop(.3, G(1.32 * lt, 240, 214, 150)); g.addColorStop(.55, G(1.05 * lt)); g.addColorStop(1, G(.45 * lt));
     ctx.fillStyle = g; ctx.fill(); ctx.restore();
   }
   function ringPart(frontOfBall) {
@@ -964,7 +965,7 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
       const here = (frontOfBall ? rel >= -1e-6 : rel < -1e-6) && onSide(p[2]);
       if (!here) { open = false; continue; }
       const P = proj(...p), nrm = rot(Math.cos(t), Math.sin(t)); const l = .62 + .5 * lit([nrm[0] - orb[0], nrm[1], nrm[2] - orb[2]]) + .06 * rel / (2 * BALL);
-      if (open) { ctx.lineTo(P.X, P.Y); ctx.strokeStyle = gold(l, 222, 200, 150); ctx.lineWidth = Math.max(.7, TUBE * k * P.s); ctx.stroke(); }
+      if (open) { ctx.lineTo(P.X, P.Y); ctx.strokeStyle = G(l, 222, 200, 150); ctx.lineWidth = Math.max(.7, TUBE * k * P.s); ctx.stroke(); }
       ctx.beginPath(); ctx.moveTo(P.X, P.Y); open = true;
     }
     ctx.restore();
@@ -972,7 +973,7 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
   function ball() {
     const P = proj(...orb), R = BALL * k * P.s;
     const g = ctx.createRadialGradient(P.X - R * .38, P.Y - R * .42, R * .05, P.X, P.Y, R * 1.02);
-    g.addColorStop(0, 'rgb(255,247,215)'); g.addColorStop(.22, 'rgb(246,222,160)'); g.addColorStop(.55, 'rgb(214,170,106)'); g.addColorStop(.85, 'rgb(140,98,48)'); g.addColorStop(1, 'rgb(84,54,22)');
+    g.addColorStop(0, rgb(255, 247, 215)); g.addColorStop(.22, rgb(246, 222, 160)); g.addColorStop(.55, rgb(214, 170, 106)); g.addColorStop(.85, rgb(140, 98, 48)); g.addColorStop(1, rgb(84, 54, 22));
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(P.X, P.Y, R, 0, Math.PI * 2); ctx.fill();
   }
   const rayZ = d => { const t = (d.a + dial) * Math.PI / 180; const p0 = rot(Math.cos(t) * d.r0, Math.sin(t) * d.r0), p1 = rot(Math.cos(t) * d.r1, Math.sin(t) * d.r1); return (p0[2] + p1[2]) / 2; };
@@ -982,11 +983,11 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null) {
 }
 
 /* a sword with its sun: the drawing as the face of a thin solid, the diamonds dissolving, the name tilting back, all driven by where the sword is on the
-   screen; and the sun's journey, driven by how far the page has been scrolled toward the first section. Twice round the blade from the tip to the pommel,
-   descending as the page does; on down behind the name and into the distance; then back toward the viewer, past everything, and off the right of the
-   screen. The sun is drawn on two canvases fixed to the screen, one under the sword and the name and one over everything, and split between them at the
-   plane of the page, so it passes behind the blade and the letters and in front of them. It follows the scroll with a short lag and a top speed, so a
-   fast flick still shows the whole flight, and scrolling back up flies it home the same way. */
+   screen; and the sun's journey, driven by how far the page has been scrolled. Once round the blade from the tip, descending as the page does, at a
+   clear distance from the steel; then on in one arc, down behind the name and away into the dark, smaller and dimmer as it falls from the light,
+   and off the edge of the screen from behind the letters. The sun is drawn on two canvases fixed to the screen, one under the sword and the name
+   and one over everything, and split between them at the plane of the page, so it passes behind the blade and the letters and in front of them.
+   It follows the scroll with a short lag and a top speed, so a fast flick still shows the whole flight, and scrolling back up flies it home. */
 function attachSword(o) {
   const cv = o.canvas, ctx = cv.getContext('2d'), wrap = o.wrap, layer = document.createElement('canvas'), lc = layer.getContext('2d');
   let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true, heroOn = true;
@@ -1043,30 +1044,26 @@ function attachSword(o) {
     };
     pass(true, -7 * Math.sin(beta) * kk); pass(false, 0);
   }
-  /* the sun at a point of its journey (0 at rest on the tip, 1 gone): where its centre is on the screen (CSS px), how deep it is (image units, + toward
-     the viewer; the sun is split at 0), its size against the one on the tip, and the turn of its face, ring, and rays */
-  const F = 540, P1 = .5, P2 = .7, DEEP = -150, NEAR = 150;
+  /* the sun at a point of its journey (0 at rest on the tip, 1 gone): where its centre is on the screen (CSS px), how deep it is (image units, + toward the
+     viewer; the sun is split at 0), its size and its light against the sun on the tip, and the turn of its face, ring, and rays.
+     The journey runs from the page at its top to the sword's part of the page gone under the bar; the sun is away by PB of that. */
+  const F = 540, PA = .3, PB = .78, DEEP = -150, LOW = 560;   // LOW: how far down the blade the sun comes, in image units, clear above the guard
   function orbState(t) {
-    const r = wrap.getBoundingClientRect(), kk = r.width / IW, vw = innerWidth, vh = innerHeight;
-    const u1 = Math.min(1, t / P1), u2 = seg(t, P1, P2), u3 = seg(t, P2, 1);
-    const a = u1 * 4 * Math.PI + (u2 + u3) * Math.PI;                                       // twice round the blade, then a slower turn on
-    const R = (1.25 + .4 * Math.sin(Math.PI * u1)) * BALL0;                                   // the orbit, a little wider down the blade than at the tip
-    let z = -R * Math.cos(a), g = 1; const sc = F / (F - z);
-    let x = r.left + TIP[0] * kk - R * Math.sin(a) * sc * kk, y = r.top + (TIP[1] + (1066 - TIP[1]) * u1) * kk;
+    const r = wrap.getBoundingClientRect(), kk = r.width / IW, vw = innerWidth, barH = o.bar ? o.bar.offsetHeight : 0;
     const wr = wimg.getBoundingClientRect(), pcx = wr.left + wr.width / 2, pcy = wr.top + wr.height / 2;   // the name, as it stands on the screen
-    if (u2 > 0) {   // on down behind the name, leaning out to the left on the way, and away into the distance
-      const e = ss(u2); x = mix(x, pcx, e) - .16 * vw * Math.sin(Math.PI * u2); y = mix(y, pcy, e); z = mix(z, DEEP, e); g = mix(1, .5, e);
+    const ax = r.left + TIP[0] * kk, dir = pcx - ax > 60 * kk ? 1 : -1;                                   // the way out: toward the name when it stands beside the sword, else to the left
+    const u1 = Math.min(1, t / PA), u2 = seg(t, PA, PB);
+    const a = u1 * 2 * Math.PI + u2 * .4 * Math.PI;                                                       // once round the blade, then a slow turn on
+    const R = mix(1.25, 3, ss(u1 * 4)) * BALL0;                                                           // out from the tip's own small orbit to a clear distance from the steel within the first quarter turn
+    let z = -R * Math.cos(a), g = 1, sh = 1; const sc = F / (F - z);
+    let x = ax + dir * R * Math.sin(a) * sc * kk, y = r.top + (TIP[1] + (LOW - TIP[1]) * u1) * kk;
+    if (u2 > 0) {   // one arc: on past the blade, down behind the name and away into the dark, and off the edge of the screen from behind the letters
+      const w = ss(u2 / .6), t1 = Math.min(1, u2 / .75), f = .4 * (1 - (1 - t1) * (1 - t1)) + .6 * seg(u2, .72, 1);   // w: how far it has fallen away; f: how far along the way out: it drifts in behind the letters as it falls back, then slips away from behind them
+      const reach = 4.6 * BALL0 * .5 * kk, ex = dir > 0 ? vw + reach : -reach, ey = Math.max(pcy + 8 * kk, barH + 80);   // the way out ends beyond the edge, level with the letters (or, with the name already gone, a little under the bar)
+      x = mix(x, ex, f); y = mix(y, ey, w); z = mix(z, DEEP, ss(u2 / .3)); g = mix(1, .5, w); sh = mix(1, .42, w);
     }
-    if (u3 > 0) {   // back toward the viewer, a little left of and below the name; then a sweep through the lower left of the screen and off its right edge
-      const e1 = ss(u3 / .3), e2 = seg(u3, .3, 1), nx = pcx - .12 * vw, ny = pcy + .09 * vh;
-      x = mix(pcx, nx, e1); y = mix(pcy, ny, e1); z = mix(DEEP, 80, e1); g = mix(.5, 1.1, e1);
-      if (e2 > 0) {
-        const q = 1 - e2, cx1 = nx - .22 * vw, cy1 = ny + .26 * vh, ex = vw + 4.6 * BALL0 * 2.3 * kk * 2.4, ey = .3 * vh;   // the end lies far enough out that the longest ray has left the screen
-        x = q * q * nx + 2 * q * e2 * cx1 + e2 * e2 * ex; y = q * q * ny + 2 * q * e2 * cy1 + e2 * e2 * ey; z = mix(80, NEAR, e2); g = mix(1.1, 2.3, e2);
-      }
-    }
-    const bk = reduced ? 0 : Math.PI * ss(u1) + Math.PI * seg(u3, .3, 1), dl = -90 * ss(u1) - 90 * ss(u2);   // over the top once on the way down the blade, once more on the way out; the rays' quarter-turn, then another
-    return { x, y, z, g, a, bk, dl, kk };
+    const bk = reduced ? 0 : Math.PI * ss(u1), dl = -90 * ss(u1);   // over the top once on the way round, and the rays' quarter-turn, as the sun on the tip always did
+    return { x, y, z, g, sh, a, bk, dl, kk };
   }
   function orb() {
     const st = orbState(shown), K = st.kk * dpr, X = st.x * dpr, Y = st.y * dpr;
@@ -1075,7 +1072,7 @@ function attachSword(o) {
       const d = dirt[i]; if (d) c.clearRect(d[0], d[1], d[2], d[3]);
       if (X + reach < 0 || X - reach > VW || Y + reach < 0 || Y - reach > VH) { dirt[i] = null; return; }
       dirt[i] = [X - reach, Y - reach, 2 * reach, 2 * reach];
-      drawSun(c, X, Y, K, BALL0 * st.g, F * st.g, st.a, st.dl, side, st.bk, [0, 0, st.z * st.g]);
+      drawSun(c, X, Y, K, BALL0 * st.g, F * st.g, st.a, st.dl, side, st.bk, [0, 0, st.z * st.g], st.sh);
     });
   }
   function draw(t) {
@@ -1094,9 +1091,9 @@ function attachSword(o) {
   };
   const progress = () => leaving(o.edge === 'top' ? TIP[1] + 2.75 * BALL0 : TIP[1] - 4.7 * BALL0);
   const diamonds = () => leaving(1066);
-  /* the journey's own clock: 0 with the page at its top, 1 when the first section has reached the bar. While the viewer holds the page still, the page's own place is used */
+  /* the journey's own clock: 0 with the page at its top, 1 when the foot of the sword's part of the page has gone under the bar. While the viewer holds the page still, the page's own place is used */
   const scrollNow = () => document.body.classList.contains('locked') ? -parseFloat(document.body.style.top || '0') || 0 : scrollY;
-  const target = () => { const y = scrollNow(), n = o.next ? o.next.getBoundingClientRect().top + y - (o.bar ? o.bar.offsetHeight : 0) : innerHeight; return Math.max(0, Math.min(1, y / Math.max(1, n))); };
+  const target = () => { const y = scrollNow(), n = o.host.getBoundingClientRect().bottom + y - (o.bar ? o.bar.offsetHeight : 0); return Math.max(0, Math.min(1, y / Math.max(1, n))); };
   function frame(now) {
     if (!running) return;
     const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; clock += dt; sheenT += dt;
@@ -1120,7 +1117,7 @@ function attachSword(o) {
   document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else wake(); });
   return { set: (a, t, f) => { running = false; shown = a; fade = f || 0; draw(t || 0); }, resume: wake, progress, diamonds, target, shown: () => shown };
 }
-if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22, next: $('#websites'), bar: $('header.top') });
+if ($('#sun3d')) window.__sun = attachSword({ host: $('.hero'), wrap: $('#sword'), canvas: $('#sun3d'), plate: $('#plate'), wordImg: $('.hero .wordmark'), wordCanvas: $('#word3d'), edge: 'top', parallax: 0.22, bar: $('header.top') });
 
 /* ================= the small suns and diamonds in the rules stir gently as they cross the screen ================= */
 (() => {
