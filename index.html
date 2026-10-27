@@ -102,8 +102,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;line-height:1.1}
 /* ---------- top bar ---------- */
 .top{
   position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
-  background:linear-gradient(180deg,rgba(25,0,0,.97),rgba(25,0,0,.88));
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  background:linear-gradient(180deg,rgba(25,0,0,.97),rgba(25,0,0,.93));   /* near-solid, with no blur of what passes beneath: a full-width blur was re-drawn on every frame of a scroll, and on a wide screen that is a lot of frame */
   border-bottom:1px solid var(--line);
 }
 .top .wrap{display:flex;align-items:center;gap:18px;height:66px}
