@@ -157,8 +157,8 @@ nav.sections{margin-left:auto;min-width:0}
 .hero.drawn .sword{opacity:0}
 /* the sword and its sun are drawn as solids on this canvas, which covers the sword exactly */
 .hero .sun3d{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
-/* the sun on its journey: one canvas under the sword and the name, one over everything, both fixed to the screen */
-.orb{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+/* the sun on its journey: one canvas under the sword and the name, one over everything, each only the sun's own size and carried across the screen by a transform, so no frame repaints a surface the size of the screen */
+.orb{position:fixed;left:0;top:0;pointer-events:none;will-change:transform}
 .orb.over{z-index:30}
 }33%,35%{opacity:.78;filter:brightness(.85)}38%,62%{opacity:1;filter:brightness(1)}66%,84%{opacity:.78;filter:brightness(.85)}88%,100%{opacity:1;filter:brightness(1)}}
 }
@@ -502,7 +502,7 @@ footer .stream a:hover{color:var(--gold-white)}
       <div class="group-head rv"><h3>Geography Games</h3></div>
       <div class="sites">
 <a class="card site rv" href="https://marcothegame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://marcothegame.com/og-image.png" alt="" loading="lazy" decoding="async"></span><span class="body"><span class="t">Marco</span><span class="d">Guess the notable person from their cartographic birth and death information.</span><span class="foot"><span class="btn">Open</span><span class="url">marcothegame.com</span></span></span></a>
-<a class="card site rv" href="https://genghisgame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://genghisgame.com/og-image.png" alt="" loading="lazy" decoding="async"></span><span class="body"><span class="t">Genghis</span><span class="d">Cross from one country to another by land, through as few borders as you can.</span><span class="foot"><span class="btn">Open</span><span class="url">genghisgame.com</span></span></span></a>
+<a class="card site rv" href="https://genghisgame.com/" target="_blank" rel="noopener"><span class="shot"><img src="https://genghisgame.com/og-image.png" alt="" loading="lazy" decoding="async"></span><span class="body"><span class="t">Genghis</span><span class="d">Cross from one country to another, through as few borders as possible.</span><span class="foot"><span class="btn">Open</span><span class="url">genghisgame.com</span></span></span></a>
       </div>
     </div>
     <div class="rule soft rv" aria-hidden="true"><i></i></div>
@@ -989,16 +989,19 @@ function drawSun(ctx, cx, cy, k, BALL, F, a, dial, side, bank = 0, pos = null, s
 /* a sword with its sun: the drawing as the face of a thin solid, the diamonds dissolving, the name tilting back, all driven by where the sword is on the
    screen; and the sun's journey, driven by how far the page has been scrolled. Once round the blade from the tip, descending as the page does, at a
    clear distance from the steel; then on in one arc, down behind the name and away into the dark, smaller and dimmer as it falls from the light,
-   and off the edge of the screen from behind the letters. The sun is drawn on two canvases fixed to the screen, one under the sword and the name
-   and one over everything, and split between them at the plane of the page, so it passes behind the blade and the letters and in front of them.
+   and off the edge of the screen from behind the letters. The sun is drawn on two small canvases, one under the sword and the name and one over
+   everything, each just big enough for the sun and its rays and moved across the screen by a transform; it is split between them at the plane
+   of the page, so it passes behind the blade and the letters and in front of them.
    It follows the scroll with a short lag and a top speed, so a fast flick still shows the whole flight, and scrolling back up flies it home. */
 function attachSword(o) {
   const cv = o.canvas, ctx = cv.getContext('2d'), wrap = o.wrap, layer = document.createElement('canvas'), lc = layer.getContext('2d');
-  let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true, heroOn = true;
+  let k = 1, dpr = 1, W = 0, Hh = 0, beta = 0, fade = 0, shown = 0, bank = 0, clock = 0, sheenT = 0, last = 0, running = true, heroOn = true, plateAt = '';
   const wimg = o.wordImg, wcv = o.wordCanvas, wctx = wcv ? wcv.getContext('2d') : null; let WW = 0, WH = 0;
+  const wimgDark = document.createElement('canvas');   // the name's shaded side, made once from the image, so no frame has to filter it
+  const shadeWord = () => { if (!wimg || !wimg.complete || !wimg.naturalWidth || wimgDark.width) return; wimgDark.width = wimg.naturalWidth; wimgDark.height = wimg.naturalHeight; const c = wimgDark.getContext('2d'); c.filter = 'brightness(.4) saturate(1.15)'; c.drawImage(wimg, 0, 0); c.filter = 'none'; };
   const under = document.createElement('canvas'), over = document.createElement('canvas'); under.className = 'orb'; over.className = 'orb over';
   wrap.parentNode.insertBefore(under, wrap); document.body.appendChild(over);
-  const uc = under.getContext('2d'), oc = over.getContext('2d'); let VW = 0, VH = 0; const dirt = [null, null];   // the patch each canvas was last drawn on
+  const uc = under.getContext('2d'), oc = over.getContext('2d'); let VW = 0, VH = 0, RCH = 0, S = 0, orbAt = '';   // RCH: the farthest any ray reaches from the sun's centre (device px); S: the side of each sun canvas; orbAt: where the canvases last went
   function size() {
     dpr = Math.min(devicePixelRatio || 1, 3);
     W = Math.round(wrap.offsetWidth * dpr); Hh = Math.round(wrap.offsetHeight * dpr); k = W / IW;
@@ -1006,7 +1009,8 @@ function attachSword(o) {
     cv.style.width = wrap.offsetWidth + 'px'; cv.style.height = wrap.offsetHeight + 'px';
     if (wcv) { const qw = wimg.offsetWidth, qh = wimg.offsetHeight; WW = Math.round(qw * dpr); WH = Math.round(qh * dpr); if (wcv.width !== WW || wcv.height !== WH) { wcv.width = WW; wcv.height = WH; } wcv.style.width = qw + 'px'; wcv.style.height = qh + 'px'; }
     VW = Math.round(innerWidth * dpr); VH = Math.round(innerHeight * dpr);
-    [under, over].forEach(c => { if (c.width !== VW || c.height !== VH) { c.width = VW; c.height = VH; } }); dirt[0] = dirt[1] = null; orbKey = '';
+    RCH = Math.ceil(4.6 * BALL0 * k * 1.5 + 8 * dpr); S = 2 * RCH;
+    [under, over].forEach(c => { if (c.width !== S || c.height !== S) { c.width = S; c.height = S; } c.style.width = c.style.height = S / dpr + 'px'; }); orbKey = ''; orbAt = '';
   }
   const ss = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x), seg = (x, a, b) => ss((x - a) / (b - a)), mix = (a, b, t) => a + (b - a) * t;
   function sword() {
@@ -1036,12 +1040,13 @@ function attachSword(o) {
     if (!wcv || !wimg.complete || !wimg.naturalWidth) return;
     const iw = wimg.naturalWidth, ih = wimg.naturalHeight, kk = WW / iw, N = 48, sw = iw / N, FW = 2600 * iw / 910, cxw = iw / 2, cyw = ih / 2;
     wctx.clearRect(0, 0, WW, WH);
+    shadeWord();
     const pass = (dark, ex) => {
-      wctx.filter = dark ? 'brightness(.4) saturate(1.15)' : 'none';
+      const src = dark && wimgDark.width ? wimgDark : wimg; wctx.filter = dark && !wimgDark.width ? 'brightness(.4) saturate(1.15)' : 'none';
       for (let i = 0; i < N; i++) {
         const x0 = i * sw, xm = x0 + sw / 2 - cxw, xr = xm * Math.cos(beta), zr = -xm * Math.sin(beta), sc = FW / (FW - zr);
         const dw = sw * Math.cos(beta) * sc * kk + .6, dh = ih * sc * kk, dx = (cxw + xr * sc - sw * Math.cos(beta) * sc / 2) * kk + ex, dy = (cyw - ih * sc / 2) * kk;
-        wctx.drawImage(wimg, x0, 0, sw, ih, dx, dy, dw, dh);
+        wctx.drawImage(src, x0, 0, sw, ih, dx, dy, dw, dh);
       }
       wctx.filter = 'none';
     };
@@ -1079,20 +1084,21 @@ function attachSword(o) {
   let orbKey = '';
   function orb() {
     const st = orbState(shown), K = st.kk * dpr, X = st.x * dpr, Y = st.y * dpr;
-    const key = [X, Y, K, st.z, st.sh, st.face, st.bk, st.dl, VW, VH].map(v => Math.round(v * 100)).join(); if (key === orbKey) return; orbKey = key;   // nothing has moved: nothing to draw
-    const reach = 4.6 * BALL0 * K * 1.5 + 8 * dpr;   // the farthest any ray can reach on the screen
-    [[uc, -1, 0], [oc, 1, 1]].forEach(([c, side, i]) => {
-      const d = dirt[i]; if (d) c.clearRect(d[0], d[1], d[2], d[3]);
-      if (X + reach < 0 || X - reach > VW || Y + reach < 0 || Y - reach > VH) { dirt[i] = null; return; }
-      dirt[i] = [X - reach, Y - reach, 2 * reach, 2 * reach];
-      drawSun(c, X, Y, K, BALL0, F, st.face, st.dl, side, st.bk, [0, 0, -1.25 * BALL0], st.sh, -st.z - 1.25 * BALL0);   // drawn as the sun on the tip is drawn, a little behind its own centre point; the page's plane lies at -z from the sun
+    const key = [X, Y, K, st.z, st.sh, st.face, st.bk, st.dl, S].map(v => Math.round(v * 100)).join(); if (key === orbKey) return; orbKey = key;   // nothing has moved: nothing to draw
+    const off = X + RCH < 0 || X - RCH > VW || Y + RCH < 0 || Y - RCH > VH;   // wholly off the screen
+    const at = off ? '' : `translate3d(${Math.round(X - RCH) / dpr}px,${Math.round(Y - RCH) / dpr}px,0)`;   // the canvases carried to the sun, to the device pixel, so the drawing stays crisp
+    if (at !== orbAt) { orbAt = at; [under, over].forEach(c => { c.style.transform = at; c.style.visibility = off ? 'hidden' : ''; }); }
+    if (off) return;
+    [[uc, -1], [oc, 1]].forEach(([c, side]) => {
+      c.clearRect(0, 0, S, S);
+      drawSun(c, RCH, RCH, K, BALL0, F, st.face, st.dl, side, st.bk, [0, 0, -1.25 * BALL0], st.sh, -st.z - 1.25 * BALL0);   // drawn as the sun on the tip is drawn, a little behind its own centre point; the page's plane lies at -z from the sun
     });
   }
   function draw(t) {
     ctx.clearRect(0, 0, W, Hh);
     beta = reduced ? 0 : 5 * Math.PI / 180 * Math.sin(t / 26 * Math.PI * 2);
     sword(); wordmark();
-    if (o.plate) { const e = reduced ? 0 : bank, h = o.plate.offsetHeight; o.plate.style.transform = `perspective(850px) translateY(${(-h * 0.04 * e).toFixed(1)}px) rotateX(${(52 * e).toFixed(2)}deg) scale(${(1 - 0.18 * e).toFixed(3)})`; }
+    if (o.plate) { const e = reduced ? 0 : bank, h = o.plate.offsetHeight, t = `perspective(850px) translateY(${(-h * 0.04 * e).toFixed(1)}px) rotateX(${(52 * e).toFixed(2)}deg) scale(${(1 - 0.18 * e).toFixed(3)})`; if (t !== plateAt) { plateAt = t; o.plate.style.transform = t; } }
     orb();
   }
   /* how far a point of the drawing has travelled toward leaving the screen: 0 at rest, 1 the moment it has crossed the edge */
@@ -1115,7 +1121,7 @@ function attachSword(o) {
     shown += d; if (Math.abs(p - shown) < .0004) shown = p;
     const tb = 1.6 - 1.45 * lv; bank += (lv - bank) * (1 - Math.exp(-dt / tb)); if (Math.abs(lv - bank) < .0005) bank = lv;   // the name's tilt, eased, never wrapped: it holds at the end
     fade = diamonds();
-    draw(clock);
+    if (heroOn) draw(clock); else orb();   // with the sword off the screen only the sun has anything left to do
     if (!heroOn && shown === p) { running = false; return; }   // the sword is off the screen and the sun has nowhere left to go
     requestAnimationFrame(frame);
   }
