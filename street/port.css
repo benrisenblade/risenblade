@@ -1,0 +1,98 @@
+/* ===================================================================================================
+   PORT  —  what the street look needs to carry the whole of Risenblade: the sword as the mark, the sound button's
+   two states, the lines under headings, galleries at their own proportions, and the viewer and the password gate
+   brought over from the current site and redrawn in the kit's palette. Link last, after risenblade.css.
+   =================================================================================================== */
+
+/* the masthead: the real sword, in the voice colour, cut from the site's own drawing */
+.top h1 .home{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.top h1 .sitemark{flex:none;display:block;width:28px;height:28px;color:var(--voice);background:currentColor;
+  -webkit-mask:url(../img/brand/sword.png) center/contain no-repeat;mask:url(../img/brand/sword.png) center/contain no-repeat}
+.top h1 .home span{background:var(--ombre-mark);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:st-wordsweep 38s steps(190) infinite;padding:.12em .1em .3em 0;margin:-.12em 0 -.3em}
+.top h1{background:none;color:inherit;animation:none;padding:0;margin:0}
+@media (prefers-reduced-motion:reduce){.top h1 .home span{animation:none}}
+
+/* the sound button: the speaker with its waves when on, crossed when off (the current site's glyph) */
+.top .sound .waves{opacity:0;transition:opacity .6s ease}
+.top .sound .mute{opacity:1;transition:opacity .6s ease}
+.top .sound[aria-pressed="true"]{color:var(--ink)}
+.top .sound[aria-pressed="true"] .waves{opacity:1}
+.top .sound[aria-pressed="true"] .mute{opacity:0}
+
+/* a line under a group heading or a sub-heading: the kit's label */
+.lede{margin:-16px 0 0;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.sub-d{margin:-12px 0 22px;max-width:34em;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);text-wrap:pretty}
+
+/* art: shown whole, at its own proportions, in columns; no box, no outline, no corner, no dissolve */
+.works{display:block;columns:2;column-gap:10px}
+.works li{break-inside:avoid;margin:0 0 10px}
+.works .work{margin:0;cursor:zoom-in;-webkit-tap-highlight-color:transparent}
+.works .work img{display:block;width:100%;height:auto;aspect-ratio:var(--ar,1);object-fit:cover;opacity:0;transition:opacity .9s ease}
+.works .work img.in{opacity:1}
+.works .cap span{display:block;margin-top:2px;opacity:.75}
+.works .work:focus-visible{outline:2px solid rgba(234,230,220,.7);outline-offset:3px}
+@media (min-width:700px){.works{columns:4;column-gap:14px}.works li{margin-bottom:14px}}
+
+/* releases: covers at the kit's tile size, the year at the right */
+.rows.plain .tile{border-radius:4px}
+
+/* writing: a lock drawn from the page's symbol */
+.piece .lock{fill:currentColor}
+.piece.unlocked .lock{opacity:.55}
+
+/* the foot: one line, in the kit's footer */
+footer .line{display:block;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- the viewer: pictures and documents open over the page, in black; its bar set in the caps ---- */
+body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
+.viewer{outline:none;--dim:1;position:fixed;inset:0;z-index:100;display:none;flex-direction:column;background:rgba(0,0,0,calc(.96 * var(--dim)));padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);user-select:none;-webkit-user-select:none}
+.viewer.open{display:flex}
+.viewer.dragging .stage img{transition:none}
+.viewer .vbar{display:flex;align-items:center;gap:14px;padding:14px var(--axis);flex:none;border-bottom:1px solid var(--rule)}
+.viewer .vbar h3{margin:0;flex:1;min-width:0;display:grid;font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+.viewer .vbar h3 .tt{grid-area:1/1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--ombre);-webkit-background-clip:text;background-clip:text;color:transparent;padding:.1em 0 .2em;margin:-.1em 0 -.2em}
+.viewer .vbar h3 .nxt{opacity:0}
+.viewer .vbar h3.anim .tt{transition:opacity .4s ease}
+.viewer .vbar .n{display:grid;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.06em;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.viewer .vbar .n .nn{grid-area:1/1;white-space:nowrap}
+.viewer .vbar .n .nxt{opacity:0}
+.viewer .vbar .n.anim .nn{transition:opacity .4s ease}
+.viewer .stage{flex:1;min-height:0;overflow:auto;position:relative;display:flex;align-items:flex-start;justify-content:center;padding:18px}
+.viewer.img .stage{align-items:center}
+.viewer.gal .stage{padding:0;overflow:hidden;justify-content:flex-start}
+.viewer .track{display:flex;width:300%;height:100%;flex:none;will-change:transform}
+.viewer .track.anim{transition:transform .42s cubic-bezier(.22,.61,.36,1)}
+.viewer .slide{width:33.3333%;flex:none;display:flex;align-items:center;justify-content:center;padding:18px}
+.viewer .slide .msg{margin:0}
+.viewer .stage img{max-width:100%;max-height:calc(100dvh - 120px);object-fit:contain;margin:auto}
+.viewer .pages{display:flex;flex-direction:column;gap:14px;align-items:center;width:100%;max-width:980px;margin:0 auto}
+.viewer .pages .pg{max-width:100%;background:rgba(255,255,255,.04)}
+.viewer .pages canvas{max-width:100%;height:auto;display:block;background:#fff;pointer-events:none}
+.viewer .text{max-width:36em;margin:0 auto;padding:10px 6px 60px;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.65;color:var(--ink);white-space:pre-wrap;user-select:text;-webkit-user-select:text}
+.viewer .text h2{font-family:var(--caps);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 22px}
+.viewer .msg{margin:auto;color:var(--ink-2);text-align:center;max-width:44ch;font-size:14px;line-height:1.55;letter-spacing:.02em}
+.viewer .msg b{display:block;margin-bottom:8px;font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.viewer .navbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+.viewer .navbtn.prev{left:8px}
+.viewer .navbtn.next{right:8px}
+.iconbtn{width:40px;height:40px;border:0;border-radius:0;background:none;cursor:pointer;color:var(--ink-2);display:grid;place-items:center;padding:0;flex:none;-webkit-tap-highlight-color:transparent;transition:color .6s ease,opacity .6s ease}
+.iconbtn svg{width:20px;height:20px}
+.iconbtn:active{opacity:.55}
+@media (hover:hover){.iconbtn:hover{color:var(--ink)}}
+
+/* ---- the password gate: bare words on the black, the field a hairline, as the kit draws a field ---- */
+.gate{position:fixed;inset:0;z-index:120;display:none;place-items:center;background:rgba(0,0,0,.92);padding:20px}
+.gate.open{display:grid}
+.gate .box{width:min(420px,100%);padding:0 var(--axis)}
+.gate h3{margin:0;font-family:var(--caps);font-weight:800;font-size:17px;letter-spacing:.06em;text-transform:uppercase;background:var(--ombre-bright);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.12em;margin-bottom:-.12em}
+.gate p{margin:14px 0 22px;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.gate form{display:flex;gap:16px;align-items:center}
+.gate input{flex:1;min-width:0;height:44px;padding:0;border:0;border-bottom:1px solid var(--rule);border-radius:0;background:none;color:var(--ink);caret-color:var(--ink);font-family:var(--caps);font-weight:800;font-size:15px;letter-spacing:.06em;-webkit-appearance:none;appearance:none;box-shadow:none;transition:border-color var(--slow) ease}
+.gate input:focus{outline:none;border-bottom-color:var(--ice)}
+.gate input::placeholder{color:var(--ink-2);opacity:.6;font-weight:800;text-transform:uppercase}
+.gate .btn{flex:none;padding:10px 0;border:0;background:none;color:var(--ink);cursor:pointer;font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;-webkit-tap-highlight-color:transparent;transition:opacity .6s ease}
+.gate .btn.quiet{color:var(--ink-2)}
+.gate .btn.pressed,.gate .btn:active{opacity:.55}
+.gate .err{color:#e0a7a0;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.04em;margin:12px 0 0;min-height:1.4em}
+.gate .row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:10px}
+.gate .status{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}

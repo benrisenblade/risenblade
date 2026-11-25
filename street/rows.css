@@ -1,0 +1,51 @@
+/* ===================================================================================================
+   ROWS  —  the hub page's lines, on top of street.css and handover.css. Link it after both.
+   A page of sites: a masthead that carries the group you are in, group headings in the wordmark's blue,
+   and one row per site made of its share image, its name in the caps, and one line about it.
+   First built for Index by Ben (indexben.com). See README.md for what each rule is for and what was tried and dropped.
+   =================================================================================================== */
+:root{--measure:1168px}                       /* wide rows want most of a desktop window; the axis is still 24 px */
+
+/* the page's light, a quarter down from the kit's (.24 and .14), so the pictures and the ground between them sit darker together */
+.lt-broad{background:radial-gradient(900px 760px at 24% 26%,rgba(var(--light-a),.18),transparent 62%)}
+.lt-near{background:radial-gradient(48vmax 44vmax at 37.3% 38.5%,rgba(var(--light-a),.105),transparent 70%)}
+
+/* the masthead: the mark and the wordmark on one row, on the same axis as the page */
+.top{padding-left:max(var(--axis),calc(50% - var(--measure) / 2 + var(--axis)));padding-right:max(var(--axis),calc(50% - var(--measure) / 2 + var(--axis)))}
+.top h1{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.top h1 .sitemark{flex:none;display:block;width:28px;height:28px;color:#c3d0ec}
+.brand-name{align-content:center}             /* the name sits on the bar's centre line, where the wordmark did */
+
+/* the two groups: a heading in the caps, the one loud thing on the page */
+main{gap:0;padding-top:40px;padding-bottom:72px}
+.group + .group{margin-top:96px}
+/* the group headings take the wordmark's own blue, on the page and in the masthead alike, drifting on the same clock */
+.group .name,.brand-name .h{background:var(--ombre-mark);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:st-wordsweep 38s steps(190) infinite}
+.group .name{font-size:clamp(19px,6.2vw,24px)}
+.brand-name .h{font-size:17px;line-height:1.3}   /* in the masthead a heading is set at the wordmark's size, so the bar's words change and its weight does not */
+@media (prefers-reduced-motion:reduce){.group .name,.brand-name .h{animation:none}}
+.group .name{margin-bottom:28px}
+
+/* a site: its picture, its name in the caps, and a line about it. No box and no rule: room does the separating. */
+.sites{margin:0;padding:0;list-style:none;display:grid;row-gap:56px}
+.site{--bleed:var(--axis);display:grid;grid-template-columns:minmax(0,1fr);text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent}
+/* the picture has no edge. On a phone it runs the full width of the screen, so it has no sides at all, and its top and foot
+   dissolve into the ground. Beside its words on a wide window it cannot reach the screen's edge, so there its sides run a little
+   past the axis and dissolve the same way. */
+.shot{--v:linear-gradient(180deg,transparent 0,rgba(0,0,0,.45) 6%,#000 14%,#000 86%,rgba(0,0,0,.45) 94%,transparent 100%);
+  display:block;aspect-ratio:1200 / 630;margin:0 calc(var(--bleed) * -1);-webkit-mask-image:var(--v);mask-image:var(--v);
+  mix-blend-mode:screen}   /* the picture is laid over the ground as light on light: where it is dark the ground's own light shows through, so a dark picture is never darker than the page round it */
+.shot img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.shot img.in{opacity:1}
+.site .t{display:block;margin-top:10px;font-family:var(--caps);font-weight:800;font-size:15px;line-height:1.25;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--ombre);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.1em;margin-bottom:-.1em}
+.site .d{display:block;margin-top:8px;max-width:34em;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);text-wrap:pretty}   /* the kit's label: the line under a name, in small tracked caps */
+@media (min-width:700px){
+  .sites{row-gap:44px}
+  .site{--bleed:20px;grid-template-columns:288px minmax(0,1fr);grid-template-areas:"shot t" "shot d";grid-template-rows:auto 1fr;column-gap:32px}
+  .shot{grid-area:shot;align-self:start;--h:linear-gradient(90deg,transparent 0,rgba(0,0,0,.5) calc(var(--bleed) * .55),#000 var(--bleed),#000 calc(100% - var(--bleed)),rgba(0,0,0,.5) calc(100% - var(--bleed) * .55),transparent 100%);
+    -webkit-mask-image:var(--h),var(--v);mask-image:var(--h),var(--v);-webkit-mask-composite:source-in;mask-composite:intersect}
+  .site .t{grid-area:t;margin-top:calc(630 / 1200 * 328px * .14);font-size:16px}   /* the capitals start where the picture comes to full strength */
+  .site .d{grid-area:d;font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){.shot img{transition:none}}

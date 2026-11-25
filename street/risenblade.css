@@ -1,0 +1,42 @@
+/* ===================================================================================================
+   RISENBLADE  —  what this site needs beyond the hub rows: sub-headings inside a group, galleries of art,
+   releases, and writing with a sentence about each piece. Link last, after voice.css. See README.md.
+   =================================================================================================== */
+/* a sub-heading inside a group: the caps, small and grey, so the group heading stays the one loud thing */
+.sub-h{margin:56px 0 22px;font-family:var(--caps);font-weight:800;font-size:13px;line-height:1.2;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.group .name + .sub-h{margin-top:0}
+
+/* the masthead's sound button: a bare glyph on the right axis, as on the current site */
+.top .sound{flex:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-right:-4px;padding:0;border:0;background:none;color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .6s ease}
+.top .sound svg{display:block;width:18px;height:18px}
+.top .sound.is-down{opacity:.55}
+
+/* art: pictures shown whole. No box, no outline, no rounded corners, and no dissolve: a painting keeps its edges. */
+.works{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.works li{min-width:0}
+.works img,.works .ph{display:block;width:100%;aspect-ratio:1 / 1;object-fit:cover;opacity:0;transition:opacity .9s ease}
+.works img.in{opacity:1}
+.works .ph{opacity:1;background:linear-gradient(135deg,#0c1322,#05080f)}   /* starter only: stands in for a picture */
+.works .cap{display:block;margin-top:8px;font-family:var(--sans);font-weight:500;font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+@media (min-width:700px){.works{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}}
+
+/* releases: the kit's own album row (street.css, section 9), with the hairlines between rows taken out as on the hub */
+.rows.plain .row{border-top:0;padding:14px 0}
+.rows.plain .row:first-child{padding-top:0}
+.rows.plain .row .t{font-family:var(--caps);font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;line-height:1.25;margin-top:0}
+.tile.ph{opacity:1;background:linear-gradient(135deg,#0c1322,#05080f)}       /* starter only */
+
+/* writing: each piece gets room. Its title in the caps, what it is underneath, and one sentence about it in the serif.
+   A closed piece shows a lock beside what it is, and is otherwise set the same. No box, no rule. */
+.pieces{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:minmax(0,1fr);row-gap:52px}
+.piece{display:block;width:100%;max-width:34em;margin:0;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.piece .t{display:block;font-family:var(--caps);font-weight:800;font-size:19px;line-height:1.22;letter-spacing:.06em;text-transform:uppercase;text-wrap:balance;
+  background:var(--ombre-bright);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.12em;margin-bottom:-.12em}
+.piece .d{display:flex;align-items:center;gap:8px;margin-top:9px;font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.piece .lock{flex:none;display:block;width:12px;height:12px;color:var(--voice)}
+.piece .x{display:block;margin-top:14px;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:16.5px;line-height:1.6;color:var(--ink);opacity:.86;text-wrap:pretty}
+@media (min-width:700px){.pieces{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:72px;row-gap:56px}.piece .t{font-size:20px}}
+
+/* the reader: where a piece of writing opens in the page. Reading text is the one place for a serif. */
+.reader{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:17px;line-height:1.65;color:var(--ink);max-width:36em;user-select:text;-webkit-user-select:text}

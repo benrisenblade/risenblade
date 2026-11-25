@@ -1,0 +1,12 @@
+/* ===================================================================================================
+   VOICE  —  the one colour that is the page's own: the wordmark, the mark, the group headings, the light.
+   Risenblade takes the kit's blue, the same as Index by Ben, Atlas by Ben, and Albumhound. A gold voice from the
+   sword mark was mocked beside it and Ben chose the blue (see README, "Tried and dropped").
+   Link after street.css, handover.css, and rows.css.
+   =================================================================================================== */
+:root{
+  --voice:#c3d0ec;                                                       /* the mark, a lock, a live glyph */
+  --ombre-mark:linear-gradient(135deg,#a9c6f7,#d3dcf4 52%,#eef0f4);      /* the wordmark and the group headings */
+  --light-a:44,76,138; --light-b:176,200,246; --blue:94,142,226;        /* the light, its pale edge, the masthead's wash */
+}
+.top h1 .sitemark{color:var(--voice)}

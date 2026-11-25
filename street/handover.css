@@ -1,0 +1,38 @@
+/* ===================================================================================================
+   HANDOVER  —  the masthead gives way to the page's own heading as it scrolls under, and takes it back on the way up.
+   Two layers in the masthead, one lit at a time, each fading on its own curve: leaving quickly then easing out, arriving
+   slowly then quickly. Between them the bar is plain for a beat. Nothing moves, nothing is clipped: two opacities on two layers.
+   The page's own heading is hushed while the masthead carries it, so the name is never on screen twice.
+   Markup (inside the masthead's .brand):
+     <span class="brand-site"> …the wordmark… </span>
+     <span class="brand-name" aria-hidden="true"><span class="h"></span><span class="sub"></span></span>
+   The script (handover.js) sets .away and .named on the masthead, and .hushed on the page's heading.
+   Durations come from the script's options (it sets --ho-out, --ho-in, --ho-name-out on the masthead).
+   =================================================================================================== */
+.top .brand{display:grid;position:relative;flex:1 1 auto;min-width:0}
+/* the wordmark: returning, slowly then quickly; leaving, quickly then easing out */
+.brand-site{display:grid;gap:3px;opacity:1;will-change:opacity;transition:opacity var(--ho-in,1.1s) cubic-bezier(.65,0,.8,.3)}
+.top.away .brand-site{opacity:0;transition:opacity var(--ho-out,1.1s) cubic-bezier(.2,.7,.3,1)}
+/* the name: arriving, slowly then quickly; leaving, quickly then easing out */
+.brand-name{position:absolute;inset:0;display:grid;gap:5px;align-content:start;pointer-events:none;min-width:0;opacity:0;will-change:opacity;transition:opacity var(--ho-name-out,.8s) cubic-bezier(.2,.7,.3,1)}
+.top.named .brand-name{opacity:1;transition:opacity var(--ho-in,1.1s) cubic-bezier(.65,0,.8,.3)}
+/* the name and its note are set exactly as on the page (same face, size, weight, spacing, case), so the page scrolling under the bar
+   changes where the words are and nothing about them */
+.brand-name .h{font-family:var(--caps,"Montserrat",sans-serif);font-weight:800;font-size:20px;letter-spacing:.06em;text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:var(--ombre-bright,linear-gradient(135deg,#f4f0e6,#ece7db 52%,#e2dccd));-webkit-background-clip:text;background-clip:text;color:transparent;padding:.12em .1em .3em 0;margin:-.12em 0 -.3em}
+.brand-name .sub{font-family:var(--sans,"Manrope",sans-serif);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:var(--ombre-dim,linear-gradient(135deg,#a3a8b6,#979daa 52%,#8a909e));-webkit-background-clip:text;background-clip:text;color:transparent;padding:.05em 0 .25em;margin:-.05em 0 -.25em}
+.brand-name .sub:empty{display:none}
+/* anything else in the masthead that belongs to the wordmark (a mark, a link) leaves with it and returns with it */
+.top .with-site{transition:opacity var(--ho-in,1.1s) cubic-bezier(.65,0,.8,.3)}
+.top.away .with-site{opacity:0;pointer-events:none;transition:opacity var(--ho-out,1.1s) cubic-bezier(.2,.7,.3,1)}
+/* anything that belongs to the name (a picture beside it) arrives with it and leaves with it */
+.top .with-name{opacity:0;transition:opacity var(--ho-name-out,.8s) cubic-bezier(.2,.7,.3,1)}
+.top.named .with-name{opacity:1;transition:opacity var(--ho-in,1.1s) cubic-bezier(.65,0,.8,.3)}
+/* the page's own heading (and whatever is hushed with it): quick to go, since it is under the bar by then; slow to come back,
+   and only after the masthead's name has gone, so the name is never on screen twice whichever way the page is going */
+.hush{will-change:opacity;transition:opacity 1.4s ease .6s}
+.hush.hushed{opacity:0;transition-duration:.2s;transition-delay:0s}
+/* while the masthead carries the name, a tap on it takes the page back to the top */
+.top.named,.top.away{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.brand-site,.brand-name,.top .with-site,.top .with-name,.hush{transition:none}}

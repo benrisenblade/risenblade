@@ -1,0 +1,220 @@
+/* ===================================================================================================
+   STREET  —  the Albumhound look, as a kit
+   Black ground, one blue light from the top left, no boxes. Names, menus, and typed words in Montserrat caps;
+   everything else in Manrope. Ivory words, grey details, ice for anything live. One 24 px axis. Every change
+   of state slow and seamless. Native scroll. Nothing selects or pops a callout on a long press.
+   Fonts: <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+   =================================================================================================== */
+
+/* ---- 1. Tokens ------------------------------------------------------------------------------------ */
+:root{
+  color-scheme:dark;
+  --ground:#000000;                   /* the page */
+  --navy:#020308;                     /* the masthead, the bar, the footer: a shade above the ground */
+  --navy-2:#0a1220;                   /* a disc or a tile with nothing in it */
+  --ink:#eae6dc;                      /* ivory: the words */
+  --ink-2:#a6adbf;                    /* cool grey: details, labels, years, marks */
+  --ice:#dfe3ea;                      /* anything live: a progress hairline, the hint, the caret */
+  --rule:#182338;                     /* the hairline under the masthead and over a bar */
+  --row-rule:rgba(166,173,191,.16);   /* between rows */
+  --light-a:44,76,138;                /* the one light (rgb) */
+  --light-b:176,200,246;              /* its pale edge, in the hairlines */
+  --blue:94,142,226;                  /* the wash that drifts across the masthead */
+  /* the sweeps: letters are clipped out of a short 135° gradient, so even still words carry a little light */
+  --ombre-bright:linear-gradient(135deg,#f4f0e6,#ece7db 52%,#e2dccd);   /* the names */
+  --ombre:linear-gradient(135deg,#e9e4d8,#e1dbcd 52%,#d6cfbf);          /* the words */
+  --ombre-dim:linear-gradient(135deg,#a3a8b6,#979daa 52%,#8a909e);      /* the details */
+  --ombre-faint:linear-gradient(135deg,#dfe3ea,#d8dce4 52%,#cfd3dc);    /* the hint: ice */
+  --ombre-mark:linear-gradient(135deg,#a9c6f7,#d3dcf4 52%,#eef0f4);     /* the wordmark alone: blue into ice */
+  --caps:"Montserrat",ui-sans-serif,system-ui,sans-serif;
+  --sans:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --axis:24px;                        /* the one left edge and the one right edge */
+  --measure:656px;                    /* the content's width, axis to axis */
+  --row-gap:24px;                     /* tile to tile */
+  --tile:68px;                        /* a cover, an icon */
+  --slow:1.1s;                        /* a change of state */
+  --in:cubic-bezier(.65,0,.8,.3);     /* arriving: slowly, then quickly */
+  --out:cubic-bezier(.2,.7,.3,1);     /* leaving: quickly, then easing out */
+  --fold:cubic-bezier(.65,0,.35,1);   /* folding open or shut */
+}
+
+/* ---- 2. Page -------------------------------------------------------------------------------------- */
+*{box-sizing:border-box}
+html{background:var(--ground);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;font-family:var(--sans);font-size:15px;line-height:1.45;font-variant-numeric:tabular-nums;color:var(--ink);-webkit-font-smoothing:antialiased;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}   /* nothing on the page selects or pops a callout; only a field takes text */
+input,textarea{user-select:text;-webkit-user-select:text}
+img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+button,input,select{font:inherit;color:inherit}
+a{color:inherit}
+::selection{background:rgba(234,230,220,.28)}
+main{flex:1 0 auto;width:100%;max-width:var(--measure);margin:0 auto;padding:16px var(--axis) 28px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-content:start}
+main>*{min-width:0}
+
+/* ---- 3. The light --------------------------------------------------------------------------------- 
+   One broad light drifting over 46 s, a nearer one wandering on its own path and breathing, a vignette at the foot.
+   Each is a sheet painted once and only moved, so the phone draws it on its own thread.
+   Markup, first in <body>:  <div class="lights" aria-hidden="true"><i class="lt-broad"></i><i class="lt-near"></i></div> */
+.lights{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.lights i{position:absolute;display:block;will-change:transform,opacity;backface-visibility:hidden}
+.lights::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.34));pointer-events:none}
+.lt-broad{left:0;top:0;width:140vw;height:140vh;background:radial-gradient(900px 760px at 24% 26%,rgba(var(--light-a),.24),transparent 62%);animation:st-drift 46s ease-in-out infinite alternate}
+.lt-near{left:-60vw;top:-40vh;width:220vw;height:180vh;mix-blend-mode:screen;background:radial-gradient(48vmax 44vmax at 37.3% 38.5%,rgba(var(--light-a),.14),transparent 70%);animation:st-near 17s ease-in-out infinite alternate,st-breathe 7.5s ease-in-out infinite}
+@keyframes st-drift{0%{transform:translate(-5.71%,-5.71%)}50%{transform:translate(-20%,-11.43%)}100%{transform:translate(-10%,-22.86%)}}
+@keyframes st-near{0%{transform:translate(-1.5%,-9.8%)}50%{transform:translate(6.2%,.9%)}100%{transform:translate(-4.7%,8.9%)}}
+@keyframes st-breathe{0%,100%{opacity:.85}50%{opacity:1}}
+
+/* ---- 4. The masthead ------------------------------------------------------------------------------ 
+   <header class="top"><div class="brand"><h1><span class="l">Line one</span> <span class="l">Line two</span></h1></div>
+     <a class="mark" href="…"><svg class="mark-ico">…</svg><span class="mark-w">Index by Ben</span></a></header> */
+.top{position:sticky;top:0;z-index:60;background:var(--navy);overflow:hidden;isolation:isolate;transform:translateZ(0);color:#fff;
+  border-bottom:1px solid var(--rule);border-image:linear-gradient(90deg,rgba(var(--blue),.15),rgba(var(--blue),.75) 28%,rgba(var(--light-b),.7) 72%,rgba(var(--light-b),.15)) 1;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(12px + env(safe-area-inset-top,0px)) var(--axis) 12px}
+.top::before{content:"";position:absolute;top:0;bottom:0;left:0;width:220%;z-index:-1;pointer-events:none;will-change:transform;   /* the wash: a sheet of the light slid across the bar, there and back, over most of a minute */
+  background:linear-gradient(118deg,rgba(var(--blue),.24),rgba(5,9,18,0) 46%,rgba(var(--light-b),.12) 100%);animation:st-wash 46s ease-in-out infinite}
+@keyframes st-wash{0%{transform:translateX(0)}50%{transform:translateX(-54.5%)}100%{transform:translateX(0)}}
+.top .brand{flex:1 1 auto;min-width:0}
+.top h1{margin:0;font-family:var(--caps);font-weight:800;font-size:17px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;
+  background:var(--ombre-mark);-webkit-background-clip:text;background-clip:text;color:transparent;padding:.12em .1em .3em 0;margin:-.12em 0 -.3em;
+  background-size:220% 100%;animation:st-wordsweep 38s steps(190) infinite}   /* the wordmark's own sweep drifts, ten repaints a second */
+.top h1 .l{display:block}
+@keyframes st-wordsweep{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.top .mark{flex:none;display:inline-flex;align-items:center;gap:6px;align-self:flex-end;height:24px;color:var(--ink-2);text-decoration:none;white-space:nowrap}   /* a bare link, its last letter on the right axis */
+.top .mark-w{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;line-height:1}
+.top .mark-ico{flex:none;display:block;width:16px;height:16px}
+@media (max-width:370px){.top .mark-w{display:none}}
+
+/* ---- 5. Type ---------------------------------------------------------------------------------------
+   Four cuts, each a class you can put on anything. The letters are clipped out of a sweep (see 1). */
+.name{font-family:var(--caps);font-weight:800;font-size:24px;line-height:1.1;letter-spacing:.06em;text-transform:uppercase;text-wrap:balance;margin:0;
+  background:var(--ombre-bright);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.12em;margin-bottom:-.12em}
+.caps{font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.2}        /* menus, tabs, typed words */
+.words{font-family:var(--sans);font-weight:600;font-size:17px;line-height:1.25;letter-spacing:0;background:var(--ombre);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.1em;margin-bottom:-.1em}
+.words em{font-style:normal;font-weight:500}                                                                                      /* a subtitle: a weight lighter, never italic */
+.detail{font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.3;letter-spacing:.04em;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.label{font-family:var(--sans);font-weight:500;font-size:12px;line-height:1.45;letter-spacing:.06em;text-transform:uppercase;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hint{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.55;background:var(--ombre-faint);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lit-dim{background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lit-bright{background:var(--ombre-bright);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- 6. The field --------------------------------------------------------------------------------- 
+   Bare words on the ground: no box, no line, no button. The caret alone says it is live. Typed letters show in caps.
+   <form class="field"><input …><span class="field-hint"><svg class="glass">…</svg><span class="hint">Any artist</span></span>
+   <ul class="menu" hidden></ul></form>  +  <div class="scrim"></div> once on the page */
+.field{position:relative;padding:8px 0 10px}
+.field input{display:block;width:100%;height:56px;line-height:normal;font-family:var(--caps);font-size:15px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:0;border:0;border-radius:0;background:none;color:var(--ink);caret-color:var(--ink);min-width:0;box-shadow:none;-webkit-appearance:none;appearance:none;transition:opacity .6s ease}
+.field input:focus{outline:none}
+.field input::placeholder{color:transparent}   /* the hint is drawn by .field-hint, in the sweep */
+.field input.clearing{opacity:0}               /* letters left on a tap-off fade away, then go (street.js) */
+.field-hint{position:absolute;left:0;top:10px;height:56px;display:flex;align-items:center;gap:12px;pointer-events:none;white-space:nowrap;transition:opacity .6s ease}
+.field.typed .field-hint{opacity:0}
+.glass{flex:none;display:block;width:20px;height:20px;opacity:.55}
+.scrim{position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.92);opacity:0;transition:opacity 1s ease;pointer-events:none}   /* under the field and the menu, over the page: the page falls away while names are up */
+.scrim.on{opacity:1}
+.field{z-index:55}
+
+/* ---- 7. Menus ------------------------------------------------------------------------------------- 
+   Names on the ground, in the caps, with the page dimmed beneath them. A heading word ("Recent") is small, grey, and out of the way. */
+.menu{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:70;margin:0;padding:0;list-style:none;overflow-y:auto;overscroll-behavior:contain;background:none;border:0;box-shadow:none;transition:opacity 1.3s ease}
+.menu[hidden]{display:none}
+.menu .menu-h{display:block;padding:8px 13px 2px 0;font-family:var(--sans);font-weight:500;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1;color:var(--ink-2);opacity:.6}
+.menu li{position:relative;display:flex;align-items:center;gap:12px;padding:9px 13px 9px 0;border-radius:10px;font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.2;color:var(--ink);cursor:pointer;white-space:nowrap;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.menu li .t{min-width:0;white-space:normal;overflow-wrap:anywhere;background:var(--ombre);-webkit-background-clip:text;background-clip:text;color:transparent;padding:.06em 0 .12em;margin:-.06em 0 -.12em}
+.menu li b{font-weight:800;background:var(--ombre-bright);-webkit-background-clip:text;background-clip:text;color:transparent}   /* the letters typed, picked out of a name */
+.menu li .pic{flex:none;width:30px;height:30px;border-radius:50%;object-fit:cover;background:var(--navy-2);box-shadow:0 0 0 1.5px rgba(10,18,36,.55),0 0 0 3px rgba(255,255,255,.05)}
+.menu li::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 1s cubic-bezier(.45,0,.55,1);   /* the chosen row: an ivory light, fullest at the centre */
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 45%,rgba(0,0,0,.08)),linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(234,230,220,.06) 16%,rgba(234,230,220,.2) 50%,rgba(234,230,220,.06) 84%,rgba(0,0,0,0) 100%)}
+.menu li.chosen::before{opacity:1}
+.menu li>*{position:relative}
+.menu li[aria-selected="true"]{background:#13203a;box-shadow:inset 3px 0 0 rgba(234,230,220,.7)}
+@media (hover:hover){.menu li:hover{background:#13203a}}
+
+/* ---- 8. Tabs -------------------------------------------------------------------------------------- 
+   Bare caps words, an ivory bar under the live one. <nav class="tabs" role="tablist"><button role="tab" aria-selected="true">…</button>…</nav> */
+.tabs{display:flex;gap:22px;margin:0;padding:0}
+.tabs button{position:relative;padding:10px 0;border:0;background:none;color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  font-family:var(--caps);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;line-height:1.2;transition:color var(--slow) ease}
+.tabs button::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:rgba(234,230,220,.7);opacity:0;transition:opacity var(--slow) ease}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button[aria-selected="true"]::after{opacity:1}
+.pane{transition:opacity var(--slow) ease}
+.pane[hidden]{display:none}
+.pane.out{opacity:0}
+
+/* ---- 9. Rows -------------------------------------------------------------------------------------- 
+   A tile (68 px, black hairline, a numeral in its corner), the words set to the tile (the title's capitals on its top edge,
+   the detail lines beneath), and a right column (a year or a word, marks under it). Hairlines between rows, none round them.
+   <ol class="rows"><li class="row"><span class="tile-box"><img class="tile in" …><i class="tag">1</i></span>
+     <span class="stack"><span class="t words">Title</span><span class="lines"><span class="with detail">…</span><span class="meta detail">…</span></span></span>
+     <span class="side"><span class="y">2017</span><span class="marks">…</span></span></li></ol> */
+.rows{margin:0;padding:0;list-style:none}
+.row{display:grid;grid-template-columns:var(--tile) minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:calc(var(--row-gap) / 2) 0;border-top:1px solid var(--row-rule);text-decoration:none;color:inherit}
+.row:first-child{border-top:0;padding-top:0}
+a.row{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tile-box{position:relative;display:block;width:var(--tile);height:var(--tile)}
+.tile{display:block;width:var(--tile);height:var(--tile);border-radius:8px;object-fit:cover;background:var(--navy);opacity:0;transition:opacity .8s ease;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 0 1px rgba(3,6,14,.9),0 2px 0 #070d1a,0 3px 6px rgba(0,0,0,.4)}   /* the black hairline every picture has */
+.tile.in{opacity:1}
+.tile.missing{opacity:1;background:radial-gradient(circle at 50% 50%,var(--ink) 0 3px,#0a1120 3.5px 9px,transparent 9.5px),repeating-radial-gradient(circle at 50% 50%,#0f1b33 0 2px,#162544 2px 4px)}
+.tag{position:absolute;left:0;top:0;z-index:1;min-width:18px;height:18px;padding:0 5px;border-radius:8px 0 7px 0;background:rgba(3,5,10,.93);color:var(--ink);font-family:var(--sans);font-weight:600;font-size:11px;line-height:18px;letter-spacing:.02em;text-align:center;pointer-events:none;font-style:normal}
+.row .stack{display:flex;flex-direction:column;justify-content:space-between;min-height:var(--tile);min-width:0}
+.row .t{display:block;margin-top:-.29em}                 /* the capitals start on the tile's top edge */
+.row .lines{display:grid;gap:2px;min-width:0}
+.row .with,.row .meta{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .side{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;min-height:var(--tile);text-align:right}
+.row .y{display:block;font-family:var(--sans);font-weight:600;font-size:15px;line-height:1.25;margin-top:-.29em;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row .marks{display:flex;gap:10px;margin-top:8px}
+@media (max-width:360px){:root{--tile:60px}}
+@media (min-width:600px){:root{--tile:80px}}
+
+/* ---- 10. Marks ------------------------------------------------------------------------------------ 
+   Bare glyphs, no circles or boxes: an alpha mask painted in the text colour, with a finger's room round each (padding given back as margin). */
+.ico{display:inline-block;width:16px;height:16px;flex:none;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;pointer-events:none}
+.ico.sp-ico{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round'%3E%3Cpath d='M4.2 8.6c5.2-2 11.1-1.6 15.9 1.2' stroke-width='2.7'/%3E%3Cpath d='M5.3 12.6c4.3-1.5 9.2-1.2 13.2 1' stroke-width='2.3'/%3E%3Cpath d='M6.4 16.3c3.4-1.1 7.2-.9 10.4.8' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E")}
+.ico.am-ico{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9.2 18.4V6.3l10.6-2.6v12.2' fill='none' stroke='%23000' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3Cpath d='M9.2 11.4l10.6-2.6' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='6.8' cy='18.4' r='2.7'/%3E%3Ccircle cx='17.4' cy='15.9' r='2.7'/%3E%3C/svg%3E")}
+.ico.share-ico{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.8v10.4M8.6 7.2L12 3.8l3.4 3.4M6 11.6v6.4a1.6 1.6 0 0 0 1.6 1.6h8.8a1.6 1.6 0 0 0 1.6-1.6v-6.4' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.ico.done-ico{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.mark-btn{display:inline-flex;align-items:center;padding:6px;margin:-6px;border:0;background:none;color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent;text-decoration:none;transition:opacity .6s ease}
+.mark-btn .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* the name stays for screen readers */
+@media (hover:hover){.mark-btn:hover{color:var(--ink)}}
+.mark-btn.is-down{opacity:.55}
+.arrow-btn{display:inline-flex;align-items:center;padding:10px 0 10px 14px;border:0;background:none;color:var(--ink-2);cursor:pointer;-webkit-tap-highlight-color:transparent}   /* an arrow alone, e.g. the list's order */
+.arrow-btn svg{width:14px;height:14px;transition:transform .9s var(--fold)}
+.arrow-btn.flipped svg{transform:rotate(180deg)}
+:focus-visible{outline:2px solid rgba(234,230,220,.7);outline-offset:3px}
+
+/* ---- 11. Footer and credits ----------------------------------------------------------------------- 
+   <footer><button class="credits-toggle" aria-expanded="false" aria-controls="credits"><span class="w">Credits</span><i class="chev"></i></button>
+   <div id="credits" class="credits"><div class="credits-in"><dl><dt>What</dt><dd>Who</dd>…</dl></div></div></footer>   (street.js folds it) */
+footer{background:var(--navy);border-top:1px solid var(--rule);color:#c9d0de;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px var(--axis) calc(6px + env(safe-area-inset-bottom,0px));text-align:center;line-height:1.5;position:relative;z-index:60}
+footer a{color:var(--ink);text-decoration:none}
+.credits-toggle{font:inherit;cursor:pointer;background:none;border:0;margin:0;padding:2px 0;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink-2);-webkit-tap-highlight-color:transparent}
+.credits-toggle .w{font-family:var(--caps);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.credits-toggle .chev{display:block;width:7px;height:7px;border-right:1.5px solid #a6adbf;border-bottom:1.5px solid #a6adbf;transform:translateY(-2px) rotate(45deg);transition:transform 3s ease;will-change:transform}
+.credits-toggle[aria-expanded="true"] .chev{transform:translateY(2px) rotate(-135deg)}
+.credits{height:0;overflow:hidden;opacity:0;will-change:opacity}
+.credits-in{min-height:0;overflow:hidden;padding:12px 0 4px}
+.credits dl{margin:0 auto;max-width:608px;padding:14px 16px 15px;display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:9px;text-align:left}   /* like film credits: what, right-justified to the centre line; who, left-justified from it; no box */
+.credits dt{text-align:right;font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;line-height:1.5;background:var(--ombre-dim);-webkit-background-clip:text;background-clip:text;color:transparent}
+.credits dd{margin:0;line-height:1.5;background:var(--ombre);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- 12. A bar at the foot (a player, a toolbar): solid navy like the masthead, the hairline in the light ---- */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:65;isolation:isolate;background:var(--navy);border-top:1px solid var(--rule);border-image:linear-gradient(90deg,rgba(var(--blue),.15),rgba(var(--blue),.75) 28%,rgba(var(--light-b),.7) 72%,rgba(var(--light-b),.15)) 1;padding:8px 16px calc(8px + env(safe-area-inset-bottom,0px))}
+.bar .wrap{max-width:608px;margin:0 auto;display:flex;align-items:center;gap:8px}
+.bar .prog{position:absolute;left:0;top:-1px;height:2px;width:100%;z-index:3;background:var(--ice);transform:scaleX(0);transform-origin:0 50%;opacity:.95;transition:transform .32s linear,opacity .5s ease;pointer-events:none}   /* progress: a hairline of ice along the bar's top edge */
+
+/* ---- 13. Motion ----------------------------------------------------------------------------------- 
+   Nothing snaps. A thing arrives by fading (or rising 28 px as it fades); it leaves the same way, quicker. */
+.fade{opacity:0;transition:opacity var(--slow) ease}
+.fade.in{opacity:1}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s var(--out);transition-delay:var(--d,0ms)}   /* reveal on scroll (street.js staggers --d) */
+.rv.above{transform:translateY(-28px)}
+.rv.in{opacity:1;transform:none}
+@keyframes st-fadein{from{opacity:0}to{opacity:1}}
+.appear{animation:st-fadein .9s ease both}
+@media (prefers-reduced-motion:reduce){
+  .lights i,.top::before,.top h1{animation:none}
+  .rv{opacity:1;transform:none;transition:none}
+  .fade,.pane,.scrim,.menu,.tile,.credits,.credits-toggle .chev,.arrow-btn svg,.tabs button,.tabs button::after{transition:none}
+}

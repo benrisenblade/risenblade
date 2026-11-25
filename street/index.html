@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Risenblade</title>
+<meta name="robots" content="noindex">   <!-- a trial of the street look beside the site; the site itself stays at the root -->
+<link rel="canonical" href="https://risenblade.com/">
+<meta name="theme-color" content="#020308">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Risenblade">
+<meta property="og:url" content="https://risenblade.com/street/">
+<meta property="og:image" content="https://risenblade.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="street.css">
+<link rel="stylesheet" href="handover.css">
+<link rel="stylesheet" href="rows.css">
+<link rel="stylesheet" href="voice.css">
+<link rel="stylesheet" href="risenblade.css">
+<link rel="stylesheet" href="port.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10V8a5 5 0 0 1 10 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1Zm2 0h6V8a3 3 0 0 0-6 0v2Zm3 4a1.5 1.5 0 0 0-.75 2.8V18a.75.75 0 0 0 1.5 0v-1.2A1.5 1.5 0 0 0 12 14Z"/></symbol>
+  <symbol id="i-unlock" viewBox="0 0 24 24"><path fill="currentColor" d="M17 8a5 5 0 0 0-9.58-2h2.2A3 3 0 0 1 15 8v2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V8Zm-5 6a1.5 1.5 0 0 0-.75 2.8V18a.75.75 0 0 0 1.5 0v-1.2A1.5 1.5 0 0 0 12 14Z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+</defs></svg>
+<div class="lights" aria-hidden="true"><i class="lt-broad"></i><i class="lt-near"></i></div>
+
+<header class="top">
+  <div class="brand">
+    <span class="brand-site"><h1><a class="home" href="#top" aria-label="Risenblade, top of page"><i class="sitemark" aria-hidden="true"></i><span>Risenblade</span></a></h1></span>
+    <span class="brand-name" aria-hidden="true"><span class="h"></span><span class="sub"></span></span>
+  </div>
+  <button class="sound" id="spk" type="button" aria-pressed="false" aria-label="Music on or off" title="Music"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"></path><g class="waves" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"><path d="M16 9.5a3.5 3.5 0 0 1 0 5"></path><path d="M18.5 7a7 7 0 0 1 0 10"></path></g><path class="mute" d="M16.5 9.5l4 5M20.5 9.5l-4 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></svg></button>
+</header>
+
+<main id="top">
+  <section class="group" id="websites">
+    <h2 class="name">Websites &amp; Games</h2>
+    <h3 class="sub-h">Music</h3>
+    <ol class="sites">
+      <li><a class="site" href="https://zetaharp.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://zetaharp.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Zeta Harp</span>
+        <span class="d">An instrument played on the Riemann zeta function</span>
+      </a></li>
+      <li><a class="site" href="https://albumhound.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://albumhound.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Albumhound</span>
+        <span class="d">Search any artist’s studio album discography</span>
+      </a></li>
+    </ol>
+    <h3 class="sub-h">Science and Finance</h3>
+    <ol class="sites">
+      <li><a class="site" href="https://paffolio.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://paffolio.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Paffolio</span>
+        <span class="d">A securities trading platform</span>
+      </a></li>
+      <li><a class="site" href="https://darwindeli.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://darwindeli.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Sandwich Tree</span>
+        <span class="d">The evolutionary relationships among the organisms that make up a Subway sandwich</span>
+      </a></li>
+    </ol>
+    <h3 class="sub-h">Geography Games</h3>
+    <ol class="sites">
+      <li><a class="site" href="https://marcothegame.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://marcothegame.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Marco</span>
+        <span class="d">Guess the notable person from their cartographic birth and death information</span>
+      </a></li>
+      <li><a class="site" href="https://genghisgame.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://genghisgame.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Genghis</span>
+        <span class="d">Cross from one country to another, through as few borders as possible</span>
+      </a></li>
+    </ol>
+    <h3 class="sub-h">Geography Reference Sites</h3>
+    <ol class="sites">
+      <li><a class="site" href="https://worldetymologies.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://worldetymologies.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">World Etymologies</span>
+        <span class="d">The origin of every country’s name, in twenty-five languages</span>
+      </a></li>
+      <li><a class="site" href="https://flagfamilies.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://flagfamilies.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Flag Families</span>
+        <span class="d">A family tree of the world’s national flags</span>
+      </a></li>
+      <li><a class="site" href="https://countriesranked.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://countriesranked.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Countries Ranked</span>
+        <span class="d">One hundred top-ten lists, from GDP to rare earths to World Cup titles</span>
+      </a></li>
+      <li><a class="site" href="https://interstatesmap.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://interstatesmap.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Interstates</span>
+        <span class="d">Every Interstate highway in the United States: junctions, major cities, and endpoints</span>
+      </a></li>
+      <li><a class="site" href="https://hawaiianemperor.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://hawaiianemperor.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Hawaiian–Emperor Chain</span>
+        <span class="d">Mapping every island and seamount from the Big Island to the Kuril–Kamchatka Trench</span>
+      </a></li>
+      <li><a class="site" href="https://canadalakes.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://canadalakes.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Canada Lakes</span>
+        <span class="d">The arc of large lakes across Canada, from the Great Lakes to Great Bear Lake</span>
+      </a></li>
+      <li><a class="site" href="https://seven-stans.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://seven-stans.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Seven Stans</span>
+        <span class="d">An interactive map of the seven countries whose names end in “stan”</span>
+      </a></li>
+    </ol>
+    <h3 class="sub-h">Directory</h3>
+    <ol class="sites">
+      <li><a class="site" href="https://indexben.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://indexben.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Index by Ben</span>
+        <span class="d">All the sites on one page</span>
+      </a></li>
+      <li><a class="site" href="https://atlasbyben.com/" target="_blank" rel="noopener">
+        <span class="shot"><img src="https://atlasbyben.com/og-image.png" alt="" width="1200" height="630" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="t">Atlas by Ben</span>
+        <span class="d">The geography sites and games on one page</span>
+      </a></li>
+    </ol>
+  </section>
+  <section class="group" id="art">
+    <h2 class="name">Visual Art</h2>
+    <h3 class="sub-h">Bauhaus</h3>
+    <p class="sub-d">Bridges and cities, in primary colour and black line</p>
+    <ul class="works" data-gallery="bauhaus">
+      <li><figure class="work gal" data-src="../img/art/bauhaus/bridge-grid.jpg" data-title="Gate in a Grid" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/bridge-grid.t.jpg" alt="Gate in a Grid" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Gate in a Grid</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/bauhaus/bridge-skyline.jpg" data-title="Red Sun over the Bay" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/bridge-skyline.t.jpg" alt="Red Sun over the Bay" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Red Sun over the Bay</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/bauhaus/bridge-deck.jpg" data-title="Head-On" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/bridge-deck.t.jpg" alt="Head-On" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Head-On</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/bauhaus/guillotine.jpg" data-title="Committee" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/guillotine.t.jpg" alt="Committee" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Committee</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/bauhaus/city-blocks.jpg" data-title="Primary Town" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/city-blocks.t.jpg" alt="Primary Town" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Primary Town</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/bauhaus/bridge-waterfront.jpg" data-title="Waterfront Lines" tabindex="0" style="--ar:1.0000"><img src="../img/art/bauhaus/bridge-waterfront.t.jpg" alt="Waterfront Lines" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Waterfront Lines</figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Headwear</h3>
+    <ul class="works" data-gallery="hats">
+      <li><figure class="work gal" data-src="../img/art/hats/sample-oxblood-brim.jpg" data-title="Oxblood Brim" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/sample-oxblood-brim.t.jpg" alt="Oxblood Brim" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Oxblood Brim</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/sample-silver-diamond.jpg" data-title="Silver Diamond" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/sample-silver-diamond.t.jpg" alt="Silver Diamond" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Silver Diamond</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/sample-black-diamond.jpg" data-title="Black Diamond" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/sample-black-diamond.t.jpg" alt="Black Diamond" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Black Diamond</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/sample-red-brim.jpg" data-title="Red Brim" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/sample-red-brim.t.jpg" alt="Red Brim" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Red Brim</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/gold.jpg" data-title="The Aurum" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/gold.t.jpg" alt="The Aurum" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Aurum</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/red-cap.jpg" data-title="The Honeycomb" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/red-cap.t.jpg" alt="The Honeycomb" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Honeycomb</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/cobalt.jpg" data-title="The Kingfisher" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/cobalt.t.jpg" alt="The Kingfisher" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Kingfisher</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/green-felt.jpg" data-title="The Cartographer" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/green-felt.t.jpg" alt="The Cartographer" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Cartographer</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/iridescent.jpg" data-title="The Nacre" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/iridescent.t.jpg" alt="The Nacre" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Nacre</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/rings-cap.jpg" data-title="The Bullseye" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/rings-cap.t.jpg" alt="The Bullseye" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Bullseye</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/amethyst.jpg" data-title="The Orchid" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/amethyst.t.jpg" alt="The Orchid" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Orchid</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/gold-brocade.jpg" data-title="The Brocade" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/gold-brocade.t.jpg" alt="The Brocade" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Brocade</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/green-chrome.jpg" data-title="The Scarab" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/green-chrome.t.jpg" alt="The Scarab" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Scarab</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/nightgarden.jpg" data-title="The Nightgarden" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/nightgarden.t.jpg" alt="The Nightgarden" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Nightgarden</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/chrome-cap.jpg" data-title="The Chrome" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/chrome-cap.t.jpg" alt="The Chrome" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Chrome</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/shells-and-pearls.jpg" data-title="The Reef" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/shells-and-pearls.t.jpg" alt="The Reef" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Reef</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/copper.jpg" data-title="The Ember" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/copper.t.jpg" alt="The Ember" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Ember</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/swirl-cloche.jpg" data-title="The Whirl" tabindex="0" style="--ar:0.6671"><img src="../img/art/hats/swirl-cloche.t.jpg" alt="The Whirl" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Whirl</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/silver-plumes.jpg" data-title="The Quill" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/silver-plumes.t.jpg" alt="The Quill" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Quill</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/joshua-tree-fedora.jpg" data-title="The Joshua" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/joshua-tree-fedora.t.jpg" alt="The Joshua" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Joshua</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/oil-slick-cap.jpg" data-title="The Slick" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/oil-slick-cap.t.jpg" alt="The Slick" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Slick</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/succulent.jpg" data-title="The Succulent" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/succulent.t.jpg" alt="The Succulent" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Succulent</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/silver-plumes-seated.jpg" data-title="The Argent" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/silver-plumes-seated.t.jpg" alt="The Argent" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Argent</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/palm-fedora.jpg" data-title="The Frond" tabindex="0" style="--ar:1.0000"><img src="../img/art/hats/palm-fedora.t.jpg" alt="The Frond" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Frond</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/bronze-cap.jpg" data-title="The Filigree" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/bronze-cap.t.jpg" alt="The Filigree" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Filigree</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/plankton.jpg" data-title="The Plankton" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/plankton.t.jpg" alt="The Plankton" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Plankton</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/black.jpg" data-title="The Grille" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/black.t.jpg" alt="The Grille" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Grille</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/iridescent-hood.jpg" data-title="The Falcon" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/iridescent-hood.t.jpg" alt="The Falcon" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Falcon</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hats/horned-mask.jpg" data-title="The Antelope" tabindex="0" style="--ar:0.6667"><img src="../img/art/hats/horned-mask.t.jpg" alt="The Antelope" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Antelope</figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Furniture Design</h3>
+    <p class="sub-d">The Cartouche is a black-lacquer chair with a brass rim that closes around whomever sits in it</p>
+    <ul class="works" data-gallery="cartouche">
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-eight.jpg" data-title="The Cartouche" tabindex="0" style="--ar:1.5000"><img src="../img/art/furniture/cartouche-eight.t.jpg" alt="The Cartouche" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Cartouche</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-leopard.jpg" data-title="The Panthera — natural leopard" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-leopard.t.jpg" alt="The Panthera — natural leopard" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Panthera<span>natural leopard</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-amethyst-velvet.jpg" data-title="The Amethyst — amethyst velvet" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-amethyst-velvet.t.jpg" alt="The Amethyst — amethyst velvet" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Amethyst<span>amethyst velvet</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-red-crocodile.jpg" data-title="The Cardinal — red crocodile" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-red-crocodile.t.jpg" alt="The Cardinal — red crocodile" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Cardinal<span>red crocodile</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-python.jpg" data-title="The Python — natural python" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-python.t.jpg" alt="The Python — natural python" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Python<span>natural python</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-black-velvet.jpg" data-title="The Midnight — black velvet" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-black-velvet.t.jpg" alt="The Midnight — black velvet" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Midnight<span>black velvet</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-emerald-velvet.jpg" data-title="The Emerald — emerald velvet" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-emerald-velvet.t.jpg" alt="The Emerald — emerald velvet" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Emerald<span>emerald velvet</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-cognac-leather.jpg" data-title="The Cognac — cognac leather" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-cognac-leather.t.jpg" alt="The Cognac — cognac leather" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Cognac<span>cognac leather</span></figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/furniture/cartouche-ivory-shearling.jpg" data-title="The Ermine — ivory shearling" tabindex="0" style="--ar:0.6667"><img src="../img/art/furniture/cartouche-ivory-shearling.t.jpg" alt="The Ermine — ivory shearling" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Ermine<span>ivory shearling</span></figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Desert Art and Expressionism</h3>
+    <ul class="works" data-gallery="desert-art-expressionism">
+      <li><figure class="work gal" data-src="../img/art/palm-springs/martini.jpg" data-title="Five O’Clock" tabindex="0" style="--ar:1.0000"><img src="../img/art/palm-springs/martini.t.jpg" alt="Five O’Clock" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Five O’Clock</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/palm-springs/poolside-with-dog.jpg" data-title="The Lifeguard" tabindex="0" style="--ar:1.0000"><img src="../img/art/palm-springs/poolside-with-dog.t.jpg" alt="The Lifeguard" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Lifeguard</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/expressionist/scream.jpg" data-title="Second Scream" tabindex="0" style="--ar:0.6667"><img src="../img/art/expressionist/scream.t.jpg" alt="Second Scream" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Second Scream</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/expressionist/two-profiles.jpg" data-title="Face to Face" tabindex="0" style="--ar:0.6667"><img src="../img/art/expressionist/two-profiles.t.jpg" alt="Face to Face" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Face to Face</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/palm-springs/glass-house.jpg" data-title="Glass House" tabindex="0" style="--ar:1.0000"><img src="../img/art/palm-springs/glass-house.t.jpg" alt="Glass House" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Glass House</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/still-life/sushi.jpg" data-title="Omakase" tabindex="0" style="--ar:1.0000"><img src="../img/art/still-life/sushi.t.jpg" alt="Omakase" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Omakase</figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Photography</h3>
+    <ul class="works" data-gallery="photography">
+      <li><figure class="work gal" data-src="../img/art/photography/temple-steps.jpg" data-title="Water Monk" tabindex="0" style="--ar:1.8071"><img src="../img/art/photography/temple-steps.t.jpg" alt="Water Monk" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Water Monk</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/river-and-morning-glories.jpg" data-title="Morning Glories" tabindex="0" style="--ar:1.6067"><img src="../img/art/photography/river-and-morning-glories.t.jpg" alt="Morning Glories" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Morning Glories</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/corn-below-the-cliffs.jpg" data-title="Corn Terrace" tabindex="0" style="--ar:1.7798"><img src="../img/art/photography/corn-below-the-cliffs.t.jpg" alt="Corn Terrace" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Corn Terrace</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/valley-lights.jpg" data-title="Valley of Lights" tabindex="0" style="--ar:1.3333"><img src="../img/art/photography/valley-lights.t.jpg" alt="Valley of Lights" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Valley of Lights</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/smoke-over-the-furrows.jpg" data-title="Furrow Fire" tabindex="0" style="--ar:0.7500"><img src="../img/art/photography/smoke-over-the-furrows.t.jpg" alt="Furrow Fire" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Furrow Fire</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/night-road.jpg" data-title="Comet Road" tabindex="0" style="--ar:1.7768"><img src="../img/art/photography/night-road.t.jpg" alt="Comet Road" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Comet Road</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/desert-ridge.jpg" data-title="Ridge Sitter" tabindex="0" style="--ar:1.7794"><img src="../img/art/photography/desert-ridge.t.jpg" alt="Ridge Sitter" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Ridge Sitter</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/reflection-i.jpg" data-title="Reflected Canal" tabindex="0" style="--ar:1.1849"><img src="../img/art/photography/reflection-i.t.jpg" alt="Reflected Canal" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Reflected Canal</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/pink-canopy.jpg" data-title="Magenta Canopy" tabindex="0" style="--ar:1.0000"><img src="../img/art/photography/pink-canopy.t.jpg" alt="Magenta Canopy" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Magenta Canopy</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/coupe.jpg" data-title="Sour, Golden Hour" tabindex="0" style="--ar:1.3333"><img src="../img/art/photography/coupe.t.jpg" alt="Sour, Golden Hour" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Sour, Golden Hour</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/photography/through-the-rain.jpg" data-title="Through the Rain" tabindex="0" style="--ar:1.3333"><img src="../img/art/photography/through-the-rain.t.jpg" alt="Through the Rain" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Through the Rain</figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Hollywood Hills Study</h3>
+    <ul class="works" data-gallery="hillside-house">
+      <li><figure class="work gal" data-src="../img/art/hillside/dusk-terrace.jpg" data-title="Dusk Terrace" tabindex="0" style="--ar:1.7768"><img src="../img/art/hillside/dusk-terrace.t.jpg" alt="Dusk Terrace" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Dusk Terrace</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hillside/two-fires.jpg" data-title="Two Fires" tabindex="0" style="--ar:1.7768"><img src="../img/art/hillside/two-fires.t.jpg" alt="Two Fires" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Two Fires</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hillside/lit-steps.jpg" data-title="Lit Steps" tabindex="0" style="--ar:1.7768"><img src="../img/art/hillside/lit-steps.t.jpg" alt="Lit Steps" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Lit Steps</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hillside/colonnade.jpg" data-title="Colonnade" tabindex="0" style="--ar:1.7768"><img src="../img/art/hillside/colonnade.t.jpg" alt="Colonnade" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Colonnade</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/hillside/piano-room.jpg" data-title="The Piano Room" tabindex="0" style="--ar:1.5000"><img src="../img/art/hillside/piano-room.t.jpg" alt="The Piano Room" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">The Piano Room</figcaption></figure></li>
+    </ul>
+    <h3 class="sub-h">Desert House Study</h3>
+    <ul class="works" data-gallery="desert-house">
+      <li><figure class="work gal" data-src="../img/art/houses/cabana.jpg" data-title="Cabana" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/cabana.t.jpg" alt="Cabana" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Cabana</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/square-spa.jpg" data-title="Square Spa" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/square-spa.t.jpg" alt="Square Spa" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Square Spa</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/round-spa.jpg" data-title="Round Spa" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/round-spa.t.jpg" alt="Round Spa" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Round Spa</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/fountain-spa.jpg" data-title="Fountain Spa" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/fountain-spa.t.jpg" alt="Fountain Spa" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Fountain Spa</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/bunker.jpg" data-title="Bunker" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/bunker.t.jpg" alt="Bunker" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Bunker</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/pergola-at-dusk.jpg" data-title="Pergola at Dusk" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/pergola-at-dusk.t.jpg" alt="Pergola at Dusk" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Pergola at Dusk</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/shaded-dining.jpg" data-title="Shaded Dining" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/shaded-dining.t.jpg" alt="Shaded Dining" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Shaded Dining</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/infinity-edge.jpg" data-title="Infinity Edge" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/infinity-edge.t.jpg" alt="Infinity Edge" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Infinity Edge</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/water-wall.jpg" data-title="Water Wall" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/water-wall.t.jpg" alt="Water Wall" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Water Wall</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/blue-tile-spa.jpg" data-title="Blue Tile Spa" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/blue-tile-spa.t.jpg" alt="Blue Tile Spa" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Blue Tile Spa</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/raised-pool.jpg" data-title="Raised Pool" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/raised-pool.t.jpg" alt="Raised Pool" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Raised Pool</figcaption></figure></li>
+      <li><figure class="work gal" data-src="../img/art/houses/evening-water-wall.jpg" data-title="Evening Water Wall" tabindex="0" style="--ar:1.6029"><img src="../img/art/houses/evening-water-wall.t.jpg" alt="Evening Water Wall" loading="lazy" decoding="async" onload="this.classList.add('in')"><figcaption class="cap">Evening Water Wall</figcaption></figure></li>
+    </ul>
+  </section>
+  <section class="group" id="music">
+    <h2 class="name">Music</h2>
+    <p class="lede">BeRo Bloom</p>
+    <h3 class="sub-h">Albums</h3>
+    <ol class="rows plain">
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/where-the-warm-tide-turns.jpg" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">Where the Warm Tide Turns</span><span class="lines"><span class="meta detail">Single · 3 songs</span></span></span>
+        <span class="side"><span class="y">2026</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/24XYA3rVdU8glpfEUfOMNJ" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/where-the-warm-tide-turns-single/6818846513" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/apollo.jpg" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">APOLLO</span><span class="lines"><span class="meta detail">EP · 6 songs</span></span></span>
+        <span class="side"><span class="y">2026</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/063UFYJVCLe9RdbpNQMZrY" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/apollo-ep/6818836405" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/flashburn.jpg" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">FLASHBURN</span><span class="lines"><span class="meta detail">EP · 6 songs</span></span></span>
+        <span class="side"><span class="y">2026</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/2oKeX4VckhXXFscbKtxEeT" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/flashburn-ep/6791550518" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/dahomey-seche.jpg?v=2" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">Dahomey-Seche</span><span class="lines"><span class="meta detail">Album · 16 songs</span></span></span>
+        <span class="side"><span class="y">2024</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/37beGKISyVL12w2wCHYxp9" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/dahomey-seche/1738006081" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/in-dwaybadou.jpg?v=2" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">In Dwaybadou</span><span class="lines"><span class="meta detail">Album · 9 songs</span></span></span>
+        <span class="side"><span class="y">2024</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/1Pw5THqmGFagntkhU2daYf" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/in-dwaybadou/1737980328" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/bero-bloom.jpg?v=2" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">BeRo Bloom</span><span class="lines"><span class="meta detail">Album · 10 songs</span></span></span>
+        <span class="side"><span class="y">2021</span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/album/2LMAWLl0pYOz0CdqsFyDtT" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/album/bero-bloom/1560534735" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+    </ol>
+    <h3 class="sub-h">Singles</h3>
+    <ol class="rows plain">
+      <li class="row"><span class="tile-box"><img class="tile" src="../img/music/artist.jpg" alt="" loading="lazy" decoding="async" onload="this.classList.add('in')"></span>
+        <span class="stack"><span class="t lit-bright">BeRo Bloom</span><span class="lines"><span class="meta detail">All albums and singles</span></span></span>
+        <span class="side"><span class="y"></span><span class="marks"><a class="mark-btn" href="https://open.spotify.com/artist/7GFagITMQigQcXjFoZsJQf" target="_blank" rel="noopener"><i class="ico sp-ico"></i><span class="sr">Spotify</span></a><a class="mark-btn" href="https://music.apple.com/us/artist/bero-bloom/1493743634" target="_blank" rel="noopener"><i class="ico am-ico"></i><span class="sr">Apple Music</span></a></span></span></li>
+    </ol>
+  </section>
+  <section class="group" id="writings">
+    <h2 class="name">Writing</h2>
+    <h3 class="sub-h">Books</h3>
+    <ul class="pieces" data-gallery="books">
+      <li><button class="piece gal" type="button" data-src="../img/writing/fern-and-rye.jpg" data-title="Fern and Rye — A Tale of Day and Night"><span class="t">Fern and Rye</span><span class="d">A Tale of Day and Night</span><span class="x">A picture book about a fox who keeps the night, a rabbit who keeps the day, and the hour they share.</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/dm2.pdf.enc" data-title="DM²" data-locked="1"><span class="t">DM²</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Book</span><span class="x">A 360-page guide to the tactics people use on each other, and how to see them coming.</span></button></li>
+    </ul>
+    <h3 class="sub-h">Screenplays</h3>
+    <ul class="pieces">
+      <li><button class="piece" type="button" data-src="../docs/te-aa-o-te-toea.pdf" data-title="Te Aʻa O Te Tōʻea"><span class="t">Te Aʻa O Te Tōʻea</span><span class="d">Historical drama</span><span class="x">Around the year 1100, a canoe leaves the Marquesas Islands and follows the birds north to a new land, Hawai’i.</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/the-slide.pdf.enc" data-title="The Slide / Points of Light" data-locked="1"><span class="t">The Slide / Points of Light</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Biopic</span><span class="x">A flawed, brilliant man looks back on his rise and fall.</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/climaxin.pdf.enc" data-title="Climaxin" data-locked="1" data-solo="1"><span class="t">Climaxin</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Sci-fi thriller</span><span class="x">A future drug keeps users in a state of pre-climactic bliss, but society crumbles as no one wants to finish anything.</span></button></li>
+    </ul>
+    <h3 class="sub-h">Essays</h3>
+    <ul class="pieces">
+      <li><button class="piece is-locked" type="button" data-src="../docs/self-circumscription.pdf.enc" data-title="On Self-Circumscription of the Habitat of H. Sapiens" data-locked="1"><span class="t">On Self-Circumscription of the Habitat of H. Sapiens</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Essay</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/social-disillusionment-of-the-lottery.pdf.enc" data-title="The Social Disillusionment of the Lottery" data-locked="1"><span class="t">The Social Disillusionment of the Lottery</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Essay</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/gamification-of-pursuit.pdf.enc" data-title="The Gamification of Pursuit" data-locked="1"><span class="t">The Gamification of Pursuit</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Essay</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/event-triggers-and-attachment.pdf.enc" data-title="On Event Triggers and the Nature of Attachment" data-locked="1"><span class="t">On Event Triggers and the Nature of Attachment</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Essay</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/isa.pdf.enc" data-title="Inscription, Subscription, and Ascription" data-locked="1" data-solo="1"><span class="t">Inscription, Subscription, and Ascription</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Essay</span></button></li>
+    </ul>
+    <h3 class="sub-h">Poetry</h3>
+    <ul class="pieces" data-gallery="poems">
+      <li><button class="piece gal" type="button" data-src="../img/writing/the-day-the-ice-cream-melted.jpg" data-title="The Day the Ice Cream Melted"><span class="t">The Day the Ice Cream Melted</span><span class="d">Poem</span></button></li>
+      <li><button class="piece gal" type="button" data-src="../img/writing/takushoku.jpg" data-title="Takushoku"><span class="t">Takushoku</span><span class="d">Poem</span></button></li>
+      <li><button class="piece gal" type="button" data-src="../img/writing/mirage.jpg" data-title="Mirage"><span class="t">Mirage</span><span class="d">Poem</span></button></li>
+      <li><button class="piece gal" type="button" data-src="../img/writing/a-west-more-vast.jpg" data-title="A West More Vast"><span class="t">A West More Vast</span><span class="d">Poem</span></button></li>
+      <li><button class="piece gal" type="button" data-src="../img/writing/fern-and-rye.jpg" data-title="Fern and Rye"><span class="t">Fern and Rye</span><span class="d">Poem</span></button></li>
+      <li><button class="piece is-locked" type="button" data-src="../docs/the-ill-loom-and-naughty.pdf.enc" data-title="The Ill-Loom and Naughty" data-locked="1"><span class="t">The Ill-Loom and Naughty</span><span class="d"><svg class="lock" aria-label="Locked"><use href="#i-lock"/></svg>Epic poem in five parts</span></button></li>
+    </ul>
+  </section>
+</main>
+
+<footer><span class="line">Risenblade is the collected works of Ben Bloom.</span></footer>
+
+<div class="viewer" id="viewer" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+  <div class="vbar"><h3 id="viewer-title"><span class="tt cur">Untitled</span><span class="tt nxt"></span></h3><span class="n" id="viewer-n"><span class="nn cur"></span><span class="nn nxt"></span></span><button class="iconbtn" id="viewer-close" type="button" aria-label="Close"><svg><use href="#i-x"/></svg></button></div>
+  <div class="stage" id="stage">
+    <button class="iconbtn navbtn prev" id="viewer-prev" type="button" aria-label="Previous" hidden><svg><use href="#i-prev"/></svg></button>
+    <button class="iconbtn navbtn next" id="viewer-next" type="button" aria-label="Next" hidden><svg><use href="#i-next"/></svg></button>
+    <div id="stage-inner" style="display:contents"></div>
+  </div>
+</div>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="box">
+    <h3 id="gate-title">Password</h3>
+    <p>This one is shared only with people who have the password.</p>
+    <form id="gate-form" autocomplete="off">
+      <input id="gate-input" type="password" inputmode="text" autocapitalize="off" spellcheck="false" placeholder="Password" aria-label="Password">
+      <button class="btn" type="submit" id="gate-go">Unlock</button>
+    </form>
+    <div class="err" id="gate-err" aria-live="polite"></div>
+    <div class="row"><span class="status" id="gate-status" hidden>Unlocked for this browser session.</span><button class="btn quiet sm" type="button" id="gate-cancel">Cancel</button></div>
+  </div>
+</div>
+
+<noscript><div style="padding:20px 24px;color:#a6adbf">The music, the password gate, and the in-page readers need JavaScript. Everything else is plain HTML.</div></noscript>
+<audio id="bgm" preload="none"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+<script src="street.js"></script>
+<script src="handover.js"></script>
+<script>
+  Handover.attach({ top: document.querySelector('.top'), headings: [...document.querySelectorAll('.group > .name')] });
+</script>
+<script src="port.js"></script>
+</body>
+</html>
